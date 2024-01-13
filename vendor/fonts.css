@@ -1,0 +1,18 @@
+@font-face {
+    src: url('fonts/Roboto/Roboto-Regular.woff') format('woff'),
+    url('fonts/Roboto/Roboto-Regular.ttf') format('truetype')
+    /*more formats can be included to ensure compatibility with all browsers eg. (woff woff2 and truetype)*/;
+
+    font-family: "Best Font Ever";
+  }
+
+  @font-face{
+    src:url(fonts/Roboto/Roboto-Bold.ttf);
+    font-family:"Best Font Ever";
+    font-weight:bold;
+  }
+  @font-face{
+    src:url(fonts/Roboto/Roboto-Italic.ttf);
+    font-family:"Best Font Ever";
+    font-style:italic;
+  }
