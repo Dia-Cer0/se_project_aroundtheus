@@ -25,3 +25,5 @@
 [Project 3 Figma design](https://www.figma.com/file/Es8zZP3ARGH9JGcw60i3OD/Sprint-3_-Around-the-US?type=design&node-id=0-1&mode=design&t=FOHp6ogpUbGjpv79-0)
 
 [Using Figma in Project 3](https://www.youtube.com/watch?v=vrWdiUUh-N4)
+
+### \*NOTE: May want to convert images to a different format to optimize page performance (see previous section in sprint 3 for details)
