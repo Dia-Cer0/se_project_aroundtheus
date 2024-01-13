@@ -8,7 +8,7 @@
 
 [Responsive design overview](https://vimeo.com/831968327)
 
-[Part 1](https://vimeo.com/783497039)
+[Part 1](https://vimeo.com/783497039)<br><br>
 
 [Part 2](https://vimeo.com/783496584)
 
