@@ -1,2 +1,16 @@
-@import url('../vendor/fonts.css');
-@import url('../blocks/page.css');
+@import url("../vendor/normalize.css");
+@import url("../blocks/page.css");
+@import url("../vendor/fonts.css");
+
+@media screen and (max-width: 1280px) /*these parameters may be incomplete,
+  need to check this with debugger*/ {
+  /*insert rules for class selectors*/
+}
+@media screen and (max-width: 762px) /*these parameters may be incomplete,
+  need to check this with debugger*/ {
+  /*insert rules for class selectors*/
+}
+@media screen and (max-width: 320px) /*these parameters may be incomplete,
+  need to check this with debugger*/ {
+  /*insert rules for class selectors*/
+}

@@ -1,5 +1,9 @@
-@import url('../vendor/fonts.css');
-
-.page{
-    font-family:"Best Font Ever";
+.page {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}
+.page__title_font_inter-medium {
+  font-family: Inter-Medium, "Franklin Gothic Medium", sans-serif;
+}
+.page__title_font_inter-black {
+  font-family: Inter-Black, "Arial Narrow Bold", Impact;
 }
