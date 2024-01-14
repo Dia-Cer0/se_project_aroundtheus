@@ -1,0 +1,67 @@
+.profiles {
+  padding: 1%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profiles__profile {
+  padding-right: 5%;
+
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  width: 100%;
+}
+/*need to figure out why the image is shrinking in the horizontal direction when making the browser window smaller*/
+.profiles__image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline;
+  padding: 0;
+}
+.profiles__profile-details {
+  width: 100%;
+  max-width: 500px;
+  padding: 0;
+  margin: 0;
+  line-height: 48px;
+  display: inline;
+  color: #ffffff;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  list-style: none;
+}
+.profile-details__name {
+  font-size: 42px;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  text-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile-details__edit {
+  min-width: 24px;
+}
+.profile-details__edit:hover {
+  opacity: 60%;
+}
+.profile-details__subtitle {
+  font-size: 18px;
+}
+.profiles__button {
+  padding: 0;
+  margin: 0;
+  font-size: 22px;
+  background-color: transparent;
+  color: #ffffff;
+  width: 100%;
+  min-width: 50px;
+  max-width: 150px;
+  height: 50px;
+  border: 1px solid #ffffff;
+}
+.profiles__button:hover {
+  opacity: 60%;
+}

@@ -1,0 +1,35 @@
+.header {
+  margin: 0;
+  padding: 2%;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  width: 100%;
+  max-width: 880px;
+  min-height: 74px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.header__title {
+  margin: 0;
+  display: flex;
+}
+.title__text {
+  font-size: 32px;
+  margin: 0;
+  font: "Inter-Medium", Arial, Helvetica, sans-serif;
+}
+.header__superscript {
+  margin: 0;
+  font: "inter", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  display: inline;
+}
+
+.header__rule {
+  margin: 0;
+  max-width: 100%;
+  border-color: #545454;
+}

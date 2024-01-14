@@ -1,9 +1,10 @@
 .page {
   font-family: Inter, Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  max-width: 880px;
 }
-.page__title_font_inter-medium {
-  font-family: Inter-Medium, "Franklin Gothic Medium", sans-serif;
-}
-.page__title_font_inter-black {
-  font-family: Inter-Black, "Arial Narrow Bold", Impact;
+
+.page_alignment_centered {
+  margin-left: auto;
+  margin-right: auto;
 }
