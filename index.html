@@ -4,196 +4,117 @@
     <!--Main Webpage Styles-->
     <link rel="stylesheet" href="./pages/index.css" />
 
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="./favicon-chrome.png" />
+
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Around The U.S.</title>
   </head>
 
-  <body class="page page_alignment_centered">
-    <header class="header">
-      <div class="header__title">
-        <h1 class="title__text">Around</h1>
-        <p class="header__superscript">The U.S.</p>
-      </div>
+  <body class="page">
+    <header class="header page__section">
+      <img class ="header__logo" src="./images/Logo.svg" alt="Around The U.S. Website Logo">
 
-      <hr class="header__rule" />
     </header>
-    <main class="content">
-      <section class="profiles">
-        <div class="profiles__profile">
+    <main class="page__content">
+      <section class="profile page__section">
+        <!--<div class="profiles__profile">-->
           <img
             src="./images/jacques-cousteau.jpg"
             alt="image of the great explorer jacques cousteau"
-            class="profiles__image"
+            class="profile__image"
           />
-          <ul class="profiles__profile-details">
-            <li class="profile-details__name">
-              Jacques Cousteau
-              <svg
-                class="profile-details__edit"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect x="0.5" y="0.5" width="23" height="23" stroke="white" />
-                <path
-                  d="M17 8.32827L9.60377 15.7666L8.28302 14.4194L15.6604 7L17 8.32827ZM7 17L8.96226 16.4118L7.58491 15.0835L7 17Z"
-                  fill="white"
-                />
-              </svg>
-            </li>
-            <li class="profile-details__subtitle">Explorer</li>
-          </ul>
-        </div>
+          <div class="profile__profile-details">
+            <h1 class="profile__name">Jacques Cousteau
+            </h1>
+            <button class="profile__edit"></button>
+            <p class="profile__subtitle">Explorer</p>
 
-        <button class="profiles__button">+</button>
+          </div>
+          <button class="profile__button"></button>
+        <!--</div>-->
+
+
       </section>
-      <section class="destinations destinations__alignment_centered">
-        <figure class="destinations__card card__alignment_centered">
+      <section class="destinations page__section">
+        <div class="destinations__card">
           <img
             src="./images/yosemite.jpg"
             alt="photo of yosemite valley"
-            class="card__image"
+            class="destinations__card-image"
           />
-          <figcaption class="card__caption">
-            <p class="caption__text">Yosemite Valley</p>
-            <svg
-              class="caption__icon"
-              width="21"
-              height="18"
-              viewBox="0 0 21 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-                fill="black"
-              />
-            </svg>
-          </figcaption>
-        </figure>
-        
-        <figure class="destinations__card card__alignment_centered">
+          <div class="destinations__card-caption">
+            <h2 class="destinations__caption-text">Yosemite Valley</h2>
+            <button class="destinations__caption-icon" type="submit"></button>
+
+          </div>
+        </div>
+
+        <div class="destinations__card">
           <img
             src="./images/lake-louise.jpg"
             alt="photo of lake louise"
-            class="card__image"
+            class="destinations__card-image"
           />
-          <figcaption class="card__caption">
-            <p class="caption__text">Lake Louise</p>
-            <svg
-              class="caption__icon"
-              width="21"
-              height="18"
-              viewBox="0 0 21 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-                fill="black"
-              />
-            </svg>
-          </figcaption>
-        </figure>
-        <figure class="destinations__card card__alignment_centered">
+          <div class="destinations__card-caption">
+            <h2 class="destinations__caption-text">Lake Louise</h2>
+            <button class="destinations__caption-icon" type="submit"></button>
+          </div>
+        </div>
+        <div class="destinations__card">
           <img
             src="./images/bald-mountains.jpg"
             alt="photo of the bald mountains"
-            class="card__image"
+            class="destinations__card-image"
           />
-          <figcaption class="card__caption">
-            <p class="caption__text">Bald Mountains</p>
-            <svg
-              class="caption__icon"
-              width="21"
-              height="18"
-              viewBox="0 0 21 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-                fill="black"
-              />
-            </svg>
-          </figcaption>
-        </figure>
-        <figure class="destinations__card card__alignment_centered">
+          <div class="destinations__card-caption">
+            <h2 class="destinations__caption-text">Bald Mountains</h2>
+            <button class="destinations__caption-icon" type="submit"></button>
+          </div>
+        </div>
+        <div class="destinations__card ">
           <img
             src="./images/latemar.jpg"
             alt="photo of latemar"
-            class="card__image"
+            class="destinations__card-image"
           />
-          <figcaption class="card__caption">
-            <p class="caption__text">Latemar</p>
-            <svg
-              class="caption__icon"
-              width="21"
-              height="18"
-              viewBox="0 0 21 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-                fill="black"
-              />
-            </svg>
-          </figcaption>
-        </figure>
-      </figure>
-      <figure class="destinations__card card__alignment_centered">
+          <div class="destinations__card-caption">
+            <h2 class="destinations__caption-text">Latemar</h2>
+            <button class="destinations__caption-icon" type="submit"></button>
+          </div>
+        </div>
+      </div>
+      <div class="destinations__card ">
         <img
           src="./images/vanoise.jpg"
           alt="photo of vanoise park"
-          class="card__image"
+          class="destinations__card-image"
         />
-        <figcaption class="card__caption">
-          <p class="caption__text">Vanoise National Park</p>
-          <svg
-            class="caption__icon"
-            width="21"
-            height="18"
-            viewBox="0 0 21 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-              fill="black"
-            />
-          </svg>
-        </figcaption>
-      </figure>
-    </figure>
-    <figure class="destinations__card card__alignment_centered">
+        <div class="destinations__card-caption">
+          <h2 class="destinations__caption-text">Vanoise National Park</h2>
+          <button class="destinations__caption-icon" type="submit"></button>
+        </div>
+      </div>
+    </div>
+    <div class="destinations__card">
       <img
         src="./images/lago.jpg"
         alt="photo of lago di braies"
-        class="card__image"
+        class="destinations__card-image"
       />
-      <figcaption class="card__caption">
-        <p class="caption__text">Lago di Braies</p>
-        <svg
-          class="caption__icon"
-          width="21"
-          height="18"
-          viewBox="0 0 21 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.3764 9.27081C21.5412 7.14636 21.5412 3.69676 19.3764 1.59334C17.2115 -0.531113 13.6964 -0.531113 11.5315 1.59334L10.4812 2.64505L9.43098 1.61437C7.26614 -0.531113 3.75096 -0.531113 1.60755 1.59334C0.557285 2.62401 0 3.99124 0 5.44259C0 6.89395 0.578719 8.26117 1.60755 9.29185L10.4812 18L19.3764 9.27081ZM1.37178 5.44259C1.37178 4.34882 1.80046 3.33918 2.59352 2.58195C3.40801 1.78265 4.45828 1.383 5.50855 1.383C6.55882 1.383 7.60909 1.78265 8.42358 2.58195L10.4812 4.58019L12.5389 2.56091C14.1465 0.983348 16.7829 0.983348 18.369 2.56091C19.1406 3.31814 19.5907 4.32778 19.5907 5.42156C19.5907 6.51534 19.162 7.52498 18.369 8.28221L10.4812 16.0438L2.59352 8.30324C1.82189 7.52498 1.37178 6.51534 1.37178 5.44259Z"
-            fill="black"
-          />
-        </svg>
-      </figcaption>
-    </figure>
+      <div class="destinations__card-caption">
+        <h2 class="destinations__caption-text">Lago di Braies</h2>
+        <button class="destinations__caption-icon" type="submit"></button>
+      </div>
+    </div>
       </section>
     </main>
-    <footer class="footer"><p class="footer__copyright">© Eric Hutcheson 2024 Around The U.S.</p></footer>
+    <footer class="footer">
+      <p class="footer__copyright page__section">
+        © Eric Hutcheson 2024 Around The U.S.
+      </p>
+    </footer>
   </body>
 </html>

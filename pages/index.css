@@ -1,52 +1,11 @@
 @import url("../vendor/normalize.css");
 @import url("../blocks/page.css");
 @import url("../blocks/header.css");
-@import url("../blocks/profiles.css");
+@import url("../blocks/profile.css");
 @import url("../blocks/destinations.css");
 @import url("../blocks/footer.css");
 @import url("../vendor/fonts.css");
 
-@media screen and (max-width: 1280px) /*these parameters may be incomplete,
-  need to check this with debugger*/ {
-  /*insert rules for class selectors*/
-}
-@media screen and (max-width: 762px) {
-  /*these parameters may be incomplete,
-  need to check this with debugger*/
-  /*insert rules for class selectors*/
-  .profile-details__name {
-    font-size: 32px;
-  }
-  .profile-details__subtitle {
-    font-size: 12px;
-  }
-  .profiles__button {
-    width: 50px;
-  }
-}
-@media screen and (max-width: 620px) {
-  .profiles {
-    flex-direction: column;
-  }
-  .profiles__profile {
-    flex-direction: column;
-  }
-}
-@media screen and (max-width: 320px) /*these parameters may be incomplete,
-  need to check this with debugger*/ {
-  /*insert rules for class selectors*/
-  .title__text {
-    font-size: 24px;
-  }
-  .header__superscript {
-    font-size: 7px;
-  }
-  .profile-details__name {
-    font-size: 22px;
-    line-height: 26px;
-  }
-  .profile-details__subtitle {
-    font-size: 14px;
-    line-height: 16px;
-  }
-}
+
+
+

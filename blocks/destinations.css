@@ -1,15 +1,15 @@
+
 .destinations {
-  width: 100%;
-  max-width: 880px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: auto;
-  gap: 5px;
-  padding: 1%;
+  grid-gap:20px 17px;
+  padding-top:48px;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content:center;
 }
-.destinations__alignmnent_centered {
+.destinations_alignmnent_centered {
   margin-right: auto;
   margin-left: auto;
 }
@@ -17,49 +17,58 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+  color:black;
   border-radius: 10px;
-  min-height: 361px;
-  max-width: 282px;
+  box-sizing:border-box;
+  height: 361px;
+  width: 282px;
+  display:flex;
+  flex-direction:column;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
-.card__alignment_centered {
-  margin-left: auto;
-  margin-right: auto;
-}
-.card__image {
+.destinations__card-image{
   margin: 0;
   width: 282px;
   height: 282px;
   object-fit: cover;
+  width:100%;
 }
 
-.card__caption {
+.destinations__card-caption {
   margin: 0;
-  font-family: "Inter-black", impact, "Arial Narrow Bold";
   background-color: #ffffff;
-  padding-top: 10%;
-  padding-bottom: 10%;
-  padding-right: 5%;
-  padding-left: 5%;
-  font-size: 24px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 20px;
+  padding-left: 20px;
+
   display: flex;
-  justify-content: space-around;
+  justify-content:space-between;
   align-items: center;
 }
 
-.caption__text {
+.destinations__caption-text {
+  font-family: "Inter-Black", impact, "Arial, Narrow Bold", sans-serif;
+  font-size: 24px;
   margin: 0;
   overflow: hidden;
+  text-overflow:ellipsis;
   text-wrap: nowrap;
 }
-.card__caption:hover {
-  .caption__text {
-    opacity: 60%;
-  }
-  .caption__icon {
-    opacity: 60%;
-  }
+.destinations__caption-icon{
+  background:transparent url("../images/like-button.svg") center no-repeat;
+  width:21px;
+  height:18px;
+  border:0;
 }
-
-
-}
+  .destinations__caption-icon:hover {
+    opacity: 60%;
+    cursor:pointer;
+  }
+  @media screen and (max-width: 590px) {
+    .destinations{
+      padding-top:36px;
+    }
+  }

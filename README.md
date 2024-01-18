@@ -1,6 +1,8 @@
-# se_project_aroundtheus
+# [SPRINT 3 FINAL PROJECT se_project_aroundtheus with responsive website design](https://dia-cer0.github.io/se_project_aroundtheus/)
 
-## Sprint 3 Final Project
+## Purpose: To demonstrate the use of responsive design elements such as media queries and CSS grid. These elements were implemented to make the site adapt to the size of the user's screen without sacrificing aesthetics and functionality of the webpage to the end user.Find the video [here](https://drive.google.com/file/d/1J7LngRWeIw1SUWHLfGVzodJiBJqipvEc/view?usp=sharing).
+
+## Unfinished Business: animations in addition to smooth transitions need to be added.
 
 [Using Figma in Project 3](https://www.youtube.com/watch?v=vrWdiUUh-N4&feature=youtu.be&ab_channel=Practicum%3ACodingbootcamps)
 
