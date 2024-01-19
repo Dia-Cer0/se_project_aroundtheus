@@ -42,8 +42,9 @@
 
 
   text-overflow:ellipsis;
-
+  white-space:nowrap;
   overflow:hidden;
+  max-width:415px;
 }
 .profile__edit {
   padding:0;
@@ -62,9 +63,12 @@
   margin:0;
   font-size: 18px;
   line-height:normal;
-  text-overflow:ellipsis;
   grid-area:description;
+
+  text-overflow:ellipsis;
+  white-space:nowrap;
   overflow:hidden;
+  max-width:415px;
 }
 .profile__button {
 
@@ -141,12 +145,5 @@
 }
 .profile__subtitle {
   text-align:center;
-  font-size: 14px;
-  line-height: normal;
-}
-
-.profile__button{
-  margin:0;
-  width:282px;
 }
 }
