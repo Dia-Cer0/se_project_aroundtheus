@@ -10,6 +10,7 @@
   height:100vh;
 }
 .modal__container{
+  position:fixed;
   display:flex;
   flex-direction:column;
   justify-content:space-around;
@@ -22,7 +23,16 @@
   height:330px;
 
 }
+.modal__close-icon{
+position:absolute;
+top:-35px;
+right:-35px;
 
+}
+
+.modal__close-icon:hover{
+  cursor:pointer;
+}
 .modal__title{
   margin:0;
   font-family:"Inter-black",arial, helvetica, sans-serif;
@@ -66,8 +76,10 @@
   font-weight:400px;
   line-height:21.78px;
 }
-/*
+.modal__save-button:hover{
+cursor:pointer;
+}
+
 .modal_opened{
   display:none;
 }
-*/

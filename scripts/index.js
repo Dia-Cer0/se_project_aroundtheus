@@ -26,3 +26,44 @@ destination6={
   link:"https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 },
 ];
+
+let currentProfileName = document.querySelector('.profile__name');
+console.log(currentProfileName.textContent);
+
+let currentProfileDescription = document.querySelector('.profile__subtitle');
+console.log(currentProfileDescription.textContent);
+
+let modal = document.querySelector('.modal');
+console.log(modal);
+
+let editProfileButton = document.querySelector('.profile__edit');
+console.log(editProfileButton);
+
+let closeProfileEdit = modal.querySelector('.modal__close-icon');
+console.log(closeProfileEdit);
+
+let profileNameInput = modal.querySelector('.modal__profile-name');
+console.log(profileNameInput);
+
+let profileDescriptionInput = modal.querySelector('.modal__profile-description');
+
+let saveProfileButton = modal.querySelector('.modal__save-button');
+
+editProfileButton.addEventListener("click",function(e){
+  modal.classList.toggle('modal_opened');
+  profileNameInput.value=currentProfileName.textContent;
+  profileDescriptionInput.value=currentProfileDescription.textContent;
+
+});
+
+closeProfileEdit.addEventListener("click", function(e){
+  modal.classList.toggle('modal_opened');
+});
+
+saveProfileButton.addEventListener("click",function(e){
+  currentProfileName.textContent=profileNameInput.value;
+  currentProfileDescription.textContent=profileDescriptionInput.value;
+  modal.classList.toggle('modal_opened');
+})
+
+
