@@ -24,9 +24,20 @@
 
 }
 .modal__close-icon{
+  padding:0;
+  margin:0;
+
 position:absolute;
-top:-35px;
-right:-35px;
+top:-45px;
+right:-45px;
+background-color:transparent;
+background-image:url("../images/Close Icon.svg");
+background-position:cover;
+background-size:100%;
+border:none;
+background-repeat:no-repeat;
+height:40px;
+width:40px;
 
 }
 
@@ -82,4 +93,33 @@ cursor:pointer;
 
 .modal_opened{
   display:none;
+}
+
+@media screen and (max-width: 590px) {
+  .modal__container{
+    height:322px;
+    max-width:282px;
+    width:100%;
+  }
+  .modal__close-icon{
+    height:26px;
+    width:26px;
+    right:5px;
+  }
+  .modal__title{
+    max-width:238px;
+    width:100%;
+  }
+  .modal__profile-name{
+    max-width:238px;
+    width:100%;
+  }
+  .modal__profile-description{
+    max-width:238px;
+    width:100%;
+  }
+  .modal__save-button{
+    max-width:238px;
+    width:100%;
+  }
 }

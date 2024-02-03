@@ -103,11 +103,11 @@ function getCardElement(data){
   cardElement.querySelector(".destinations__card-image").src=data.link;
   cardElement.querySelector(".destinations__card-image").alt=data.name.image;
   cardElement.querySelector(".destinations__caption-text").textContent=data.name.card_caption;
-  return cardElement;
+  return cardElement.cloneNode(true);
 }
 
 for(let n=0; n<6;n++){
-  cardContainer.append(getCardElement(data[n]).cloneNode(true));
+  cardContainer.append(getCardElement(data[n]));
 }
 
 editProfileButton.addEventListener("click",function(e){
