@@ -29,46 +29,28 @@ let cardContainer = document.querySelector(".destinations.page__section");
 
 let initialCards = [ yosemite = {
   link:"./images/yosemite.jpg",
-  name: {
-   image:"photo of yosemite valley",
-   cardCaption:"Yosemite Valley"
-  }
+  name: "Yosemite Valley"
 },
 
 lakeLouise = {
   link:"./images/lake-louise.jpg",
-  name: {
-   image:"photo of lake louise",
-   cardCaption:"Lake Louise"
-  }
+  name: "Lake Louise"
 },
 baldMountains = {
   link:"./images/bald-mountains.jpg",
-  name: {
-   image:"photo of the bald mountains",
-   cardCaption:"Bald Mountains"
-  }
+  name: "Bald Mountains"
 },
 latemar = {
   link:"./images/latemar.jpg",
-  name: {
-   image:"photo of latemar",
-   cardCaption:"Latemar"
-  }
+  name: "Latemar"
 },
 vanoise = {
   link:"./images/vanoise.jpg",
-  name: {
-   image:"photo of 'vanoise park'",
-   cardCaption:"Vanoise National Park"
-  }
+  name: "Vanoise National Park"
 },
 lago = {
   link:"./images/lago.jpg",
-  name: {
-   image:"photo of lago di braies",
-   cardCaption:"Lago di Braies"
-  }
+  name: "Lago di Braies"
 },
 ]
 
@@ -78,8 +60,8 @@ function toggleModal(){
 
 function getCardElement(data){
   cardElement.querySelector(".destinations__card-image").src=data.link;
-  cardElement.querySelector(".destinations__card-image").alt=data.name.image;
-  cardElement.querySelector(".destinations__caption-text").textContent=data.name.cardCaption;
+  cardElement.querySelector(".destinations__card-image").alt= "Photo of " + data.name;
+  cardElement.querySelector(".destinations__caption-text").textContent=data.name;
   return cardElement.cloneNode(true);
 }
 
