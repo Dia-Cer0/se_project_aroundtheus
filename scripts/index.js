@@ -1,31 +1,25 @@
 
-let currentProfileName = document.querySelector('.profile__name');
-console.log(currentProfileName.textContent);
+const currentProfileName = document.querySelector('.profile__name');
 
-let currentProfileDescription = document.querySelector('.profile__subtitle');
-console.log(currentProfileDescription.textContent);
+const currentProfileDescription = document.querySelector('.profile__subtitle');
 
-let modal = document.querySelector('.modal');
-console.log(modal);
+const modal = document.querySelector('.modal');
 
-let modalContainer = modal.querySelector('.modal__container');
+const modalContainer = modal.querySelector('.modal__container');
 
-let editProfileButton = document.querySelector('.profile__edit');
-console.log(editProfileButton);
+const editProfileButton = document.querySelector('.profile__edit');
 
-let closeProfileEdit = modal.querySelector('.modal__close-icon');
-console.log(closeProfileEdit);
+const closeProfileEdit = modal.querySelector('.modal__close-icon');
 
-let profileNameInput = modal.querySelector('.modal__profile-name');
-console.log(profileNameInput);
+const profileNameInput = modal.querySelector('.modal__profile-name');
 
-let profileDescriptionInput = modal.querySelector('.modal__profile-description');
+const profileDescriptionInput = modal.querySelector('.modal__profile-description');
 
-let saveProfileButton = modal.querySelector('.modal__save-button');
+const saveProfileButton = modal.querySelector('.modal__save-button');
 
-let cardTemplate = document.querySelector("#card").content;
-let cardElement = cardTemplate.querySelector(".destinations__card").cloneNode(true);
-let cardContainer = document.querySelector(".destinations.page__section");
+const cardTemplate = document.querySelector("#card").content;
+const cardElement = cardTemplate.querySelector(".destinations__card").cloneNode(true);
+const cardContainer = document.querySelector(".destinations.page__section");
 
 let initialCards = [ yosemite = {
   link:"./images/yosemite.jpg",
