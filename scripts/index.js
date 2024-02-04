@@ -49,7 +49,8 @@ let initialCards = [ yosemite = {
 ]
 
 function toggleModal(){
-  modal.classList.toggle('modal_opened');
+    modal.classList.toggle('modal_opened');
+
 }
 
 function getCardElement(data){
@@ -64,7 +65,7 @@ for(let n=0; n<6;n++){
 }
 
 editProfileButton.addEventListener("click",function(e){
-  modal.classList.toggle('modal_opened');
+  toggleModal();
   profileNameInput.value=currentProfileName.textContent;
   profileDescriptionInput.value=currentProfileDescription.textContent;
 
@@ -75,20 +76,13 @@ closeProfileEdit.addEventListener("click", function(e){
 });
 
 modalContainer.addEventListener("submit", function(e){
+
   toggleModal();
   e.preventDefault();
-  currentProfileName.textContent=profileNameInput.value;
-  currentProfileDescription.textContent=profileDescriptionInput.value;
-  toggleModal();
 
-})
-
-saveProfileButton.addEventListener('click',function(e){
-  toggleModal();
-  e.preventDefault();
   currentProfileName.textContent=profileNameInput.value;
   currentProfileDescription.textContent=profileDescriptionInput.value;
 
+
+
 })
-
-
