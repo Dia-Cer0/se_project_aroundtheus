@@ -1,7 +1,7 @@
 .modal{
   position:fixed;
   top:0px;
-  display:flex;
+  display:none;
   align-items:center;
   justify-content:center;
   background-color:rgba(000, 000, 000, 0.5
@@ -92,7 +92,7 @@ cursor:pointer;
 }
 
 .modal_opened{
-  display:none;
+  display:flex;
 }
 
 @media screen and (max-width: 590px) {
