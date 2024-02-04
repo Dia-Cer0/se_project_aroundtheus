@@ -32,23 +32,23 @@ let initialCards = [ yosemite = {
   name: "Yosemite Valley"
 },
 
-lakeLouise = {
+{
   link:"./images/lake-louise.jpg",
   name: "Lake Louise"
 },
-baldMountains = {
+{
   link:"./images/bald-mountains.jpg",
   name: "Bald Mountains"
 },
-latemar = {
+{
   link:"./images/latemar.jpg",
   name: "Latemar"
 },
-vanoise = {
+{
   link:"./images/vanoise.jpg",
   name: "Vanoise National Park"
 },
-lago = {
+{
   link:"./images/lago.jpg",
   name: "Lago di Braies"
 },
