@@ -18,7 +18,10 @@ const profileDescriptionInput = modal.querySelector('.modal__profile-description
 const saveProfileButton = modal.querySelector('.modal__save-button');
 
 const cardTemplate = document.querySelector("#card").content;
-const cardElement = cardTemplate.querySelector(".destinations__card").cloneNode(true);
+
+
+
+
 const cardContainer = document.querySelector(".destinations.page__section");
 
 let initialCards = [ yosemite = {
@@ -54,10 +57,14 @@ function toggleModal(){
 }
 
 function getCardElement(data){
-  cardElement.querySelector(".destinations__card-image").src=data.link;
+
+  let cardElement = cardTemplate.querySelector(".destinations__card").cloneNode(true);
+
+  cardElement.querySelector(".destinations__card-image").src =data.link;
   cardElement.querySelector(".destinations__card-image").alt= "Photo of " + data.name;
   cardElement.querySelector(".destinations__caption-text").textContent=data.name;
-  return cardElement.cloneNode(true);
+
+  return cardElement;
 }
 
 for(let n=0; n<6;n++){
@@ -77,11 +84,10 @@ closeProfileEdit.addEventListener("click", function(e){
 
 modalContainer.addEventListener("submit", function(e){
 
-  toggleModal();
   e.preventDefault();
-
   currentProfileName.textContent=profileNameInput.value;
   currentProfileDescription.textContent=profileDescriptionInput.value;
+  toggleModal();
 
 
 
