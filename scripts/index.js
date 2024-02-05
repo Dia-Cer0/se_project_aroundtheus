@@ -24,7 +24,7 @@ const cardTemplate = document.querySelector("#card").content;
 
 const cardContainer = document.querySelector(".destinations.page__section");
 
-let initialCards = [ yosemite = {
+let initialCards = [ {
   link:"./images/yosemite.jpg",
   name: "Yosemite Valley"
 },
