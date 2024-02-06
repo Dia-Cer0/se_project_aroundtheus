@@ -67,9 +67,9 @@ function getCardElement(data){
   return cardElement;
 }
 
-for(let n=0; n<6;n++){
-  cardContainer.append(getCardElement(initialCards[n]));
-}
+initialCards.forEach(function (item){
+  cardContainer.append(getCardElement(item));
+})
 
 editProfileButton.addEventListener("click",function(e){
   toggleModal();
