@@ -1,13 +1,11 @@
-
 .destinations {
-
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: auto;
-  grid-gap:20px 17px;
-  padding-top:48px;
+  grid-gap: 20px 17px;
+  padding-top: 48px;
   box-sizing: border-box;
-  justify-content:center;
+  justify-content: center;
 }
 .destinations_alignmnent_centered {
   margin-right: auto;
@@ -16,24 +14,32 @@
 .destinations__card {
   margin: 0;
   padding: 0;
+  position: relative;
   overflow: hidden;
-  color:black;
+  color: black;
   border-radius: 10px;
-  box-sizing:border-box;
+  box-sizing: border-box;
   height: 361px;
   width: 282px;
-  display:flex;
-  flex-direction:column;
-  background-size:cover;
-  background-repeat:no-repeat;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-.destinations__card-image{
+.destinations__trash-icon {
+  margin: 0;
+  top: 18px;
+  right: 15px;
+  position: absolute;
+  height: 18px;
+  width: 19.3px;
+}
+.destinations__card-image {
   margin: 0;
   width: 282px;
   height: 282px;
   object-fit: cover;
-  width:100%;
+  width: 100%;
 }
 
 .destinations__card-caption {
@@ -45,7 +51,7 @@
   padding-left: 20px;
 
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -54,21 +60,21 @@
   font-size: 24px;
   margin: 0;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   text-wrap: nowrap;
 }
-.destinations__caption-icon{
-  background:transparent url("../images/like-button.svg") center no-repeat;
-  width:21px;
-  height:18px;
-  border:0;
+.destinations__caption-icon {
+  background: transparent url("../images/like-button.svg") center no-repeat;
+  width: 21px;
+  height: 18px;
+  border: 0;
 }
-  .destinations__caption-icon:hover {
-    opacity: 0.5;
-    cursor:pointer;
+.destinations__caption-icon:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+@media screen and (max-width: 590px) {
+  .destinations {
+    padding-top: 36px;
   }
-  @media screen and (max-width: 590px) {
-    .destinations{
-      padding-top:36px;
-    }
-  }
+}
