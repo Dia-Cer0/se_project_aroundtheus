@@ -79,18 +79,24 @@ let initialCards = [
 ];
 
 function openProfileModal() {
+  profileEditModal.classList.remove("modal_firstRun");
   profileEditModal.classList.add("modal_opened");
+  profileEditModal.classList.remove("modal_closed");
 }
 function closeProfileModal() {
   profileEditModal.classList.remove("modal_opened");
+  profileEditModal.classList.add("modal_closed");
 }
 
 function openDestinationModal() {
   destinationImageUrl.value = "./images/yosemite.jpg";
+  addDestinationModal.classList.remove("modal_firstRun");
   addDestinationModal.classList.add("modal_opened");
+  profileEditModal.classList.remove("modal_closed");
 }
 function closeDestinationModal() {
   addDestinationModal.classList.remove("modal_opened");
+  profileEditModal.classList.add("modal_closed");
 }
 
 function getCardElement(data) {
@@ -144,7 +150,7 @@ function renderTrashIcons() {
 
   trashIcons.forEach(function (item) {
     item.addEventListener("click", function (e) {
-      document.querySelector("." + item.closest("div").classList[1]).remove();
+      item.closest("div").remove();
     });
   });
 }
