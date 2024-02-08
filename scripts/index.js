@@ -1,4 +1,3 @@
-const page = document.querySelector(".page");
 
 const currentProfileName = document.querySelector('.profile__name');
 
@@ -6,16 +5,11 @@ const currentProfileDescription = document.querySelector('.profile__subtitle');
 
 const modal = document.querySelector('.modal');
 
-const profileEditModal = document.querySelector('.modal_type_profile-edit');
-
 const modalContainer = modal.querySelector('.modal__container');
 
 const editProfileButton = document.querySelector('.profile__edit');
 
-const addDestinationButton = document.querySelector('.profile__button');
-
-const closeProfileButton = modal.querySelector('.modal__close-icon');
-
+const closeProfileEdit = modal.querySelector('.modal__close-icon');
 
 const profileNameInput = modal.querySelector('.modal__profile-name');
 
@@ -25,17 +19,6 @@ const saveProfileButton = modal.querySelector('.modal__save-button');
 
 const cardTemplate = document.querySelector("#card").content;
 
-const modalTemplate = document.querySelector('#modal-template').content;
-const addDestinationModal = modalTemplate.querySelector(".modal").cloneNode(true);
-const closeAddDestinationButton = addDestinationModal.querySelector(".modal__close-icon");
-addDestinationModal.classList.add("modal_type_add-destination");
-let destinationFormTitle = addDestinationModal.querySelector('.modal__title');
-let destinationTitle = addDestinationModal.querySelector('.modal__input-1');
-let destinationImageUrl = addDestinationModal.querySelector('.modal__input-2');
-destinationFormTitle.textContent = "New Place";
-destinationTitle.placeholder = "Title";
-destinationImageUrl.placeholder="Image URL";
-page.append(addDestinationModal);
 
 
 
@@ -68,21 +51,9 @@ let initialCards = [ {
 },
 ]
 
+function toggleModal(){
+    modal.classList.toggle('modal_opened');
 
-
-function openProfileModal(){
-  profileEditModal.classList.add('modal_opened');
-}
-function closeProfileModal(){
-    profileEditModal.classList.remove('modal_opened');
-
-}
-
-function openDestinationModal(){
-  addDestinationModal.classList.add('modal_opened');
-}
-function closeDestinationModal(){
-  addDestinationModal.classList.remove('modal_opened');
 }
 
 function getCardElement(data){
@@ -96,64 +67,28 @@ function getCardElement(data){
   return cardElement;
 }
 
-function renderCards(){
-  const renderedCards=Array.from(document.querySelectorAll("destinations__card"));
-
-  /*Need to add a filter function here to only render non-duplicate cards*/
-  initialCards.forEach(function (item){
+initialCards.forEach(function (item){
   cardContainer.append(getCardElement(item));
 })
-}
-
-
-function renderCard(){
-
-}
-
-function createCard(title ="Yosemite Valley" , imageUrl="./images/yosemite.jpg"){
-  initialCards.push({
-    link:imageUrl,
-    name:title
-  });
-
-  renderCards();
-}
-
-
 
 editProfileButton.addEventListener("click",function(e){
-  openProfileModal();
+  toggleModal();
   profileNameInput.value=currentProfileName.textContent;
   profileDescriptionInput.value=currentProfileDescription.textContent;
 
 });
 
-closeProfileButton.addEventListener("click", function(e){
-  closeProfileModal();
-
+closeProfileEdit.addEventListener("click", function(e){
+  toggleModal();
 });
-closeAddDestinationButton.addEventListener("click",function(e){
-  closeDestinationModal();
-})
-profileEditModal.addEventListener("submit", function(e){
+
+modalContainer.addEventListener("submit", function(e){
 
   e.preventDefault();
   currentProfileName.textContent=profileNameInput.value;
   currentProfileDescription.textContent=profileDescriptionInput.value;
-  closeProfileModal();
+  toggleModal();
 
 
 
 })
-
-addDestinationButton.addEventListener("click",function(e){
-  openDestinationModal();
-})
-
-
-renderCards();
-
-/*
-const renderedCards=Array.from(document.querySelectorAll(".destinations__card"));
-*/
-

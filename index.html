@@ -55,7 +55,7 @@
         © Eric Hutcheson 2024 Around The U.S.
       </p>
     </footer>
-    <div class="modal modal_type_profile-edit">
+    <div class="modal">
       <!--Need to remember to add the close button. Forgot to do this. Also check for horizontal scrolling-->
       <form action="submit" class="modal__container">
         <button class="modal__close-icon" type="button"></button>
@@ -63,35 +63,16 @@
         <input
           type="text"
           placeholder="Profile Name"
-          class="modal__profile-name modal__input-1"
+          class="modal__profile-name"
         />
         <input
           type="text"
           placeholder="Profile Description"
-          class="modal__profile-description modal__input-2"
+          class="modal__profile-description"
         />
         <button class="modal__save-button" type="submit">Save</button>
       </form>
     </div>
-    <template id="modal-template">
-      <div class="modal">
-        <form action="submit" class="modal__container">
-          <button class="modal__close-icon" type="button"></button>
-          <h3 class="modal__title">Title</h3>
-          <input
-            type="text"
-            placeholder="placeholder 1"
-            class="modal__input-1"
-          />
-          <input
-            type="text"
-            placeholder="placeholder 2"
-            class="modal__input-2"
-          />
-          <button class="modal__save-button" type="submit">Save</button>
-        </form>
-      </div>
-    </template>
     <!--INSERT SCRIPTS HERE-->
     <!--<script src="./script.js"></script>-->
     <script src="./scripts/index.js"></script>
