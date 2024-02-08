@@ -86,6 +86,7 @@ function closeProfileModal() {
 }
 
 function openDestinationModal() {
+  destinationImageUrl.value = "./images/yosemite.jpg";
   addDestinationModal.classList.add("modal_opened");
 }
 function closeDestinationModal() {
@@ -136,7 +137,30 @@ function createCard(...data) {
   renderCards();
   renderTrashIcons();
 }
+function renderTrashIcons() {
+  trashIcons = Array.from(
+    document.querySelectorAll(".destinations__trash-icon")
+  );
 
+  trashIcons.forEach(function (item) {
+    item.addEventListener("click", function (e) {
+      document.querySelector("." + item.closest("div").classList[1]).remove();
+    });
+  });
+}
+
+function renderLikeIcons() {
+  likeButtons = Array.from(
+    document.querySelectorAll(".destinations__caption-icon")
+  );
+
+  likeButtons.forEach(function (item) {
+    item.addEventListener("click", function (e) {
+      e.preventDefault();
+      item.classList.toggle("destinations_caption-icon_style_liked");
+    });
+  });
+}
 editProfileButton.addEventListener("click", function (e) {
   openProfileModal();
   profileNameInput.value = currentProfileName.textContent;
@@ -163,8 +187,9 @@ destinationForm.addEventListener("submit", function (e) {
     name: destinationTitle.value,
     link: destinationImageUrl.value,
   });
-  cardContainer.append(newElement);
-
+  cardContainer.prepend(newElement);
+  renderTrashIcons();
+  renderLikeIcons();
   closeDestinationModal();
 });
 
@@ -180,16 +205,5 @@ renderCards(initialCards);
 const renderedCards=Array.from(document.querySelectorAll(".destinations__card"));
 */
 
-function renderTrashIcons() {
-  trashIcons = Array.from(
-    document.querySelectorAll(".destinations__trash-icon")
-  );
-
-  trashIcons.forEach(function (item) {
-    item.addEventListener("click", function (e) {
-      document.querySelector("." + item.closest("div").classList[1]).remove();
-    });
-  });
-}
-
+renderLikeIcons();
 renderTrashIcons();

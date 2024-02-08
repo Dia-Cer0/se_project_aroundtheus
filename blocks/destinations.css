@@ -34,6 +34,10 @@
   height: 18px;
   width: 19.3px;
 }
+.destinations__trash-icon:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
 .destinations__card-image {
   margin: 0;
   width: 282px;
@@ -70,8 +74,11 @@
   border: 0;
 }
 .destinations__caption-icon:hover {
-  opacity: 0.5;
+  opacity: 50%;
   cursor: pointer;
+}
+.destinations_caption-icon_style_liked {
+  background: transparent url("../images/liked.svg") center no-repeat;
 }
 @media screen and (max-width: 590px) {
   .destinations {
