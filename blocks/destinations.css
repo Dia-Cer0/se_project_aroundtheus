@@ -45,6 +45,9 @@
   object-fit: cover;
   width: 100%;
 }
+.destinations__card-image:hover{
+  cursor:pointer;
+}
 
 .destinations__card-caption {
   margin: 0;

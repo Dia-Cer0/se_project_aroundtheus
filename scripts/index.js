@@ -27,6 +27,7 @@ const saveProfileButton = modal.querySelector(".modal__save-button");
 const cardTemplate = document.querySelector("#card").content;
 
 const modalTemplate = document.querySelector("#modal-template").content;
+
 const addDestinationModal = modalTemplate
   .querySelector(".modal")
   .cloneNode(true);
@@ -44,7 +45,10 @@ destinationTitle.placeholder = "Title";
 destinationImageUrl.placeholder = "Image URL";
 page.append(addDestinationModal);
 
+
 const cardContainer = document.querySelector(".destinations.page__section");
+
+let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
 
 let trashIcons = Array.from(
   document.querySelectorAll(".destinations__trash-icon")
@@ -99,6 +103,50 @@ function closeDestinationModal() {
   profileEditModal.classList.add("modal_closed");
 }
 
+function createImageModal(image,index,modalClass){
+  let cardImageModal = modalTemplate.querySelector(".modal").cloneNode(true);
+
+  cardImageModal.querySelector(".modal__container").remove();
+  let modalFigure = document.createElement("figure");
+  modalFigure.classList.add("modal__figure");
+
+  let modalImageTitleText = document.createElement("figcaption");
+  modalImageTitleText.classList.add("modal__image-title-text");
+  modalImageTitleText.textContent = image.alt;
+
+  let modalImage = document.createElement("img");
+  modalImage.src = image.src;
+  modalImage.classList.add("modal__image");
+
+  let closeModalImageButton = document.createElement("button");
+
+  closeModalImageButton.classList.add("modal__close-image-icon");
+
+
+  cardImageModal.append(modalFigure);
+  modalFigure.append(modalImage);
+  modalFigure.append(closeModalImageButton);
+
+  modalFigure.append(modalImageTitleText);
+
+  cardImageModal.classList.add(`${modalClass}`);
+  console.log (modalClass);
+
+  page.append(cardImageModal);
+
+}
+
+function openCardImageModal(modalName){
+let imageModal = document.querySelector("." + modalName);
+console.log(imageModal);
+imageModal.classList.add("modal_opened");
+imageModal.classList.remove("modal_firstRun");
+imageModal.classList.remove("modal_closed");
+}
+function closeCardImageModal(){
+
+}
+
 function getCardElement(data) {
   let cardElement = cardTemplate
     .querySelector(".destinations__card")
@@ -113,6 +161,8 @@ function getCardElement(data) {
 
   return cardElement;
 }
+
+
 
 function renderCards(array) {
   const renderedCards = Array.from(
@@ -130,6 +180,7 @@ function renderCards(array) {
   array.forEach(function (item) {
     cardContainer.append(getCardElement(item));
   });
+
 }
 
 function renderCard() {}
@@ -142,7 +193,39 @@ function createCard(...data) {
 
   renderCards();
   renderTrashIcons();
+  renderCardImages();
 }
+
+function renderCardImages(){
+  cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
+
+  cardImages.forEach(function(item,index){
+    let modalClass = item.alt.split(' ').join('-') +"_" + index;
+    let imageModal = document.querySelector("." + modalClass);
+    let imageModalCloseButton = document.querySelector(".modal__close-image-icon");
+
+    createImageModal(item,index,modalClass);
+
+    imageModal = document.querySelector("." + modalClass);
+    imageModalCloseButton = imageModal.querySelector(".modal__close-image-icon");
+    let test = item.closest("div");
+    console.log(imageModalCloseButton);
+    console.log(test);
+
+    item.addEventListener("click", function(e){
+      openCardImageModal(modalClass);
+
+    })
+
+
+    console.log(imageModalCloseButton);
+    imageModalCloseButton.addEventListener("click",function(e){
+      imageModalCloseButton.closest("div").classList.remove("modal_opened");
+      imageModalCloseButton.closest(".modal").classList.add("modal_closed");
+    })
+  })
+}
+
 function renderTrashIcons() {
   trashIcons = Array.from(
     document.querySelectorAll(".destinations__trash-icon")
@@ -197,6 +280,7 @@ destinationForm.addEventListener("submit", function (e) {
   renderTrashIcons();
   renderLikeIcons();
   closeDestinationModal();
+  renderCardImages();
 });
 
 addDestinationButton.addEventListener("click", function (e) {
@@ -205,11 +289,14 @@ addDestinationButton.addEventListener("click", function (e) {
   openDestinationModal();
 });
 
+
+
 renderCards(initialCards);
 
 /*
 const renderedCards=Array.from(document.querySelectorAll(".destinations__card"));
 */
 
+renderCardImages();
 renderLikeIcons();
 renderTrashIcons();
