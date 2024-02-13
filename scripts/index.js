@@ -112,7 +112,7 @@ function createImageModal(image,index,modalClass){
 
   let modalImageTitleText = document.createElement("figcaption");
   modalImageTitleText.classList.add("modal__image-title-text");
-  modalImageTitleText.textContent = image.alt;
+  modalImageTitleText.textContent = image.alt.split(" ").splice(2).join(" ");
 
   let modalImage = document.createElement("img");
   modalImage.src = image.src;
