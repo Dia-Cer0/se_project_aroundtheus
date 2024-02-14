@@ -87,10 +87,6 @@ function openProfileModal() {
   profileEditModal.classList.add("modal_opened");
   profileEditModal.classList.remove("modal_closed");
 }
-function closeProfileModal() {
-  profileEditModal.classList.remove("modal_opened");
-  profileEditModal.classList.add("modal_closed");
-}
 
 function openDestinationModal() {
   destinationImageUrl.value = "./images/yosemite.jpg";
@@ -98,9 +94,8 @@ function openDestinationModal() {
   addDestinationModal.classList.add("modal_opened");
   profileEditModal.classList.remove("modal_closed");
 }
-function closeDestinationModal() {
-  addDestinationModal.classList.remove("modal_opened");
-  profileEditModal.classList.add("modal_closed");
+function closePopUp(close_button) {
+  close_button.closest("div").classList.remove("modal_opened");
 }
 
 function createImageModal(image,index,modalClass){
@@ -145,9 +140,7 @@ previewModal.classList.add("modal_opened");
 previewModal.classList.remove("modal_firstRun");
 previewModal.classList.remove("modal_closed");
 }
-function closeCardImageModal(){
 
-}
 
 function getCardElement(data) {
   let cardElement = cardTemplate
@@ -223,19 +216,14 @@ function configureCardImages(){
     let imageModal = document.querySelector("." + modalClass);
 
 
-
-
-
     item.addEventListener("click", function(e){
 
       openPreviewModal(item);
 
     })
 
-
-
     previewModalCloseButton.addEventListener("click",function(e){
-      previewModalCloseButton.closest("div").classList.remove("modal_opened");
+      closePopUp(previewModalCloseButton);
     })
   })
 }
@@ -259,10 +247,10 @@ editProfileButton.addEventListener("click", function (e) {
 
 
 closeProfileButton.addEventListener("click", function (e) {
-  closeProfileModal();
+  closePopUp(closeProfileButton);
 });
 closeAddDestinationButton.addEventListener("click", function (e) {
-  closeDestinationModal();
+  closePopUp(closeAddDestinationButton);
 });
 profileEditModal.addEventListener("submit", function (e) {
   e.preventDefault();
