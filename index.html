@@ -38,14 +38,14 @@
         <template id="card">
           <div class="destinations__card">
             <img
-              src="./images/trash.svg"
-              alt="delete icon"
-              class="destinations__trash-icon"
-            />
-            <img
               src="#"
               alt="description of image"
               class="destinations__card-image"
+            />
+            <img
+              src="./images/trash.svg"
+              alt="delete destination icon"
+              class="destinations__trash-icon"
             />
             <div class="destinations__card-caption">
               <h2 class="destinations__caption-text"></h2>
@@ -60,8 +60,25 @@
         © Eric Hutcheson 2024 Around The U.S.
       </p>
     </footer>
-    <div class="modal modal_type_profile-edit modal_firstRun">
-      <!--Need to remember to add the close button. Forgot to do this. Also check for horizontal scrolling-->
+    <div class="modal modal_type_profile-edit">
+      <form action="submit" class="modal__container">
+        <button class="modal__close-icon" type="button"></button>
+        <h3 class="modal__title">Edit profile</h3>
+        <input
+          type="text"
+          placeholder="Profile Name"
+          class="modal__profile-name modal__input-1"
+        />
+        <input
+          type="text"
+          placeholder="Profile Description"
+          class="modal__profile-description"
+        />
+        <button class="modal__save-button" type="submit">Save</button>
+      </form>
+    </div>
+
+    <div class="modal modal_edit">
       <form action="submit" class="modal__container">
         <button class="modal__close-icon" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
@@ -78,27 +95,29 @@
         <button class="modal__save-button" type="submit">Save</button>
       </form>
     </div>
-    <template id="modal-template">
-      <div class="modal modal_firstRun">
-        <form action="submit" class="modal__container">
-          <button class="modal__close-icon" type="button"></button>
-          <h3 class="modal__title">Title</h3>
-          <input
-            type="text"
-            placeholder="placeholder 1"
-            class="modal__input-1"
-          />
-          <input
-            type="text"
-            placeholder="placeholder 2"
-            class="modal__input-2"
-          />
-          <button class="modal__save-button" type="submit">Save</button>
-        </form>
-      </div>
-    </template>
-    <!--INSERT SCRIPTS HERE-->
-    <!--<script src="./script.js"></script>-->
+    <div class="modal modal_add">
+      <form action="submit" class="modal__container">
+        <button class="modal__close-icon" type="button"></button>
+        <h3 class="modal__title">New Place</h3>
+        <input
+          type="text"
+          placeholder="Title"
+          class="modal__profile-name modal__input-1"
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          class="modal__profile-description modal__input-2"
+        />
+        <button class="modal__save-button" type="submit">Save</button>
+      </form>
+    </div>
+    <div class="modal modal_preview">
+      <figure class="modal__figure">
+        <img src="" alt="" class="modal__image" />
+        <button class="modal__close-image-icon"></button>
+      </figure>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

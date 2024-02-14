@@ -1,57 +1,28 @@
-@keyframes fade-in {
-  from {
-    display:none;
-    opacity: 0%;
-  }
-  to {
-    opacity: 100%;
-
-  }
-}
-@keyframes fade-out {
-  0% {
-    opacity: 100%;
-  /*  display: flex;*/
-  }
-  25% {
-    opacity: 75%;
-  /*  display: flex;*/
-  }
-  50% {
-    opacity: 50%;
-   /* display: flex; */
-  }
-  75% {
-    opacity: 25%;
-   /* display: flex; */
-  }
-  100% {
-    opacity: 0%;
-    display: none;
-    visibility:hidden;
-  }
-}
 .modal {
   position: fixed;
   top: 0px;
-  display:none;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgba(000, 000, 000, 0.5);
-
   opacity: 0%;
-
-  /*
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-  */
-  animation-name:fade-in;
+  /* animation-name: fade-in; */
   width: 100%;
   height: 100vh;
+  transition: all .3s ease;
+  visibility: hidden;
 }
+
+.modal_opened {
+  opacity: 100%;
+  z-index:1;
+  visibility: visible;
+}
+
 .modal_type_profile-edit {
 }
+
 .modal__container {
   position: fixed;
   display: flex;
@@ -160,7 +131,7 @@
   border: none;
   border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
-/*
+
 .modal__profile-name{
   max-width:358px;
   width:100%;
@@ -174,7 +145,7 @@
   height:27.34px;
   border:none;
 }
-*/
+
 .modal__save-button {
   border-radius: 2px;
   display: flex;
@@ -197,25 +168,14 @@
   cursor: pointer;
 }
 
-.modal_opened {
-  display: flex;
-  flex-direction:column;
-  opacity: 100%;
-  transition: opacity 10s linear;
-  animation-name: fade-in;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  z-index:1;
-}
-
-.modal_closed {
+/* .modal_closed {
   visibility:none;
   animation-name: fade-out;
   animation-duration: 4s;
   animation-timing-function: linear;
   transition:visiblity 4s linear;
+} */
 
-}
 .modal_firstRun {
   display: none;
 }
@@ -230,6 +190,11 @@
     height: 26px;
     width: 26px;
     right: 5px;
+  }
+  .modal__close-image-icon{
+    height:26px;
+    width:26px;
+    right:5px;
   }
   .modal__title {
     max-width: 238px;

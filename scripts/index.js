@@ -26,11 +26,10 @@ const saveProfileButton = modal.querySelector(".modal__save-button");
 
 const cardTemplate = document.querySelector("#card").content;
 
-const modalTemplate = document.querySelector("#modal-template").content;
 
-const addDestinationModal = modalTemplate
-  .querySelector(".modal")
-  .cloneNode(true);
+
+const addDestinationModal = document
+  .querySelector(".modal_add");
 const closeAddDestinationButton =
   addDestinationModal.querySelector(".modal__close-icon");
 addDestinationModal.classList.add("modal_type_add-destination");
@@ -40,15 +39,15 @@ const destinationForm = addDestinationModal.querySelector(
 let destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 let destinationTitle = addDestinationModal.querySelector(".modal__input-1");
 let destinationImageUrl = addDestinationModal.querySelector(".modal__input-2");
-destinationFormTitle.textContent = "New Place";
-destinationTitle.placeholder = "Title";
-destinationImageUrl.placeholder = "Image URL";
-page.append(addDestinationModal);
 
+const previewModal = document.querySelector(".modal_preview");
+let previewModalImage = previewModal.querySelector(".modal__image");
+let previewModalCloseButton = previewModal.querySelector(".modal__close-image-icon");
 
 const cardContainer = document.querySelector(".destinations.page__section");
 
 let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
+
 
 let trashIcons = Array.from(
   document.querySelectorAll(".destinations__trash-icon")
@@ -130,18 +129,20 @@ function createImageModal(image,index,modalClass){
   modalFigure.append(modalImageTitleText);
 
   cardImageModal.classList.add(`${modalClass}`);
-  console.log (modalClass);
+
 
   page.append(cardImageModal);
 
 }
 
-function openCardImageModal(modalName){
-let imageModal = document.querySelector("." + modalName);
-console.log(imageModal);
-imageModal.classList.add("modal_opened");
-imageModal.classList.remove("modal_firstRun");
-imageModal.classList.remove("modal_closed");
+function openPreviewModal(image){
+
+
+previewModalImage.src=image.src;
+previewModalImage.alt=image.alt;
+previewModal.classList.add("modal_opened");
+previewModal.classList.remove("modal_firstRun");
+previewModal.classList.remove("modal_closed");
 }
 function closeCardImageModal(){
 
@@ -165,96 +166,96 @@ function getCardElement(data) {
 
 
 function renderCards(array) {
-  const renderedCards = Array.from(
-    document.querySelectorAll(".destinations__card")
-  );
-
-  renderedCards.forEach(function (item) {
-    let deleteIcon = item.querySelector(".destinations__trash-icon");
-    deleteIcon.addEventListener("click", function () {
-      deleteIcon.closest().remove;
-    });
-  });
-
-  /*Need to add a filter function here to only render non-duplicate cards*/
   array.forEach(function (item) {
     cardContainer.append(getCardElement(item));
   });
 
-}
-
-function renderCard() {}
-
-function createCard(...data) {
-  initialCards.push({
-    link: imageUrl,
-    name: title,
-  });
-
-  renderCards();
-  renderTrashIcons();
-  renderCardImages();
-}
-
-function renderCardImages(){
-  cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
-
-  cardImages.forEach(function(item,index){
-    let modalClass = item.alt.split(' ').join('-') +"_" + index;
-    let imageModal = document.querySelector("." + modalClass);
-    let imageModalCloseButton = document.querySelector(".modal__close-image-icon");
-
-    createImageModal(item,index,modalClass);
-
-    imageModal = document.querySelector("." + modalClass);
-    imageModalCloseButton = imageModal.querySelector(".modal__close-image-icon");
-    let test = item.closest("div");
-    console.log(imageModalCloseButton);
-    console.log(test);
-
-    item.addEventListener("click", function(e){
-      openCardImageModal(modalClass);
-
-    })
-
-
-    console.log(imageModalCloseButton);
-    imageModalCloseButton.addEventListener("click",function(e){
-      imageModalCloseButton.closest("div").classList.remove("modal_opened");
-      imageModalCloseButton.closest(".modal").classList.add("modal_closed");
-    })
-  })
-}
-
-function renderTrashIcons() {
-  trashIcons = Array.from(
-    document.querySelectorAll(".destinations__trash-icon")
-  );
-
-  trashIcons.forEach(function (item) {
-    item.addEventListener("click", function (e) {
-      item.closest("div").remove();
-    });
-  });
-}
-
-function renderLikeIcons() {
   likeButtons = Array.from(
     document.querySelectorAll(".destinations__caption-icon")
   );
-
   likeButtons.forEach(function (item) {
     item.addEventListener("click", function (e) {
       e.preventDefault();
       item.classList.toggle("destinations_caption-icon_style_liked");
     });
   });
+
+
+  let renderedCards = Array.from(document.querySelectorAll(".destinations__card"));
+  let deleteIcons = Array.from(document.querySelectorAll(".destinations__trash-icon"));
+
+  deleteIcons.forEach(function (item) {
+    item.addEventListener("click", function () {
+      item.closest("div").remove();
+    });
+  });
+
+  configureCardImages();
+
+
 }
+
+
+function configNewTrashIcon() {
+  newTrashIcon = document.querySelector(".destinations__trash-icon");
+
+    newTrashIcon.addEventListener("click", function (e) {
+      newTrashIcon.closest("div").remove();
+    });
+
+  }
+
+function configNewLikeIcon() {
+  newLikeButton =document.querySelector(".destinations__caption-icon");
+
+
+    newLikeButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      newLikeButton.classList.toggle("destinations_caption-icon_style_liked");
+    });
+}
+function configureCardImages(){
+  cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
+
+  cardImages.forEach(function(item,index){
+    let modalClass = item.alt.split(' ').join('-') +"_" + index;
+    let imageModal = document.querySelector("." + modalClass);
+
+
+
+
+
+    item.addEventListener("click", function(e){
+
+      openPreviewModal(item);
+
+    })
+
+
+
+    previewModalCloseButton.addEventListener("click",function(e){
+      previewModalCloseButton.closest("div").classList.remove("modal_opened");
+    })
+  })
+}
+
+function configNewImage()
+{
+  let newCard = document.querySelector(".destinations__card-image");
+  newCard.addEventListener("click", function(e){
+
+    openPreviewModal(newCard);
+
+  })
+}
+
+
 editProfileButton.addEventListener("click", function (e) {
   openProfileModal();
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionInput.value = currentProfileDescription.textContent;
 });
+
 
 closeProfileButton.addEventListener("click", function (e) {
   closeProfileModal();
@@ -277,10 +278,10 @@ destinationForm.addEventListener("submit", function (e) {
     link: destinationImageUrl.value,
   });
   cardContainer.prepend(newElement);
-  renderTrashIcons();
-  renderLikeIcons();
+  configNewTrashIcon();
+  configNewLikeIcon();
+  configNewImage();
   closeDestinationModal();
-  renderCardImages();
 });
 
 addDestinationButton.addEventListener("click", function (e) {
@@ -290,13 +291,5 @@ addDestinationButton.addEventListener("click", function (e) {
 });
 
 
-
 renderCards(initialCards);
 
-/*
-const renderedCards=Array.from(document.querySelectorAll(".destinations__card"));
-*/
-
-renderCardImages();
-renderLikeIcons();
-renderTrashIcons();
