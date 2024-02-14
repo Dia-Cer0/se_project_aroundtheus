@@ -36,24 +36,25 @@ addDestinationModal.classList.add("modal_type_add-destination");
 const destinationForm = addDestinationModal.querySelector(
   ".modal_type_add-destination .modal__container"
 );
-let destinationFormTitle = addDestinationModal.querySelector(".modal__title");
-let destinationTitle = addDestinationModal.querySelector(".modal__input-1");
-let destinationImageUrl = addDestinationModal.querySelector(".modal__input-2");
+const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
+const destinationTitle = addDestinationModal.querySelector(".modal__input-1");
+const destinationImageUrl = addDestinationModal.querySelector(".modal__input-2");
 
 const previewModal = document.querySelector(".modal_preview");
 let previewModalImage = previewModal.querySelector(".modal__image");
-let previewModalCloseButton = previewModal.querySelector(".modal__close-image-icon");
+let previewModalCloseButton = previewModal.querySelector(".modal__close-icon_type_image");
+let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
 
 const cardContainer = document.querySelector(".destinations.page__section");
 
 let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
 
 
-let trashIcons = Array.from(
+const trashIcons = Array.from(
   document.querySelectorAll(".destinations__trash-icon")
 );
 
-let initialCards = [
+const initialCards = [
   {
     link: "./images/yosemite.jpg",
     name: "Yosemite Valley",
@@ -137,7 +138,7 @@ function createImageModal(image,index,modalClass){
 
 function openPreviewModal(image){
 
-
+previewModalCaption.textContent = image.alt.split(" ").splice(2).join(" ");
 previewModalImage.src=image.src;
 previewModalImage.alt=image.alt;
 previewModal.classList.add("modal_opened");
