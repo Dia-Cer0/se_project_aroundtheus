@@ -37,8 +37,8 @@ const destinationForm = addDestinationModal.querySelector(
   ".modal_type_add-destination .modal__container"
 );
 const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
-const destinationTitle = addDestinationModal.querySelector(".modal__input-1");
-const destinationImageUrl = addDestinationModal.querySelector(".modal__input-2");
+const destinationTitle = addDestinationModal.querySelector(".modal__destination-title");
+const destinationImageUrl = addDestinationModal.querySelector(".modal__destination-image-URL");
 
 const previewModal = document.querySelector(".modal_preview");
 let previewModalImage = previewModal.querySelector(".modal__image");
