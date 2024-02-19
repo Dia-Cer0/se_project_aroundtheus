@@ -1,33 +1,22 @@
+/*Constant & variable declaration*/
 const page = document.querySelector(".page");
 
 const currentProfileName = document.querySelector(".profile__name");
-
 const currentProfileDescription = document.querySelector(".profile__subtitle");
 
 const modal = document.querySelector(".modal");
-
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
-
 const modalContainer = modal.querySelector(".modal__container");
 
-const editProfileButton = document.querySelector(".profile__edit");
-
-const addDestinationButton = document.querySelector(".profile__button");
-
 const closeProfileButton = modal.querySelector(".modal__close-icon");
-
+const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = modal.querySelector(".modal__profile-name");
-
 const profileDescriptionInput = modal.querySelector(
   ".modal__profile-description"
 );
-
 const saveProfileButton = modal.querySelector(".modal__save-button");
 
-const cardTemplate = document.querySelector("#card").content;
-
-
-
+const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationModal = document
   .querySelector(".modal_add");
 const closeAddDestinationButton =
@@ -40,20 +29,10 @@ const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(".modal__destination-title");
 const destinationImageUrl = addDestinationModal.querySelector(".modal__destination-image-URL");
 
-const previewModal = document.querySelector(".modal_preview");
-let previewModalImage = previewModal.querySelector(".modal__image");
-let previewModalCloseButton = previewModal.querySelector(".modal__close-icon_type_image");
-let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
 
+
+const cardTemplate = document.querySelector("#card").content;
 const cardContainer = document.querySelector(".destinations.page__section");
-
-let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
-
-
-const trashIcons = Array.from(
-  document.querySelectorAll(".destinations__trash-icon")
-);
-
 const initialCards = [
   {
     link: "./images/yosemite.jpg",
@@ -82,6 +61,17 @@ const initialCards = [
   },
 ];
 
+
+const previewModal = document.querySelector(".modal_preview");
+let previewModalImage = previewModal.querySelector(".modal__image");
+let previewModalCloseButton = previewModal.querySelector(".modal__close-icon_type_image");
+let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
+let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
+const trashIcons = Array.from(
+  document.querySelectorAll(".destinations__trash-icon")
+);
+
+/*function definitions*/
 function openProfileModal() {
   profileEditModal.classList.remove("modal_firstRun");
   profileEditModal.classList.add("modal_opened");
@@ -141,7 +131,6 @@ previewModal.classList.remove("modal_firstRun");
 previewModal.classList.remove("modal_closed");
 }
 
-
 function getCardElement(data) {
   let cardElement = cardTemplate
     .querySelector(".destinations__card")
@@ -156,8 +145,6 @@ function getCardElement(data) {
 
   return cardElement;
 }
-
-
 
 function renderCards(array) {
   array.forEach(function (item) {
@@ -189,7 +176,6 @@ function renderCards(array) {
 
 }
 
-
 function configNewTrashIcon() {
   newTrashIcon = document.querySelector(".destinations__trash-icon");
 
@@ -208,6 +194,7 @@ function configNewLikeIcon() {
       newLikeButton.classList.toggle("destinations_caption-icon_style_liked");
     });
 }
+
 function configureCardImages(){
   cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
 
@@ -238,17 +225,16 @@ function configNewImage()
   })
 }
 
-
 editProfileButton.addEventListener("click", function (e) {
   openProfileModal();
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionInput.value = currentProfileDescription.textContent;
 });
 
-
 closeProfileButton.addEventListener("click", function (e) {
   closePopUp(closeProfileButton);
 });
+
 closeAddDestinationButton.addEventListener("click", function (e) {
   closePopUp(closeAddDestinationButton);
 });
@@ -256,7 +242,7 @@ profileEditModal.addEventListener("submit", function (e) {
   e.preventDefault();
   currentProfileName.textContent = profileNameInput.value;
   currentProfileDescription.textContent = profileDescriptionInput.value;
-  closeProfileModal();
+  closePopUp(closeProfileButton);
 });
 
 destinationForm.addEventListener("submit", function (e) {
@@ -270,7 +256,7 @@ destinationForm.addEventListener("submit", function (e) {
   configNewTrashIcon();
   configNewLikeIcon();
   configNewImage();
-  closeDestinationModal();
+  closePopUp(closeAddDestinationButton);
 });
 
 addDestinationButton.addEventListener("click", function (e) {
@@ -279,6 +265,4 @@ addDestinationButton.addEventListener("click", function (e) {
   openDestinationModal();
 });
 
-
 renderCards(initialCards);
-
