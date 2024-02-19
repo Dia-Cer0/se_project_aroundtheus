@@ -11,9 +11,11 @@ const modalContainer = modal.querySelector(".modal__container");
 const closeProfileButton = modal.querySelector(".modal__close-icon");
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = modal.querySelector(".modal__profile-name");
+let profileNameValue = profileNameInput.value;
 const profileDescriptionInput = modal.querySelector(
   ".modal__profile-description"
 );
+let profileDescriptionValue = profileDescriptionInput.value;
 const saveProfileButton = modal.querySelector(".modal__save-button");
 
 const addDestinationButton = document.querySelector(".profile__button");
@@ -75,8 +77,11 @@ const trashIcons = Array.from(
 );
 
 /*function definitions*/
-function openPopup(){
-
+function openPopup(requestedModal=profileEditModal,inputVariable1=profileNameValue,inputVariable2 = profileDescriptionValue){
+requestedModal.classList.add("modal_opened");
+let inputs = requestedModal.querySelectorAll("input");
+inputs[0]=inputVariable1;
+inputs[1]=inputVariable2;
 }
 
 function openProfileModal() {
@@ -89,10 +94,15 @@ function openDestinationModal() {
   destinationTitle.value=destinationTitleValue;
   destinationImageUrl.value = destinationImageUrlValue;
 }
+function openPreviewModal(image){
+  previewModal.classList.add("modal_opened");
+  }
+
 function closePopUp(close_button) {
   close_button.closest("div").classList.remove("modal_opened");
 }
 
+/*
 function createImageModal(image,index,modalClass){
   let cardImageModal = modalTemplate.querySelector(".modal").cloneNode(true);
 
@@ -125,16 +135,8 @@ function createImageModal(image,index,modalClass){
   page.append(cardImageModal);
 
 }
+*/
 
-function openPreviewModal(image){
-
-previewModalCaption.textContent = image.alt.split(" ").splice(2).join(" ");
-previewModalImage.src=image.src;
-previewModalImage.alt=image.alt;
-previewModal.classList.add("modal_opened");
-previewModal.classList.remove("modal_firstRun");
-previewModal.classList.remove("modal_closed");
-}
 
 function getCardElement(data) {
   const cardElement = cardTemplate
@@ -166,7 +168,9 @@ function getCardElement(data) {
   cardElement.querySelector(".destinations__caption-text").textContent =
     data.name;
 
-
+  previewModalCaption.textContent = cardImage.alt.split(" ").splice(2).join(" ");
+  previewModalImage.src=cardImage.src;
+  previewModalImage.alt=cardImage.alt;
 
   return cardElement;
 }
