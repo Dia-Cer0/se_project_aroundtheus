@@ -28,6 +28,9 @@ const destinationForm = addDestinationModal.querySelector(
 const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(".modal__destination-title");
 const destinationImageUrl = addDestinationModal.querySelector(".modal__destination-image-URL");
+let destinationTitleValue = "";
+let destinationImageUrlValue ="./images/yosemite.jpg";
+
 
 
 
@@ -72,17 +75,19 @@ const trashIcons = Array.from(
 );
 
 /*function definitions*/
-function openProfileModal() {
-  profileEditModal.classList.remove("modal_firstRun");
-  profileEditModal.classList.add("modal_opened");
-  profileEditModal.classList.remove("modal_closed");
+function openPopup(){
+
 }
 
+function openProfileModal() {
+  profileEditModal.classList.add("modal_opened");
+}
+
+
 function openDestinationModal() {
-  destinationImageUrl.value = "./images/yosemite.jpg";
-  addDestinationModal.classList.remove("modal_firstRun");
   addDestinationModal.classList.add("modal_opened");
-  profileEditModal.classList.remove("modal_closed");
+  destinationTitle.value=destinationTitleValue;
+  destinationImageUrl.value = destinationImageUrlValue;
 }
 function closePopUp(close_button) {
   close_button.closest("div").classList.remove("modal_opened");
@@ -132,25 +137,48 @@ previewModal.classList.remove("modal_closed");
 }
 
 function getCardElement(data) {
-  let cardElement = cardTemplate
+  const cardElement = cardTemplate
     .querySelector(".destinations__card")
     .cloneNode(true);
+  const cardImage = cardElement.querySelector(".destinations__card-image");
+  const deleteIcon = cardElement.querySelector(".destinations__trash-icon");
+  const likeIcon = cardElement.querySelector(".destinations__caption-icon");
 
   cardElement.classList.add(data.name.replaceAll(" ", "_"));
-  cardElement.querySelector(".destinations__card-image").src = data.link;
-  cardElement.querySelector(".destinations__card-image").alt =
+  cardImage.src = data.link;
+  cardImage.alt =
     "Photo of " + data.name;
+  cardImage.addEventListener("click",function(){
+    openPreviewModal(cardImage);
+  })
+  previewModalCloseButton.addEventListener("click",function(e){
+    closePopUp(previewModalCloseButton);
+  })
+
+  deleteIcon.addEventListener("click", function(){
+    deleteIcon.closest("div").remove();
+  })
+
+  likeIcon.addEventListener("click", function(){
+    likeIcon.classList.toggle("destinations_caption-icon_style_liked");
+  })
+
   cardElement.querySelector(".destinations__caption-text").textContent =
     data.name;
+
+
 
   return cardElement;
 }
 
 function renderCards(array) {
   array.forEach(function (item) {
-    cardContainer.append(getCardElement(item));
-  });
+    let newCard = getCardElement(item);
 
+    cardContainer.append(newCard);
+
+  });
+  /*
   likeButtons = Array.from(
     document.querySelectorAll(".destinations__caption-icon")
   );
@@ -165,17 +193,23 @@ function renderCards(array) {
   let renderedCards = Array.from(document.querySelectorAll(".destinations__card"));
   let deleteIcons = Array.from(document.querySelectorAll(".destinations__trash-icon"));
 
+
   deleteIcons.forEach(function (item) {
+
     item.addEventListener("click", function () {
       item.closest("div").remove();
     });
+
+
   });
-
+  */
+  /*
   configureCardImages();
-
+  */
 
 }
 
+/*
 function configNewTrashIcon() {
   newTrashIcon = document.querySelector(".destinations__trash-icon");
 
@@ -186,7 +220,7 @@ function configNewTrashIcon() {
   }
 
 function configNewLikeIcon() {
-  newLikeButton =document.querySelector(".destinations__caption-icon");
+  newLikeButton = document.querySelector(".destinations__caption-icon");
 
 
     newLikeButton.addEventListener("click", function (e) {
@@ -214,16 +248,18 @@ function configureCardImages(){
     })
   })
 }
-
-function configNewImage()
+*/
+/*
+function configNewImage(newCardImage=document.querySelector(".destinations__card-image"))
 {
-  let newCard = document.querySelector(".destinations__card-image");
-  newCard.addEventListener("click", function(e){
 
-    openPreviewModal(newCard);
+  newCardImage.addEventListener("click", function(e){
+
+    openPreviewModal(newCardImage);
 
   })
 }
+*/
 
 editProfileButton.addEventListener("click", function (e) {
   openProfileModal();
@@ -253,9 +289,13 @@ destinationForm.addEventListener("submit", function (e) {
     link: destinationImageUrl.value,
   });
   cardContainer.prepend(newElement);
+  /*
+  Trash icons and Like icons functions
+
   configNewTrashIcon();
   configNewLikeIcon();
   configNewImage();
+  */
   closePopUp(closeAddDestinationButton);
 });
 
@@ -266,3 +306,4 @@ addDestinationButton.addEventListener("click", function (e) {
 });
 
 renderCards(initialCards);
+

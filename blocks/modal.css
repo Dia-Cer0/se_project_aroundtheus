@@ -20,9 +20,6 @@
   visibility: visible;
 }
 
-.modal_type_profile-edit {
-}
-
 .modal__container {
   position: fixed;
   display: flex;
