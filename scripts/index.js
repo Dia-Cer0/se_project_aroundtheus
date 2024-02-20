@@ -1,8 +1,8 @@
 /*Constant & variable declaration*/
 const page = document.querySelector(".page");
 
-const currentProfileName = document.querySelector(".profile__name");
-const currentProfileDescription = document.querySelector(".profile__subtitle");
+let currentProfileName = document.querySelector(".profile__name");
+let currentProfileDescription = document.querySelector(".profile__subtitle");
 
 const modal = document.querySelector(".modal");
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
@@ -11,12 +11,22 @@ const modalContainer = modal.querySelector(".modal__container");
 const closeProfileButton = modal.querySelector(".modal__close-icon");
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = modal.querySelector(".modal__profile-name");
-let profileNameValue = profileNameInput.value;
+console.log(currentProfileName.textContent);
+let profileNameValue= currentProfileName.textContent;
+profileNameInput.value=profileNameValue;
+
+console.log(profileNameInput.value);
+
+
 const profileDescriptionInput = modal.querySelector(
   ".modal__profile-description"
 );
-let profileDescriptionValue = profileDescriptionInput.value;
+let profileDescriptionValue = currentProfileDescription.textContent;
+profileDescriptionInput.value = profileDescriptionValue;
+
 const saveProfileButton = modal.querySelector(".modal__save-button");
+profileNameInput.value =currentProfileName.textContent;
+profileDescriptionInput.value =currentProfileDescription.textContent;
 
 const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationModal = document
@@ -31,8 +41,9 @@ const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(".modal__destination-title");
 const destinationImageUrl = addDestinationModal.querySelector(".modal__destination-image-URL");
 let destinationTitleValue = "";
+destinationTitle.value=destinationTitleValue;
 let destinationImageUrlValue ="./images/yosemite.jpg";
-
+destinationImageUrl.value = destinationImageUrlValue;
 
 
 
@@ -71,71 +82,42 @@ const previewModal = document.querySelector(".modal_preview");
 let previewModalImage = previewModal.querySelector(".modal__image");
 let previewModalCloseButton = previewModal.querySelector(".modal__close-icon_type_image");
 let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
-let cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
-const trashIcons = Array.from(
-  document.querySelectorAll(".destinations__trash-icon")
-);
+
 
 /*function definitions*/
-function openPopup(requestedModal=profileEditModal,inputVariable1=profileNameValue,inputVariable2 = profileDescriptionValue){
+function openPopup(requestedModal,inputVariable1,inputVariable2){
 requestedModal.classList.add("modal_opened");
-let inputs = requestedModal.querySelectorAll("input");
-inputs[0]=inputVariable1;
-inputs[1]=inputVariable2;
+
+if(inputVariable1 != null && inputVariable2 != null){
+
+  let inputs = requestedModal.querySelectorAll("input");
+  inputs[0].value=inputVariable1;
+  inputs[1].value=inputVariable2;
+
+  console.log("inputVariable1 = "+inputVariable1);
+
+
+
 }
 
-function openProfileModal() {
-  profileEditModal.classList.add("modal_opened");
 }
 
 
-function openDestinationModal() {
-  addDestinationModal.classList.add("modal_opened");
-  destinationTitle.value=destinationTitleValue;
-  destinationImageUrl.value = destinationImageUrlValue;
-}
-function openPreviewModal(image){
-  previewModal.classList.add("modal_opened");
+function closePopUp(close_button,inputVariable1,inputVariable2) {
+  close_button.closest("div").classList.remove("modal_opened");
+
+  if(inputVariable1 != null && inputVariable2 != null){
+    let inputs = close_button.closest("div").querySelectorAll("input");
+
+    inputVariable1=inputs[0].value;
+    console.log("inputVariable1 close = "+ inputVariable1);
+    inputVariable2=inputs[1].value;
+
+    return [inputVariable1,inputVariable2];
   }
 
-function closePopUp(close_button) {
-  close_button.closest("div").classList.remove("modal_opened");
 }
 
-/*
-function createImageModal(image,index,modalClass){
-  let cardImageModal = modalTemplate.querySelector(".modal").cloneNode(true);
-
-  cardImageModal.querySelector(".modal__container").remove();
-  let modalFigure = document.createElement("figure");
-  modalFigure.classList.add("modal__figure");
-
-  let modalImageTitleText = document.createElement("figcaption");
-  modalImageTitleText.classList.add("modal__image-title-text");
-  modalImageTitleText.textContent = image.alt.split(" ").splice(2).join(" ");
-
-  let modalImage = document.createElement("img");
-  modalImage.src = image.src;
-  modalImage.classList.add("modal__image");
-
-  let closeModalImageButton = document.createElement("button");
-
-  closeModalImageButton.classList.add("modal__close-image-icon");
-
-
-  cardImageModal.append(modalFigure);
-  modalFigure.append(modalImage);
-  modalFigure.append(closeModalImageButton);
-
-  modalFigure.append(modalImageTitleText);
-
-  cardImageModal.classList.add(`${modalClass}`);
-
-
-  page.append(cardImageModal);
-
-}
-*/
 
 
 function getCardElement(data) {
@@ -151,10 +133,13 @@ function getCardElement(data) {
   cardImage.alt =
     "Photo of " + data.name;
   cardImage.addEventListener("click",function(){
-    openPreviewModal(cardImage);
+    previewModalImage.src=cardImage.src;
+    previewModalCaption.textContent=cardImage.alt;
+    openPopup(previewModal);
   })
   previewModalCloseButton.addEventListener("click",function(e){
     closePopUp(previewModalCloseButton);
+
   })
 
   deleteIcon.addEventListener("click", function(){
@@ -182,107 +167,36 @@ function renderCards(array) {
     cardContainer.append(newCard);
 
   });
-  /*
-  likeButtons = Array.from(
-    document.querySelectorAll(".destinations__caption-icon")
-  );
-  likeButtons.forEach(function (item) {
-    item.addEventListener("click", function (e) {
-      e.preventDefault();
-      item.classList.toggle("destinations_caption-icon_style_liked");
-    });
-  });
-
-
-  let renderedCards = Array.from(document.querySelectorAll(".destinations__card"));
-  let deleteIcons = Array.from(document.querySelectorAll(".destinations__trash-icon"));
-
-
-  deleteIcons.forEach(function (item) {
-
-    item.addEventListener("click", function () {
-      item.closest("div").remove();
-    });
-
-
-  });
-  */
-  /*
-  configureCardImages();
-  */
 
 }
-
-/*
-function configNewTrashIcon() {
-  newTrashIcon = document.querySelector(".destinations__trash-icon");
-
-    newTrashIcon.addEventListener("click", function (e) {
-      newTrashIcon.closest("div").remove();
-    });
-
-  }
-
-function configNewLikeIcon() {
-  newLikeButton = document.querySelector(".destinations__caption-icon");
-
-
-    newLikeButton.addEventListener("click", function (e) {
-      e.preventDefault();
-      newLikeButton.classList.toggle("destinations_caption-icon_style_liked");
-    });
-}
-
-function configureCardImages(){
-  cardImages = Array.from(document.querySelectorAll(".destinations__card-image"));
-
-  cardImages.forEach(function(item,index){
-    let modalClass = item.alt.split(' ').join('-') +"_" + index;
-    let imageModal = document.querySelector("." + modalClass);
-
-
-    item.addEventListener("click", function(e){
-
-      openPreviewModal(item);
-
-    })
-
-    previewModalCloseButton.addEventListener("click",function(e){
-      closePopUp(previewModalCloseButton);
-    })
-  })
-}
-*/
-/*
-function configNewImage(newCardImage=document.querySelector(".destinations__card-image"))
-{
-
-  newCardImage.addEventListener("click", function(e){
-
-    openPreviewModal(newCardImage);
-
-  })
-}
-*/
 
 editProfileButton.addEventListener("click", function (e) {
-  openProfileModal();
-  profileNameInput.value = currentProfileName.textContent;
-  profileDescriptionInput.value = currentProfileDescription.textContent;
+  profileNameInput.value = profileNameValue;
+  profileDescriptionInput.value = profileDescriptionValue;
+  openPopup(profileEditModal,profileNameValue,profileDescriptionValue);
+
 });
 
 closeProfileButton.addEventListener("click", function (e) {
-  closePopUp(closeProfileButton);
+  let profileData = closePopUp(closeProfileButton,profileNameValue,profileDescriptionValue);
+  profileNameValue = profileData[0];
+  profileDescriptionValue = profileData[1];
+
 });
 
 closeAddDestinationButton.addEventListener("click", function (e) {
-  closePopUp(closeAddDestinationButton);
+  let destinationData=closePopUp(closeAddDestinationButton,destinationTitleValue,destinationImageUrlValue);
+  destinationTitleValue=destinationData[0];
+  destinationImageUrlValue = destinationData[1];
 });
 profileEditModal.addEventListener("submit", function (e) {
   e.preventDefault();
-  currentProfileName.textContent = profileNameInput.value;
-  currentProfileDescription.textContent = profileDescriptionInput.value;
-  closePopUp(closeProfileButton);
+
+  let profileData = closePopUp(closeProfileButton,profileNameValue,profileDescriptionValue);
+  profileNameValue = profileData[0];
+  profileDescriptionValue = profileData[1];
+  currentProfileName.textContent = profileNameValue;
+  currentProfileDescription.textContent = profileDescriptionValue;
 });
 
 destinationForm.addEventListener("submit", function (e) {
@@ -293,20 +207,17 @@ destinationForm.addEventListener("submit", function (e) {
     link: destinationImageUrl.value,
   });
   cardContainer.prepend(newElement);
-  /*
-  Trash icons and Like icons functions
 
-  configNewTrashIcon();
-  configNewLikeIcon();
-  configNewImage();
-  */
   closePopUp(closeAddDestinationButton);
+  destinationTitleValue="";
+  destinationImageUrlValue="./images/yosemite.jpg";
 });
 
 addDestinationButton.addEventListener("click", function (e) {
-  destinationTitle.value = "";
-  destinationImageUrl.value = "";
-  openDestinationModal();
+
+  destinationTitle.value = destinationTitleValue;
+  destinationImageUrl.value = destinationImageUrlValue;
+  openPopup(addDestinationModal,destinationTitleValue,destinationImageUrlValue);
 });
 
 renderCards(initialCards);
