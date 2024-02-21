@@ -6,7 +6,6 @@ let currentProfileDescription = document.querySelector(".profile__subtitle");
 
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
 
-const closeButtons = document.querySelectorAll(".modal__close-icon");
 const closeProfileButton = profileEditModal.querySelector(".modal__close-icon");
 
 const editProfileButton = document.querySelector(".profile__edit");
