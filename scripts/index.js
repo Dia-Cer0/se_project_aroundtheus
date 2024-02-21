@@ -4,33 +4,33 @@ const page = document.querySelector(".page");
 let currentProfileName = document.querySelector(".profile__name");
 let currentProfileDescription = document.querySelector(".profile__subtitle");
 
-const modal = document.querySelector(".modal");
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
-const modalContainer = modal.querySelector(".modal__container");
 
-const closeProfileButton = modal.querySelector(".modal__close-icon");
+const closeButtons = document.querySelectorAll(".modal__close-icon");
+const closeProfileButton = profileEditModal.querySelector(".modal__close-icon");
+
 const editProfileButton = document.querySelector(".profile__edit");
-const profileNameInput = modal.querySelector(".modal__profile-name");
+const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 console.log(currentProfileName.textContent);
-let profileNameValue= currentProfileName.textContent;
+let profileNameValue= "";
 profileNameInput.value=profileNameValue;
 
 console.log(profileNameInput.value);
 
 
-const profileDescriptionInput = modal.querySelector(
+const profileDescriptionInput = profileEditModal.querySelector(
   ".modal__profile-description"
 );
-let profileDescriptionValue = currentProfileDescription.textContent;
+let profileDescriptionValue = "";
 profileDescriptionInput.value = profileDescriptionValue;
 
-const saveProfileButton = modal.querySelector(".modal__save-button");
+const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
 profileNameInput.value =currentProfileName.textContent;
 profileDescriptionInput.value =currentProfileDescription.textContent;
 
 const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationModal = document
-  .querySelector(".modal_add");
+  .querySelector(".modal_type_add-card");
 const closeAddDestinationButton =
   addDestinationModal.querySelector(".modal__close-icon");
 addDestinationModal.classList.add("modal_type_add-destination");
@@ -42,7 +42,7 @@ const destinationTitle = addDestinationModal.querySelector(".modal__destination-
 const destinationImageUrl = addDestinationModal.querySelector(".modal__destination-image-URL");
 let destinationTitleValue = "";
 destinationTitle.value=destinationTitleValue;
-let destinationImageUrlValue ="./images/yosemite.jpg";
+let destinationImageUrlValue ="";
 destinationImageUrl.value = destinationImageUrlValue;
 
 
@@ -78,11 +78,10 @@ const initialCards = [
 ];
 
 
-const previewModal = document.querySelector(".modal_preview");
+const previewModal = document.querySelector(".modal_type_preview");
 let previewModalImage = previewModal.querySelector(".modal__image");
 let previewModalCloseButton = previewModal.querySelector(".modal__close-icon_type_image");
 let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
-
 
 /*function definitions*/
 function openPopup(requestedModal,inputVariable1,inputVariable2){
@@ -95,8 +94,6 @@ if(inputVariable1 != null && inputVariable2 != null){
   inputs[1].value=inputVariable2;
 
   console.log("inputVariable1 = "+inputVariable1);
-
-
 
 }
 
@@ -134,7 +131,7 @@ function getCardElement(data) {
     "Photo of " + data.name;
   cardImage.addEventListener("click",function(){
     previewModalImage.src=cardImage.src;
-    previewModalCaption.textContent=cardImage.alt;
+    previewModalCaption.textContent=cardImage.alt.split(" ").splice(2).join(" ");
     openPopup(previewModal);
   })
   previewModalCloseButton.addEventListener("click",function(e){
@@ -195,8 +192,16 @@ profileEditModal.addEventListener("submit", function (e) {
   let profileData = closePopUp(closeProfileButton,profileNameValue,profileDescriptionValue);
   profileNameValue = profileData[0];
   profileDescriptionValue = profileData[1];
+
+  /*********ASSIGN FORM VALUES TO PROFILE ELEMENTS*****************/
   currentProfileName.textContent = profileNameValue;
   currentProfileDescription.textContent = profileDescriptionValue;
+  /***************************************************************/
+
+  /*************CLEAR FORM**************/
+  profileNameValue="";
+  profileDescriptionValue="";
+  /************************************/
 });
 
 destinationForm.addEventListener("submit", function (e) {
@@ -210,7 +215,7 @@ destinationForm.addEventListener("submit", function (e) {
 
   closePopUp(closeAddDestinationButton);
   destinationTitleValue="";
-  destinationImageUrlValue="./images/yosemite.jpg";
+  destinationImageUrlValue="";
 });
 
 addDestinationButton.addEventListener("click", function (e) {
