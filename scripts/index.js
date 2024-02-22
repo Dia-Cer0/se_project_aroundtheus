@@ -24,7 +24,6 @@ profileNameInput.value = currentProfileName.textContent;
 profileDescriptionInput.value = currentProfileDescription.textContent;
 /********************************************************************************* */
 
-
 const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationModal = document.querySelector(".modal_type_add-card");
 addDestinationModal.classList.add("modal_type_add-destination");
@@ -102,26 +101,22 @@ function getCardElement(data) {
   cardImage.alt = "Photo of " + data.name;
   cardImage.addEventListener("click", function () {
     previewModalImage.src = cardImage.src;
-    previewModalCaption.textContent = cardImage.alt
-      .split(" ")
-      .splice(2)
-      .join(" ");
+    previewModalImage.alt = cardImage.alt;
+    previewModalCaption.textContent = data.name;
     openPopup(previewModal);
   });
 
-  closeButtons.forEach(function(item){
-    item.addEventListener("click",function(){
+  closeButtons.forEach(function (item) {
+    item.addEventListener("click", function () {
       closePopUp(item.closest("div"));
-    })
-  })
-
+    });
+  });
 
   /*
   previewModalCloseButton.addEventListener("click", function (e) {
     closePopUp(previewModalCloseButton.closest("div"));
   });
   */
-
 
   deleteIcon.addEventListener("click", function () {
     deleteIcon.closest("div").remove();
@@ -134,9 +129,11 @@ function getCardElement(data) {
   cardElement.querySelector(".destinations__caption-text").textContent =
     data.name;
 
+  /*
   previewModalCaption.textContent = cardImage.name;
   previewModalImage.src = cardImage.src;
   previewModalImage.alt = cardImage.alt;
+  */
 
   return cardElement;
 }
@@ -152,8 +149,6 @@ function renderCards(array) {
 editProfileButton.addEventListener("click", function (e) {
   openPopup(profileEditModal);
 });
-
-
 
 profileEditModal.addEventListener("submit", function (e) {
   e.preventDefault();
