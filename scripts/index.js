@@ -2,8 +2,8 @@
 const page = document.querySelector(".page");
 
 /*Profile Editing******************************************************************/
-let currentProfileName = document.querySelector(".profile__name");
-let currentProfileDescription = document.querySelector(".profile__subtitle");
+const currentProfileName = document.querySelector(".profile__name");
+const currentProfileDescription = document.querySelector(".profile__subtitle");
 
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
 
@@ -72,8 +72,10 @@ const initialCards = [
 ];
 
 const previewModal = document.querySelector(".modal_type_preview");
-let previewModalImage = previewModal.querySelector(".modal__image");
-let previewModalCaption = previewModal.querySelector(".modal__preview-caption");
+const previewModalImage = previewModal.querySelector(".modal__image");
+const previewModalCaption = previewModal.querySelector(
+  ".modal__preview-caption"
+);
 
 const closeButtons = document.querySelectorAll(".modal__close-icon");
 
@@ -159,8 +161,6 @@ profileEditModal.addEventListener("submit", function (e) {
   currentProfileName.textContent = profileNameInput.value;
   currentProfileDescription.textContent = profileDescriptionInput.value;
   /***************************************************************/
-  currentProfileName = document.querySelector(".profile__name");
-  currentProfileDescription = document.querySelector(".profile__subtitle");
   /*************CLEAR FORM**************/
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionValue = currentProfileDescription.textContent;
