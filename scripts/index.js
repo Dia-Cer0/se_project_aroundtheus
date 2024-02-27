@@ -6,22 +6,20 @@ const currentProfileName = document.querySelector(".profile__name");
 const currentProfileDescription = document.querySelector(".profile__subtitle");
 
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
+const profileForm = document.forms.profileForm;
 
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 console.log(currentProfileName.textContent);
-profileNameInput.value = currentProfileName.textContent;
 
 console.log(profileNameInput.value);
 
 const profileDescriptionInput = profileEditModal.querySelector(
   ".modal__profile-description"
 );
-profileDescriptionInput.value = currentProfileDescription.textContent;
 
 const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
-profileNameInput.value = currentProfileName.textContent;
-profileDescriptionInput.value = currentProfileDescription.textContent;
+
 /********************************************************************************* */
 
 const addDestinationButton = document.querySelector(".profile__button");
@@ -67,6 +65,7 @@ const initialCards = [
     name: "Lago di Braies",
   },
 ];
+const cardForm = document.forms.cardForm;
 
 const previewModal = document.querySelector(".modal_type_preview");
 const previewModalImage = previewModal.querySelector(".modal__image");
@@ -103,18 +102,6 @@ function getCardElement(data) {
     openPopup(previewModal);
   });
 
-  closeButtons.forEach(function (item) {
-    item.addEventListener("click", function () {
-      closePopUp(item.closest("div"));
-    });
-  });
-
-  /*
-  previewModalCloseButton.addEventListener("click", function (e) {
-    closePopUp(previewModalCloseButton.closest("div"));
-  });
-  */
-
   deleteIcon.addEventListener("click", function () {
     cardElement.remove();
   });
@@ -126,18 +113,19 @@ function getCardElement(data) {
   cardElement.querySelector(".destinations__caption-text").textContent =
     data.name;
 
-  /*
-  previewModalCaption.textContent = cardImage.name;
-  previewModalImage.src = cardImage.src;
-  previewModalImage.alt = cardImage.alt;
-  */
-
   return cardElement;
 }
 
+closeButtons.forEach(function (item) {
+  const modal = item.closest(".modal");
+  item.addEventListener("click", function () {
+    closePopUp(modal);
+  });
+});
+
 function renderCards(array) {
   array.forEach(function (item) {
-    let newCard = getCardElement(item);
+    const newCard = getCardElement(item);
 
     cardContainer.append(newCard);
   });
@@ -147,7 +135,7 @@ editProfileButton.addEventListener("click", function (e) {
   openPopup(profileEditModal);
 });
 
-profileEditModal.addEventListener("submit", function (e) {
+profileForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   closePopUp(profileEditModal);
@@ -156,6 +144,7 @@ profileEditModal.addEventListener("submit", function (e) {
   currentProfileName.textContent = profileNameInput.value;
   currentProfileDescription.textContent = profileDescriptionInput.value;
   /***************************************************************/
+  e.target.reset();
 });
 
 destinationForm.addEventListener("submit", function (e) {
