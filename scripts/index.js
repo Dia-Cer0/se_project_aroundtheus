@@ -4,6 +4,7 @@ const page = document.querySelector(".page");
 /*Profile Editing******************************************************************/
 const currentProfileName = document.querySelector(".profile__name");
 const currentProfileDescription = document.querySelector(".profile__subtitle");
+let userStillEditingProfileForm = false;
 
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
 const profileForm = document.forms.profileForm;
@@ -132,6 +133,11 @@ function renderCards(array) {
 }
 
 editProfileButton.addEventListener("click", function (e) {
+  if (!userStillEditingProfileForm) {
+    profileNameInput.value = currentProfileName.textContent;
+    profileDescriptionInput.value = currentProfileDescription.textContent;
+  }
+  userStillEditingProfileForm = true;
   openPopup(profileEditModal);
 });
 
@@ -143,6 +149,7 @@ profileForm.addEventListener("submit", function (e) {
   /*********ASSIGN FORM VALUES TO PROFILE ELEMENTS*****************/
   currentProfileName.textContent = profileNameInput.value;
   currentProfileDescription.textContent = profileDescriptionInput.value;
+  userStillEditingProfileForm = false;
   /***************************************************************/
   e.target.reset();
 });

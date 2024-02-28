@@ -63,8 +63,10 @@
 }
 
 .destinations__caption-text {
+  /*TITLE FONTS BOLD ISSUE PER REVIEW 6*/
   font-family: "Inter-Black", impact, "Arial, Narrow Bold", sans-serif;
   font-size: 24px;
+  font-weight:900;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
