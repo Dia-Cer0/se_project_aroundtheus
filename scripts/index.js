@@ -78,6 +78,7 @@ const closeButtons = document.querySelectorAll(".modal__close-icon");
 /*contextMenu to experiment with event handling conceppts*/
 const contextMenu = document.querySelector(".context-menu");
 const escapeHandler = (e) => {
+  console.log("escapeHandler called ");
   if (e.key === "Escape") {
     closePopUp(document.querySelector(".modal_opened"));
 
@@ -86,15 +87,20 @@ const escapeHandler = (e) => {
 };
 
 const leftMouseClickHandler = (e) => {
-  if (e.buttons === 1) {
+  const isModal = e.target.classList.contains("modal");
+  if (e.buttons === 1 && isModal) {
     closePopUp(e.target);
   }
 };
 
 /*function definitions*/
 function openPopup(requestedModal) {
-  document.addEventListener("keydown", escapeHandler);
+  document.addEventListener("keydown", (e) => {
+    console.log(e);
+  });
+
   requestedModal.classList.add("modal_opened");
+  document.addEventListener("keydown", escapeHandler);
   requestedModal.addEventListener("mousedown", leftMouseClickHandler);
 }
 
