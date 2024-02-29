@@ -4,7 +4,6 @@ const page = document.querySelector(".page");
 /*Profile Editing******************************************************************/
 const currentProfileName = document.querySelector(".profile__name");
 const currentProfileDescription = document.querySelector(".profile__subtitle");
-let userStillEditingProfileForm = false;
 
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
 const profileForm = document.forms.profileForm;
@@ -78,13 +77,30 @@ const closeButtons = document.querySelectorAll(".modal__close-icon");
 
 /*contextMenu to experiment with event handling conceppts*/
 const contextMenu = document.querySelector(".context-menu");
+const escapeHandler = (e) => {
+  if (e.key === "Escape") {
+    closePopUp(document.querySelector(".modal_opened"));
+
+    console.log(e);
+  }
+};
+
+const leftMouseClickHandler = (e) => {
+  if (e.buttons === 1) {
+    closePopUp(e.target);
+  }
+};
 
 /*function definitions*/
 function openPopup(requestedModal) {
+  document.addEventListener("keydown", escapeHandler);
   requestedModal.classList.add("modal_opened");
+  requestedModal.addEventListener("mousedown", leftMouseClickHandler);
 }
 
 function closePopUp(openedModal) {
+  document.removeEventListener("keydown", escapeHandler);
+  openedModal.removeEventListener("mousedown", leftMouseClickHandler);
   openedModal.classList.remove("modal_opened");
 }
 
@@ -136,11 +152,9 @@ function renderCards(array) {
 }
 
 editProfileButton.addEventListener("click", function (e) {
-  if (!userStillEditingProfileForm) {
-    profileNameInput.value = currentProfileName.textContent;
-    profileDescriptionInput.value = currentProfileDescription.textContent;
-  }
-  userStillEditingProfileForm = true;
+  profileNameInput.value = currentProfileName.textContent;
+  profileDescriptionInput.value = currentProfileDescription.textContent;
+
   openPopup(profileEditModal);
 });
 
@@ -152,7 +166,7 @@ profileForm.addEventListener("submit", function (e) {
   /*********ASSIGN FORM VALUES TO PROFILE ELEMENTS*****************/
   currentProfileName.textContent = profileNameInput.value;
   currentProfileDescription.textContent = profileDescriptionInput.value;
-  userStillEditingProfileForm = false;
+
   /***************************************************************/
   e.target.reset();
 });
@@ -177,19 +191,7 @@ addDestinationButton.addEventListener("click", function (e) {
 
 /***ESCAPE HANDLER */
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closePopUp(document.querySelector(".modal_opened"));
-    console.log(e);
-  }
-});
-
 /*****LEFT MOUSE CLICK HANDLER */
-document.addEventListener("mousedown", (e) => {
-  if (e.buttons === 1) {
-    closePopUp(e.target);
-  }
-});
 
 /****LOAD INITIAL CARDS ONTO PAGE */
 renderCards(initialCards);

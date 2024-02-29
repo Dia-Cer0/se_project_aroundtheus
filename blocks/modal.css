@@ -172,7 +172,7 @@
   cursor: pointer;
 }
 
-.popup__button_disabled{
+.modal__button_disabled{
   opacity:20%;
 }
 
@@ -202,8 +202,8 @@
 
 /*MODAL VALIDATION*/
 /**need to reposition error*/
-.popup__input_type_error{
-
+.modal__input_type_error{
+border-bottom:#FF0000 1px solid;
 
 
 
@@ -218,7 +218,7 @@ color:#FF0000;
 visibility:hidden;
 transition: all .3s ease;
 }
-.popup__error_visible{
+.modal__error_visible{
   visibility:visible;
 
 }

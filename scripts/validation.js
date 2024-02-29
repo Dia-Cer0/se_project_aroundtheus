@@ -3,12 +3,18 @@ console.log("validation.js loaded");
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
-const hideInputError = (formElement, inputElement, { errorClass }) => {
+const hideInputError = (
+  formElement,
+  inputElement,
+  { inputSelector, inputErrorClass, errorClass }
+) => {
   const errorMessageElement = formElement.querySelector(
     `#${inputElement.id}-error`
   );
+
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
+  inputElement.classList.remove(inputErrorClass);
 };
 
 const showInputError = (
@@ -106,9 +112,9 @@ const config = {
   formSelector: ".modal__container",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
 };
 
 enableValidation(config);
