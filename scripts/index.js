@@ -95,10 +95,6 @@ const leftMouseClickHandler = (e) => {
 
 /*function definitions*/
 function openPopup(requestedModal) {
-  document.addEventListener("keydown", (e) => {
-    console.log(e);
-  });
-
   requestedModal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeHandler);
   requestedModal.addEventListener("mousedown", leftMouseClickHandler);
