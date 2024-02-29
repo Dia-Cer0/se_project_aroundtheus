@@ -64,16 +64,30 @@
       <form id="profileForm" action="submit" class="modal__container">
         <button class="modal__close-icon" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <input
-          type="text"
-          placeholder="Profile Name"
-          class="modal__profile-name"
-        />
-        <input
-          type="text"
-          placeholder="Profile Description"
-          class="modal__profile-description"
-        />
+        <div class="modal__input-wrapper">
+          <input
+            id="profile-title"
+            type="text"
+            minlength="2"
+            maxlength="40"
+            placeholder="Profile Name"
+            class="modal__profile-name modal__input"
+            required
+          />
+          <span id="profile-title-error" class="popup__error"></span>
+        </div>
+        <div class="modal__input-wrapper">
+          <input
+            id="profile-description"
+            type="text"
+            minlength="2"
+            maxlength="40"
+            placeholder="Profile Description"
+            class="modal__profile-description modal__input"
+            required
+          />
+          <span id="profile-description-error" class="popup__error"></span>
+        </div>
         <button class="modal__save-button" type="submit">Save</button>
       </form>
     </div>
@@ -82,17 +96,35 @@
       <form id="cardForm" action="submit" class="modal__container">
         <button class="modal__close-icon" type="button"></button>
         <h3 class="modal__title">New Place</h3>
-        <input
-          type="text"
-          placeholder="Title"
-          class="modal__destination-title"
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          class="modal__destination-image-URL"
-        />
-        <button class="modal__save-button" type="submit">Save</button>
+        <div class="modal__input-wrapper">
+          <input
+            id="destination-title"
+            type="text"
+            minlength="1"
+            maxlength="30"
+            placeholder="Title"
+            class="modal__destination-title modal__input"
+            required
+          />
+          <span id="destination-title-error" class="popup__error"></span>
+        </div>
+        <div class="modal__input-wrapper">
+          <input
+            id="destination-image-URL"
+            type="url"
+            placeholder="Image URL"
+            class="modal__destination-image-URL modal__input"
+            required
+          />
+          <span id="destination-image-URL-error" class="popup__error"></span>
+        </div>
+        <button
+          class="modal__save-button popup__button_disabled"
+          disabled
+          type="submit"
+        >
+          Save
+        </button>
       </form>
     </div>
     <div class="modal modal_type_preview">
@@ -106,6 +138,16 @@
         <button class="modal__close-icon modal__close-icon_type_image"></button>
       </figure>
     </div>
-    <script src="./scripts/index.js"></script>
+
+    <!-- EXPERIMENTAL CONTEXT MENU CUSTOMIZATION
+      <div class="context-menu">
+            <h1 class="test">This will be a context menu</h1>
+          </div>
+    -->
+    <!-- Index.js -->
+    <script defer src="./scripts/index.js"></script>
+
+    <!--validation.js-->
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>

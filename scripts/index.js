@@ -76,6 +76,9 @@ const previewModalCaption = previewModal.querySelector(
 
 const closeButtons = document.querySelectorAll(".modal__close-icon");
 
+/*contextMenu to experiment with event handling conceppts*/
+const contextMenu = document.querySelector(".context-menu");
+
 /*function definitions*/
 function openPopup(requestedModal) {
   requestedModal.classList.add("modal_opened");
@@ -172,4 +175,101 @@ addDestinationButton.addEventListener("click", function (e) {
   openPopup(addDestinationModal);
 });
 
+/***ESCAPE HANDLER */
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closePopUp(document.querySelector(".modal_opened"));
+    console.log(e);
+  }
+});
+
+/*****LEFT MOUSE CLICK HANDLER */
+document.addEventListener("mousedown", (e) => {
+  if (e.buttons === 1) {
+    closePopUp(e.target);
+  }
+});
+
+/****LOAD INITIAL CARDS ONTO PAGE */
 renderCards(initialCards);
+
+/*FORM VALIDATION*/
+
+/***
+ * enableValidation()
+ * setEventListeners()
+ *
+ */
+
+/*
+const formElement = document.querySelector(".form");
+const formInput = formElement.querySelector(".form__input");
+const formError = formElement.querySelector(`.${formInput.id}-error`);
+*/
+
+/*
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    //buttonElement.classList.add("form__submit_inactive");
+  } else {
+    //buttonElement.classList.remove("form__submit_inactive");
+  }
+};
+*/
+/*
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    // If the field is invalid, the callback will return true.
+    // The method will then stop, and hasInvalidInput() function will return true
+    // hasInvalidInput returns true
+    return !inputElement.validity.valid;
+  });
+};
+*/
+
+/*
+const showInputError = (element) => {
+  element.classList.add("form__input_type_error");
+
+  formError.textContent = errorMessage;
+  formError.classList.add("form__input-error_active");
+};
+*/
+
+/*
+const hideInputError = (element) => {
+  element.classList.remove("form__input_type_error");
+
+  formError.textContent = "";
+  formError.classList.remove("form__input-error_active");
+};
+*/
+
+//const checkInputValidity = () => {
+/*
+  if (!formInput.validity.valid) {
+    // If NOT (!), show the error element
+    showInputError(formInput);
+  } else {
+    // If it's valid, hide the error element
+    hideInputError(formInput);
+  }
+  */
+//call hideInputError or showInputError function based on logic here
+//};
+
+/*****************/
+
+/*EXPERIMENTAL CONTEXT MENU CUSTOMIZATION
+page.addEventListener("contextmenu", (e) => {
+  //e.preventDefault();
+  openPopup(contextMenu);
+});
+page.addEventListener("mousedown", (e) => {
+  if (e.buttons === 1) {
+    closePopUp(contextMenu);
+  }
+});
+
+*/

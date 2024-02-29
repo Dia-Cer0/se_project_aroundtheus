@@ -1,0 +1,21 @@
+.context-menu{
+  position: fixed;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(000, 000, 000, 0.5);
+  opacity: 0%;
+  /* animation-name: fade-in; */
+  width: 100%;
+  height: 100vh;
+  transition: all .3s ease;
+  visibility: hidden;
+  background-color:white;
+}
+.context_opened{
+  opacity: 50%;
+  z-index:1;
+  visibility: visible;
+}
