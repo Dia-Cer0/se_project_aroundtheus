@@ -1,10 +1,9 @@
 export default class Card {
   constructor({ link, name }, cardSelector, handleImageClick) {
-    console.log({ name, link });
+    console.log("Card.js imported to index.js");
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    console.log(this);
   }
 
   _setEventListeners() {
@@ -39,8 +38,6 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".destinations__card")
       .cloneNode(true);
-
-    console.log(this._cardElement);
 
     //get the card view
     //set event listeners,

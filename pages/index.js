@@ -1,3 +1,4 @@
+console.log("index.js loaded");
 import Card from "../components/Card.js";
 
 /*Constant & variable declaration*/
@@ -12,10 +13,6 @@ const profileForm = document.forms.profileForm;
 
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
-console.log(currentProfileName.textContent);
-
-console.log(profileNameInput.value);
-
 const profileDescriptionInput = profileEditModal.querySelector(
   ".modal__profile-description"
 );
@@ -80,7 +77,6 @@ const handleImageClick = (requestedModal) => {
 };
 
 const card = new Card(cardData, "#card", handleImageClick);
-console.log(card.getView());
 
 const cardForm = document.forms.cardForm;
 

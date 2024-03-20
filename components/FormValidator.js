@@ -1,4 +1,4 @@
-console.log("validation.js loaded");
+console.log("FormValidator.js loaded");
 
 // enabling validation by calling enableValidation()
 // pass all the settings on call
@@ -39,18 +39,6 @@ const checkInputValidity = (formElement, inputElement, options) => {
   hideInputError(formElement, inputElement, options);
 };
 
-/*
-const hasInvalidInput = (inputList) => {
-  return !inputList.every((inputElement) => {
-    inputElement.validity.valid;
-  });
-};
-*/
-
-//disableButton function
-
-//enableButton function
-
 const toggleButtonState = (
   inputElements,
   submitButton,
@@ -76,7 +64,7 @@ const setEventListeners = (formElement, options) => {
   const { submitButtonSelector } = options;
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(submitButtonSelector);
-  console.log("inputElements = " + inputElements);
+
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (e) => {
       checkInputValidity(formElement, inputElement, options);
@@ -87,7 +75,6 @@ const setEventListeners = (formElement, options) => {
 
 const enableValidation = (options) => {
   const formElements = [...document.querySelectorAll(options.formSelector)];
-  console.log(formElements);
 
   formElements.forEach((formElement) => {
     formElement.addEventListener("submit", (e) => {
