@@ -1,3 +1,5 @@
+import Card from "../components/Card.js";
+
 /*Constant & variable declaration*/
 const page = document.querySelector(".page");
 
@@ -65,6 +67,21 @@ const initialCards = [
     name: "Lago di Braies",
   },
 ];
+
+const cardData = {
+  link: "./images/yosemite.jpg",
+  name: "Yosemite Valley",
+};
+
+const handleImageClick = (requestedModal) => {
+  requestedModal.classList.add("modal_opened");
+  document.addEventListener("keydown", escapeHandler);
+  requestedModal.addEventListener("mousedown", leftMouseClickHandler);
+};
+
+const card = new Card(cardData, "#card", handleImageClick);
+console.log(card.getView());
+
 const cardForm = document.forms.cardForm;
 
 const previewModal = document.querySelector(".modal_type_preview");
@@ -121,7 +138,7 @@ function getCardElement(data) {
     previewModalImage.src = cardImage.src;
     previewModalImage.alt = cardImage.alt;
     previewModalCaption.textContent = data.name;
-    openPopup(previewModal);
+    handleImageClick(previewModal);
   });
 
   deleteIcon.addEventListener("click", function () {
@@ -197,83 +214,3 @@ addDestinationButton.addEventListener("click", function (e) {
 
 /****LOAD INITIAL CARDS ONTO PAGE */
 renderCards(initialCards);
-
-/*FORM VALIDATION*/
-
-/***
- * enableValidation()
- * setEventListeners()
- *
- */
-
-/*
-const formElement = document.querySelector(".form");
-const formInput = formElement.querySelector(".form__input");
-const formError = formElement.querySelector(`.${formInput.id}-error`);
-*/
-
-/*
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    //buttonElement.classList.add("form__submit_inactive");
-  } else {
-    //buttonElement.classList.remove("form__submit_inactive");
-  }
-};
-*/
-/*
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    // If the field is invalid, the callback will return true.
-    // The method will then stop, and hasInvalidInput() function will return true
-    // hasInvalidInput returns true
-    return !inputElement.validity.valid;
-  });
-};
-*/
-
-/*
-const showInputError = (element) => {
-  element.classList.add("form__input_type_error");
-
-  formError.textContent = errorMessage;
-  formError.classList.add("form__input-error_active");
-};
-*/
-
-/*
-const hideInputError = (element) => {
-  element.classList.remove("form__input_type_error");
-
-  formError.textContent = "";
-  formError.classList.remove("form__input-error_active");
-};
-*/
-
-//const checkInputValidity = () => {
-/*
-  if (!formInput.validity.valid) {
-    // If NOT (!), show the error element
-    showInputError(formInput);
-  } else {
-    // If it's valid, hide the error element
-    hideInputError(formInput);
-  }
-  */
-//call hideInputError or showInputError function based on logic here
-//};
-
-/*****************/
-
-/*EXPERIMENTAL CONTEXT MENU CUSTOMIZATION
-page.addEventListener("contextmenu", (e) => {
-  //e.preventDefault();
-  openPopup(contextMenu);
-});
-page.addEventListener("mousedown", (e) => {
-  if (e.buttons === 1) {
-    closePopUp(contextMenu);
-  }
-});
-
-*/
