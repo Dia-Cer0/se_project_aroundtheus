@@ -168,13 +168,23 @@
   font-weight: 400px;
   line-height: 21.78px;
 }
+
 .modal__save-button:hover {
   cursor: pointer;
+  opacity:0.8;
+}
+
+.modal__button_disabled:hover{
+  opacity:20%;
+  cursor:default;
 }
 
 .modal__button_disabled{
   opacity:20%;
+  cursor:default;
 }
+
+
 
 /*to replace vague class names for modals (input 1)*/
 .modal__destination-title{
