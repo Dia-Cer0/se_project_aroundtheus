@@ -1,12 +1,35 @@
 export default class Card {
   constructor({ link, name }, cardSelector, handleImageClick) {
-    console.log("Card.js imported to index.js");
+    //console.log("Card.js imported to index.js");
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
+    this._previewModal = document.querySelector(".modal_type_preview");
+    this._previewModalImage = this._previewModal.querySelector(".modal__image");
+    this._previewModalCaption = this._previewModal.querySelector(
+      ".modal__preview-caption"
+    );
   }
 
   _setEventListeners() {
+    //define card image
+    this._cardImage = this._cardElement.querySelector(
+      ".destinations__card-image"
+    );
+    this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
+    this._cardElement.querySelector(".destinations__caption-text").textContent =
+      this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = "Photo of " + this._name;
+
+    this._cardImage.addEventListener("click", (e) => {
+      this._previewModalImage.src = this._cardImage.src;
+      this._previewModalImage.alt = this._cardImage.alt;
+      this._previewModalCaption.textContent = this._name;
+      this._handleImageClick(this);
+    });
+
     //event Listeners for like icon
     this._likeButton = this._cardElement.querySelector(
       ".destinations__caption-icon"
@@ -44,7 +67,7 @@ export default class Card {
     //return the card
     this._setEventListeners();
 
-    const cardElement = this._cardElement.content;
+    const cardElement = this._cardElement;
 
     return cardElement;
   }

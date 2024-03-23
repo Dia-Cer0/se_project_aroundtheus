@@ -1,5 +1,34 @@
 console.log("index.js loaded");
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
+const profileFormConfig = {};
+
+const cardFormConfig = {};
+
+const validatorConfig = {
+  formSelector: ".modal__container",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+/*
+const validator = new FormValidator(validatorConfig);
+validator.enableValidation();
+*/
+
+//FormValidator Settings
+const validationConfig = {
+  formSelector: ".modal__container",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
 /*Constant & variable declaration*/
 const page = document.querySelector(".page");
@@ -70,12 +99,6 @@ const cardData = {
   name: "Yosemite Valley",
 };
 
-const handleImageClick = (requestedModal) => {
-  requestedModal.classList.add("modal_opened");
-  document.addEventListener("keydown", escapeHandler);
-  requestedModal.addEventListener("mousedown", leftMouseClickHandler);
-};
-
 const card = new Card(cardData, "#card", handleImageClick);
 
 const cardForm = document.forms.cardForm;
@@ -85,6 +108,11 @@ const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(
   ".modal__preview-caption"
 );
+function handleImageClick(data) {
+  //this is where you can define src
+  //and everything before opening the preview modal
+  openPopup(previewModal);
+}
 
 const closeButtons = document.querySelectorAll(".modal__close-icon");
 
@@ -120,35 +148,40 @@ function closePopUp(openedModal) {
 }
 
 function getCardElement(data) {
+  /*
   const cardElement = cardTemplate
     .querySelector(".destinations__card")
     .cloneNode(true);
-  const cardImage = cardElement.querySelector(".destinations__card-image");
-  const deleteIcon = cardElement.querySelector(".destinations__trash-icon");
-  const likeIcon = cardElement.querySelector(".destinations__caption-icon");
-
-  cardElement.classList.add(data.name.replaceAll(" ", "_"));
-  cardImage.src = data.link;
-  cardImage.alt = "Photo of " + data.name;
+    */
+  //const cardImage = cardElement.querySelector(".destinations__card-image");
+  //const deleteIcon = cardElement.querySelector(".destinations__trash-icon");
+  // const likeIcon = cardElement.querySelector(".destinations__caption-icon");
+  //cardElement.classList.add(data.name.replaceAll(" ", "_"));
+  //cardImage.src = data.link;
+  //cardImage.alt = "Photo of " + data.name;
+  /*
   cardImage.addEventListener("click", function () {
     previewModalImage.src = cardImage.src;
     previewModalImage.alt = cardImage.alt;
     previewModalCaption.textContent = data.name;
     handleImageClick(previewModal);
   });
-
+  */
+  /*
   deleteIcon.addEventListener("click", function () {
     cardElement.remove();
   });
-
+  */
+  /*
   likeIcon.addEventListener("click", function () {
     likeIcon.classList.toggle("destinations_caption-icon_style_liked");
   });
-
+  */
+  /*
   cardElement.querySelector(".destinations__caption-text").textContent =
     data.name;
-
-  return cardElement;
+    */
+  //return cardElement;
 }
 
 closeButtons.forEach(function (item) {
@@ -160,9 +193,11 @@ closeButtons.forEach(function (item) {
 
 function renderCards(array) {
   array.forEach(function (item) {
-    const newCard = getCardElement(item);
+    const card = new Card(item, "#card", handleImageClick);
+    //const newCard = getCardElement(item);
 
-    cardContainer.append(newCard);
+    //cardContainer.append(newCard);
+    cardContainer.append(card.getView());
   });
 }
 
@@ -170,6 +205,12 @@ editProfileButton.addEventListener("click", function (e) {
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionInput.value = currentProfileDescription.textContent;
 
+  const profileEditValidation = new FormValidator(
+    validatorConfig,
+    profileEditModal
+  );
+
+  profileEditValidation.enableValidation();
   openPopup(profileEditModal);
 });
 
@@ -189,11 +230,15 @@ profileForm.addEventListener("submit", function (e) {
 destinationForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const newElement = getCardElement({
-    name: destinationTitle.value,
-    link: destinationImageUrl.value,
-  });
-  cardContainer.prepend(newElement);
+  const newElement = new Card(
+    {
+      name: destinationTitle.value,
+      link: destinationImageUrl.value,
+    },
+    "#card",
+    handleImageClick
+  );
+  cardContainer.prepend(newElement.getView());
 
   closePopUp(addDestinationModal);
 
@@ -201,6 +246,12 @@ destinationForm.addEventListener("submit", function (e) {
 });
 
 addDestinationButton.addEventListener("click", function (e) {
+  const destinationEditValidation = new FormValidator(
+    validatorConfig,
+    addDestinationModal
+  );
+
+  destinationEditValidation.enableValidation();
   openPopup(addDestinationModal);
 });
 
