@@ -40,6 +40,12 @@ const currentProfileDescription = document.querySelector(".profile__subtitle");
 const profileEditModal = document.querySelector(".modal_type_profile-edit");
 const profileForm = document.forms.profileForm;
 
+//global validation variables
+const profileEditValidation = new FormValidator(
+  validatorConfig,
+  profileEditModal
+);
+
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 const profileDescriptionInput = profileEditModal.querySelector(
@@ -93,13 +99,6 @@ const initialCards = [
     name: "Lago di Braies",
   },
 ];
-
-const cardData = {
-  link: "./images/yosemite.jpg",
-  name: "Yosemite Valley",
-};
-
-const card = new Card(cardData, "#card", handleImageClick);
 
 const cardForm = document.forms.cardForm;
 
@@ -191,24 +190,20 @@ closeButtons.forEach(function (item) {
   });
 });
 
+const createCard = (item, card, foo) => {
+  const newCard = new Card(item, card, foo);
+  return newCard.getView();
+};
+
 function renderCards(array) {
   array.forEach(function (item) {
-    const card = new Card(item, "#card", handleImageClick);
-    //const newCard = getCardElement(item);
-
-    //cardContainer.append(newCard);
-    cardContainer.append(card.getView());
+    cardContainer.append(createCard(item, "#card", handleImageClick));
   });
 }
 
 editProfileButton.addEventListener("click", function (e) {
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionInput.value = currentProfileDescription.textContent;
-
-  const profileEditValidation = new FormValidator(
-    validatorConfig,
-    profileEditModal
-  );
 
   profileEditValidation.enableValidation();
   openPopup(profileEditModal);
@@ -230,15 +225,16 @@ profileForm.addEventListener("submit", function (e) {
 destinationForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const newElement = new Card(
-    {
-      name: destinationTitle.value,
-      link: destinationImageUrl.value,
-    },
-    "#card",
-    handleImageClick
+  cardContainer.prepend(
+    createCard(
+      {
+        name: destinationTitle.value,
+        link: destinationImageUrl.value,
+      },
+      "#card",
+      handleImageClick
+    )
   );
-  cardContainer.prepend(newElement.getView());
 
   closePopUp(addDestinationModal);
 

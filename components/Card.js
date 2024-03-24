@@ -12,14 +12,17 @@ export default class Card {
     );
   }
 
+  createCard() {
+    return this.getView();
+  }
+
   _setEventListeners() {
     //define card image
     this._cardImage = this._cardElement.querySelector(
       ".destinations__card-image"
     );
     this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
-    this._cardElement.querySelector(".destinations__caption-text").textContent =
-      this._name;
+
     this._cardImage.src = this._link;
     this._cardImage.alt = "Photo of " + this._name;
 
@@ -65,6 +68,10 @@ export default class Card {
     //get the card view
     //set event listeners,
     //return the card
+
+    this._cardElement.querySelector(".destinations__caption-text").textContent =
+      this._name;
+
     this._setEventListeners();
 
     const cardElement = this._cardElement;
