@@ -45,6 +45,7 @@ const profileEditValidation = new FormValidator(
   validatorConfig,
   profileEditModal
 );
+profileEditValidation.enableValidation();
 
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
@@ -62,6 +63,14 @@ addDestinationModal.classList.add("modal_type_add-destination");
 const destinationForm = addDestinationModal.querySelector(
   ".modal_type_add-destination .modal__container"
 );
+
+const destinationEditValidation = new FormValidator(
+  validatorConfig,
+  addDestinationModal
+);
+
+destinationEditValidation.enableValidation();
+
 const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(
   ".modal__destination-title"
@@ -118,7 +127,6 @@ const closeButtons = document.querySelectorAll(".modal__close-icon");
 /*contextMenu to experiment with event handling conceppts*/
 const contextMenu = document.querySelector(".context-menu");
 const escapeHandler = (e) => {
-  console.log("escapeHandler called ");
   if (e.key === "Escape") {
     closePopUp(document.querySelector(".modal_opened"));
 
@@ -205,7 +213,6 @@ editProfileButton.addEventListener("click", function (e) {
   profileNameInput.value = currentProfileName.textContent;
   profileDescriptionInput.value = currentProfileDescription.textContent;
 
-  profileEditValidation.enableValidation();
   openPopup(profileEditModal);
 });
 
@@ -242,12 +249,6 @@ destinationForm.addEventListener("submit", function (e) {
 });
 
 addDestinationButton.addEventListener("click", function (e) {
-  const destinationEditValidation = new FormValidator(
-    validatorConfig,
-    addDestinationModal
-  );
-
-  destinationEditValidation.enableValidation();
   openPopup(addDestinationModal);
 });
 

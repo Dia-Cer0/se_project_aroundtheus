@@ -18,13 +18,6 @@ export default class Card {
 
   _setEventListeners() {
     //define card image
-    this._cardImage = this._cardElement.querySelector(
-      ".destinations__card-image"
-    );
-    this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
-
-    this._cardImage.src = this._link;
-    this._cardImage.alt = "Photo of " + this._name;
 
     this._cardImage.addEventListener("click", (e) => {
       this._previewModalImage.src = this._cardImage.src;
@@ -71,6 +64,14 @@ export default class Card {
 
     this._cardElement.querySelector(".destinations__caption-text").textContent =
       this._name;
+
+    this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
+
+    this._cardImage = this._cardElement.querySelector(
+      ".destinations__card-image"
+    );
+    this._cardImage.src = this._link;
+    this._cardImage.alt = "Photo of " + this._name;
 
     this._setEventListeners();
 
