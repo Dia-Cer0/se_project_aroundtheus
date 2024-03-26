@@ -10,13 +10,13 @@
   /* animation-name: fade-in; */
   width: 100%;
   height: 100vh;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   visibility: hidden;
 }
 
 .modal_opened {
   opacity: 100%;
-  z-index:1;
+  z-index: 1;
   visibility: visible;
 }
 
@@ -32,34 +32,34 @@
   max-width: 430px;
   width: 100%;
   height: 330px;
-  opacity:100%;
+  opacity: 100%;
 }
-.modal__figure{
+.modal__figure {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: left;
   color: white;
-  background-color:transparent;
+  background-color: transparent;
 
   max-width: 75vw;
 
   max-height: 15px;
 }
-.modal__title{
-  font-family:"Inter-Black", 'Arial-Narrow Bold', Helvetica, sans-serif;
-  font-size:24px;
-  max-width:358px;
-  width:100%;
+.modal__title {
+  font-family: "Inter-Black", "Arial-Narrow Bold", Helvetica, sans-serif;
+  font-size: 24px;
+  max-width: 358px;
+  width: 100%;
 }
-.modal__image-title-text{
-  margin:0;
-  font-family:"Inter", Arial, Helvetica, sans-serif;
-  font-size:12px;
+.modal__image-title-text {
+  margin: 0;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 12px;
 }
-.modal__image{
-  max-height:75vh;
-  max-width:75vw;
+.modal__image {
+  max-height: 75vh;
+  max-width: 75vw;
 }
 .modal__close-icon {
   padding: 0;
@@ -80,13 +80,13 @@
 .modal__close-icon:hover {
   cursor: pointer;
 }
-.modal__close-icon_type_image{
+.modal__close-icon_type_image {
   padding: 0;
   margin: 0;
 
   position: absolute;
-  top:-45px;
-  right:-45px;
+  top: -45px;
+  right: -45px;
 
   background-color: transparent;
   background-image: url("../images/Close Icon.svg");
@@ -97,24 +97,24 @@
   height: 40px;
   width: 40px;
 }
-.modal__close-image-icon:hover{
-  cursor:pointer;
+.modal__close-image-icon:hover {
+  cursor: pointer;
 }
 
 .modal__figure {
   margin: 0;
-  position:relative;
+  position: relative;
   font-family: "Inter-black", arial, helvetica, sans-serif;
   font-size: 12px;
   font-weight: 900px;
   max-width: 75vw;
-  max-height:75vw;
+  max-height: 75vw;
   text-align: left;
 }
-.modal__preview-caption{
-  padding-top:10px;
-  font-family:inherit;
-  font-size:inherit;
+.modal__preview-caption {
+  padding-top: 10px;
+  font-family: inherit;
+  font-size: inherit;
 }
 /*
 .modal__input-1 {
@@ -136,18 +136,19 @@
 }
 */
 
-.modal__profile-name{
-  max-width:358px;
-  width:100%;
-  height:27.26px;
-  border:none;
-  border-bottom:rgba(000,000,000,0.3) 1px solid;
+.modal__profile-name {
+  max-width: 358px;
+  width: 100%;
+  height: 27.26px;
+  border: none;
+  border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
-.modal__profile-description{
-  max-width:358px;
-  width:100%;
-  height:27.34px;
-  border:none;
+.modal__profile-description {
+  max-width: 358px;
+  width: 100%;
+  height: 27.34px;
+  border: none;
+  border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
 
 .modal__save-button {
@@ -171,24 +172,22 @@
 
 .modal__save-button:hover {
   cursor: pointer;
-  opacity:0.8;
+  opacity: 0.8;
 }
 
-.modal__button_disabled:hover{
-  opacity:20%;
-  cursor:default;
+.modal__button_disabled:hover {
+  opacity: 20%;
+  cursor: default;
 }
 
-.modal__button_disabled{
-  opacity:20%;
-  cursor:default;
+.modal__button_disabled {
+  opacity: 20%;
+  cursor: default;
 }
-
-
 
 /*to replace vague class names for modals (input 1)*/
-.modal__destination-title{
-  padding:0;
+.modal__destination-title {
+  padding: 0;
   max-width: 358px;
   width: 100%;
   height: 27.26px;
@@ -196,8 +195,8 @@
   border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
 /*to replace vague class names for modals (input 2)*/
-.modal__destination-image-URL{
-  padding:0;
+.modal__destination-image-URL {
+  padding: 0;
   max-width: 358px;
   width: 100%;
   height: 27.26px;
@@ -205,34 +204,29 @@
   border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
 
-.modal__input-wrapper{
-  width:100%;
-  max-width:358px;
+.modal__input-wrapper {
+  width: 100%;
+  max-width: 358px;
 }
 
 /*MODAL VALIDATION*/
 /**need to reposition error*/
-.modal__input_type_error{
-border-bottom:#FF0000 1px solid;
-
-
-
+.modal__input_type_error {
+  border-bottom: #ff0000 1px solid;
 }
-.popup__error{
- margin:0;
-padding:0;
-font-family: "Inter",Arial, sans-serif;
-font-weight:400px;
-font-size:12px;
-color:#FF0000;
-visibility:hidden;
-transition: all .3s ease;
+.popup__error {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400px;
+  font-size: 12px;
+  color: #ff0000;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
-.modal__error_visible{
-  visibility:visible;
-
+.modal__error_visible {
+  visibility: visible;
 }
-
 
 @media screen and (max-width: 590px) {
   .modal__container {
@@ -245,10 +239,10 @@ transition: all .3s ease;
     width: 26px;
     right: 5px;
   }
-  .modal__close-image-icon{
-    height:26px;
-    width:26px;
-    right:5px;
+  .modal__close-image-icon {
+    height: 26px;
+    width: 26px;
+    right: 5px;
   }
   .modal__title {
     max-width: 238px;
@@ -269,16 +263,16 @@ transition: all .3s ease;
 
   /* */
   .modal__destination-title {
-    max-width:238px;
-    width:100%;
+    max-width: 238px;
+    width: 100%;
   }
 
-  .modal__destination-image-URL{
-    max-width:238px;
-    width:100%;
+  .modal__destination-image-URL {
+    max-width: 238px;
+    width: 100%;
   }
-  .modal__input-wrapper{
-    width:100%;
-    max-width:238px;
+  .modal__input-wrapper {
+    width: 100%;
+    max-width: 238px;
   }
 }

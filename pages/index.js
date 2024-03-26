@@ -154,43 +154,6 @@ function closePopUp(openedModal) {
   openedModal.classList.remove("modal_opened");
 }
 
-function getCardElement(data) {
-  /*
-  const cardElement = cardTemplate
-    .querySelector(".destinations__card")
-    .cloneNode(true);
-    */
-  //const cardImage = cardElement.querySelector(".destinations__card-image");
-  //const deleteIcon = cardElement.querySelector(".destinations__trash-icon");
-  // const likeIcon = cardElement.querySelector(".destinations__caption-icon");
-  //cardElement.classList.add(data.name.replaceAll(" ", "_"));
-  //cardImage.src = data.link;
-  //cardImage.alt = "Photo of " + data.name;
-  /*
-  cardImage.addEventListener("click", function () {
-    previewModalImage.src = cardImage.src;
-    previewModalImage.alt = cardImage.alt;
-    previewModalCaption.textContent = data.name;
-    handleImageClick(previewModal);
-  });
-  */
-  /*
-  deleteIcon.addEventListener("click", function () {
-    cardElement.remove();
-  });
-  */
-  /*
-  likeIcon.addEventListener("click", function () {
-    likeIcon.classList.toggle("destinations_caption-icon_style_liked");
-  });
-  */
-  /*
-  cardElement.querySelector(".destinations__caption-text").textContent =
-    data.name;
-    */
-  //return cardElement;
-}
-
 closeButtons.forEach(function (item) {
   const modal = item.closest(".modal");
   item.addEventListener("click", function () {
@@ -246,6 +209,7 @@ destinationForm.addEventListener("submit", function (e) {
   closePopUp(addDestinationModal);
 
   e.target.reset();
+  destinationEditValidation.toggleButtonState();
 });
 
 addDestinationButton.addEventListener("click", function (e) {
