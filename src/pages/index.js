@@ -91,16 +91,23 @@ profileForm.addEventListener("submit", function (e) {
 destinationForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  cardContainer.prepend(
-    createCard(
-      {
-        name: destinationTitle.value,
-        link: destinationImageUrl.value,
+  const newCard = {
+    link: destinationImageUrl.value,
+    name: destinationTitle.textContent,
+  };
+  console.log(`destinationImageUrl.value:${destinationImageUrl.value}`);
+  const addSection = new Section(
+    {
+      items: newCard,
+      renderer: (cardObject) => {
+        const newElement = new Card(cardObject, "#card", handleImageClick);
+        return newElement.getView();
       },
-      "#card",
-      handleImageClick
-    )
+    },
+    cardClassSelector
   );
+
+  addSection.addItem();
 
   closePopUp(addDestinationModal);
 
@@ -112,16 +119,37 @@ addDestinationButton.addEventListener("click", function (e) {
 });
 
 /****LOAD INITIAL CARDS ONTO PAGE */
-renderCards(initialCards);
+//renderCards(initialCards);
 
-const section_1 = new Section(
+const initialSection = new Section(
   {
     items: initialCards,
-    renderer: () => {
-      console.log("renderer called");
+    renderer: (cardObject) => {
+      const newElement = new Card(cardObject, "#card", handleImageClick);
+      return newElement.getView();
     },
   },
   cardClassSelector
 );
 
-section_1.printMessage1();
+const itemTest = {
+  link: require("../images/lake-louise.jpg"),
+  name: "Lake Louise",
+};
+
+/*
+const testSection = new Section(
+  {
+    items: itemTest,
+    renderer: (cardObject) => {
+      const newElement = new Card(cardObject, "#card", handleImageClick);
+      return newElement.getView();
+    },
+  },
+  cardClassSelector
+);
+*/
+
+initialSection.renderItems();
+
+//testSection.addItem();

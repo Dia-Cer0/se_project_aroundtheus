@@ -16,9 +16,16 @@ export default class Section {
     this.renderer();
   }
 
-  createCard = (item, card, foo) => {
-    const newCard = new Card(item, card, foo);
-    return newCard.getView();
+  renderItems = () => {
+    this._items.forEach((item) => {
+      const newElement = this.renderer(item);
+
+      this._setItem(newElement);
+    });
+  };
+
+  addItem = () => {
+    this._container.prepend(this.renderer(this._items));
   };
 
   _setItem = (element) => {

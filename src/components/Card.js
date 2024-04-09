@@ -2,7 +2,9 @@ export default class Card {
   constructor({ link, name }, cardSelector, handleImageClick) {
     //console.log("Card.js imported to index.js");
     this._name = name;
+
     this._link = link;
+    console.log(`this._name:${this._name}`);
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._previewModal = document.querySelector(".modal_type_preview");
@@ -53,6 +55,7 @@ export default class Card {
   }
 
   getView() {
+    console.log(`this._cardSelector:${this._cardSelector}`);
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".destinations__card")
@@ -65,12 +68,14 @@ export default class Card {
     this._cardElement.querySelector(".destinations__caption-text").textContent =
       this._name;
 
-    this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
+    console.log(this._cardELement);
+    //this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
 
     this._cardImage = this._cardElement.querySelector(
       ".destinations__card-image"
     );
     this._cardImage.src = this._link;
+    console.log(this._link);
     this._cardImage.alt = "Photo of " + this._name;
 
     this._setEventListeners();
