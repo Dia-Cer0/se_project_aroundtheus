@@ -3,8 +3,6 @@ export default class FormValidator {
     this._config = config;
     this._formElement = formElement;
 
-    console.log(this._formElement);
-
     console.log("FormValidator.js imported to index.js");
   }
 
@@ -69,8 +67,6 @@ export default class FormValidator {
     this._inputElements = [
       ...this._formElement.querySelectorAll(this._config.inputSelector),
     ];
-    console.log("this._inputElements:");
-    console.log(this._inputElements);
 
     this._submitButton = this._formElement.querySelector(
       this._config.submitButtonSelector
@@ -78,8 +74,6 @@ export default class FormValidator {
 
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", (e) => {
-        console.log("inputElement in: ");
-        console.log(inputElement.id);
         this.checkInputValidity(inputElement);
         this.toggleButtonState();
       });

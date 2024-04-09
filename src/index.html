@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--Main Webpage Styles-->
-    <link rel="stylesheet" href="./pages/index.css" />
-
-    <link rel="icon" href="./favicon.ico" />
-    <link rel="shortcut icon" href="./favicon-chrome.png" />
+    <!--Styles are handled by webpack-->
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,14 +12,14 @@
     <header class="header page__section">
       <img
         class="header__logo"
-        src="./images/Logo.svg"
+        src="<%=require('./images/Logo.svg')%>"
         alt="Around The U.S. Website Logo"
       />
     </header>
     <main class="page__content">
       <section class="profile page__section">
         <img
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
           alt="image of the great explorer jacques cousteau"
           class="profile__image"
         />
@@ -43,7 +39,7 @@
               class="destinations__card-image"
             />
             <img
-              src="./images/trash.svg"
+              src="<%=require('./images/trash.svg')%>"
               alt="delete destination icon"
               class="destinations__trash-icon"
             />
@@ -145,7 +141,7 @@
           </div>
     -->
     <!-- Index.js -->
-    <script defer type="module" src="./pages/index.js"></script>
+    <!--<script defer type="module" src="./pages/index.js"></script>  removed to let webpack do work-->
 
     <!--validation.js-->
     <!--<script defer src="./components/Validator.js"></script>-->
