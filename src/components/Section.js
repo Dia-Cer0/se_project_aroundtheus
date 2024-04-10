@@ -6,16 +6,6 @@ export default class Section {
     this._container = document.querySelector(classSelector);
   }
 
-  printMessage2(message) {
-    console.log(message);
-  }
-
-  printMessage1() {
-    const message2 = this._container;
-    console.log(this._items);
-    this.renderer();
-  }
-
   renderItems = () => {
     this._items.forEach((item) => {
       const newElement = this.renderer(item);
@@ -25,6 +15,7 @@ export default class Section {
   };
 
   addItem = () => {
+    console.log(`from render items in section${this._items}`);
     this._container.prepend(this.renderer(this._items));
   };
 

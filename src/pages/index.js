@@ -1,25 +1,30 @@
-import "../favicon-chrome.png";
-//import "../favicon.ico";
 import "./index.css";
 
 console.log("index.js loaded");
 
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 //import constants from constants.js
 import {
   page,
   validatorConfig,
+  profile,
   currentProfileName,
   currentProfileDescription,
+  profileEditSelector,
   profileEditModal,
   profileForm,
+  profileFormSelector,
   profileEditValidation,
   editProfileButton,
   profileNameInput,
   profileDescriptionInput,
   saveProfileButton,
   addDestinationButton,
+  addDestinationSelector,
   addDestinationModal,
   destinationEditValidation,
   destinationFormTitle,
@@ -68,11 +73,17 @@ closeButtons.forEach(function (item) {
   });
 });
 
-editProfileButton.addEventListener("click", function (e) {
-  profileNameInput.value = currentProfileName.textContent;
-  profileDescriptionInput.value = currentProfileDescription.textContent;
+const profileUserData = new UserInfo(profile);
 
-  openPopup(profileEditModal);
+const profilePopup = new PopupWithForm({
+  popupSelector: profileEditSelector,
+  handleFormSubmit: (formData) => {
+    profileUserData.setUserInfo(formData);
+  },
+});
+
+editProfileButton.addEventListener("click", function (e) {
+  profilePopup.open(profileUserData.getUserInfo());
 });
 
 profileForm.addEventListener("submit", function (e) {
@@ -88,6 +99,26 @@ profileForm.addEventListener("submit", function (e) {
   e.target.reset();
 });
 
+const addDestinationPopup = new PopupWithForm({
+  popupSelector: addDestinationSelector,
+  handleFormSubmit: (formData) => {
+    const addSection = new Section(
+      {
+        items: { link: formData.input2, name: formData.input1 },
+        renderer: (cardObject) => {
+          console.log(`from renderer: ${cardObject.input1}`);
+          const newElement = new Card(cardObject, "#card", handleImageClick);
+
+          return newElement.getView();
+        },
+      },
+      cardClassSelector
+    );
+
+    addSection.addItem();
+  },
+});
+
 destinationForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -95,23 +126,13 @@ destinationForm.addEventListener("submit", function (e) {
     link: destinationImageUrl.value,
     name: destinationTitle.textContent,
   };
-  console.log(`destinationImageUrl.value:${destinationImageUrl.value}`);
-  const addSection = new Section(
-    {
-      items: newCard,
-      renderer: (cardObject) => {
-        const newElement = new Card(cardObject, "#card", handleImageClick);
-        return newElement.getView();
-      },
-    },
-    cardClassSelector
-  );
 
-  addSection.addItem();
-
+  addDestinationPopup._submit();
+  /*
   closePopUp(addDestinationModal);
 
   e.target.reset();
+  */
 });
 
 addDestinationButton.addEventListener("click", function (e) {
@@ -132,10 +153,7 @@ const initialSection = new Section(
   cardClassSelector
 );
 
-const itemTest = {
-  link: require("../images/lake-louise.jpg"),
-  name: "Lake Louise",
-};
+//popupTest.close();
 
 /*
 const testSection = new Section(
@@ -149,7 +167,19 @@ const testSection = new Section(
   cardClassSelector
 );
 */
+const newCardPopup = new PopupWithForm({
+  popupSelector: profileEditSelector,
+  handleFormSubmit: (formData) => {
+    console.log("formData:");
+    console.log(formData);
+  },
+});
+newCardPopup;
 
 initialSection.renderItems();
+
+const profile1 = new UserInfo(profile);
+
+//console.log(profile1.getUserInfo());
 
 //testSection.addItem();

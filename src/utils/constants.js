@@ -26,11 +26,18 @@ const validatorConfig = {
 };
 
 /*Profile Editing******************************************************************/
-const currentProfileName = document.querySelector(".profile__name");
-const currentProfileDescription = document.querySelector(".profile__subtitle");
+const ProfileNameSelector = ".profile__name";
+const ProfileDescriptionSelector = ".profile__subtitle";
+const profile = { name: ProfileNameSelector, job: ProfileDescriptionSelector };
+const currentProfileName = document.querySelector(ProfileNameSelector);
+const currentProfileDescription = document.querySelector(
+  ProfileDescriptionSelector
+);
 
-const profileEditModal = document.querySelector(".modal_type_profile-edit");
+const profileEditSelector = ".modal_type_profile-edit";
+const profileEditModal = document.querySelector(profileEditSelector);
 const profileForm = document.forms.profileForm;
+const profileFormSelector = profileForm.className;
 
 //global validation variables
 const profileEditValidation = new FormValidator(
@@ -48,7 +55,8 @@ const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
 /********************************************************************************* */
 
 const addDestinationButton = document.querySelector(".profile__button");
-const addDestinationModal = document.querySelector(".modal_type_add-card");
+const addDestinationSelector = ".modal_type_add-card";
+const addDestinationModal = document.querySelector(addDestinationSelector);
 const destinationEditValidation = new FormValidator(
   validatorConfig,
   addDestinationModal
@@ -95,7 +103,8 @@ const closeButtons = document.querySelectorAll(".modal__close-icon");
 
 const cardForm = document.forms.cardForm;
 
-const previewModal = document.querySelector(".modal_type_preview");
+const previewModalSelector = ".modal_type_preview";
+const previewModal = document.querySelector(previewModalSelector);
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(
   ".modal__preview-caption"
@@ -107,16 +116,20 @@ const importStatus = "constants.js import successful";
 export {
   page,
   validatorConfig,
+  profile,
   currentProfileName,
   currentProfileDescription,
+  profileEditSelector,
   profileEditModal,
   profileForm,
+  profileFormSelector,
   profileEditValidation,
   editProfileButton,
   profileNameInput,
   profileDescriptionInput,
   saveProfileButton,
   addDestinationButton,
+  addDestinationSelector,
   addDestinationModal,
   destinationEditValidation,
   destinationFormTitle,
@@ -128,6 +141,7 @@ export {
   initialCards,
   closeButtons,
   cardForm,
+  previewModalSelector,
   previewModal,
   previewModalImage,
   previewModalCaption,

@@ -60,6 +60,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html", // path to our index.html file
+      favicon: "./src/images/favicon-chrome.png", //path to favicon
     }),
     new CleanWebpackPlugin(), // use plugin
     new MiniCssExtractPlugin(), // connect the plugin for merging CSS files

@@ -20,13 +20,9 @@ export default class FormValidator {
   }
 
   hideInputError(inputElement) {
-    console.log("inputElement hideinputerror: ");
-    console.log(inputElement.id);
-
     const errorMessageElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
-    console.log("inputElement: " + inputElement);
 
     errorMessageElement.textContent = "";
     errorMessageElement.classList.remove(this._config.errorClass);
@@ -41,8 +37,7 @@ export default class FormValidator {
 
   checkInputValidity(inputElement) {
     // 3
-    console.log("inputElement out: ");
-    console.log(inputElement.id);
+
     if (!inputElement.validity.valid) {
       return this.showInputError(inputElement);
     }
@@ -52,7 +47,6 @@ export default class FormValidator {
 
   toggleButtonState() {
     // 4
-    console.log("Form Validity: " + this._checkFormValidity());
 
     if (!this._checkFormValidity()) {
       this._submitButton.classList.add(this._config.inactiveButtonClass);
