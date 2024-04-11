@@ -1,13 +1,15 @@
-import "./index.css";
-
+/***********************************************************/
+/*************************index.js**************************/
+/***********************************************************/
+//IMPORTS
+/**********************************************************/
 console.log("index.js loaded");
 
+import "./index.css";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
-//import constants from constants.js
 import {
   page,
   validatorConfig,
@@ -43,11 +45,7 @@ import {
 } from "../utils/constants.js";
 console.log(`${importStatus} -> index.js`);
 
-//import Card class from Card.js
 import Card from "../components/Card.js";
-//import FormValidator from "../utils/FormValidator.js";
-
-//import renderCards function from utils.js
 import {
   openPopup,
   closePopUp,
@@ -56,6 +54,8 @@ import {
   renderCards,
 } from "../utils/utils.js";
 
+//EVENT LISTENERS AND CLASS OPERATIONS
+/************************************************************/
 profileEditValidation.enableValidation();
 
 addDestinationModal.classList.add("modal_type_add-destination");
@@ -65,13 +65,14 @@ const destinationForm = addDestinationModal.querySelector(
 
 destinationEditValidation.enableValidation();
 
-//Event Listeners & class instantiation
+/*************************REFACTOR************************************/
 closeButtons.forEach(function (item) {
   const modal = item.closest(".modal");
   item.addEventListener("click", function () {
     closePopUp(modal);
   });
 });
+/*************************REFACTOR************************************/
 
 const profileUserData = new UserInfo(profile);
 
@@ -82,10 +83,13 @@ const profilePopup = new PopupWithForm({
   },
 });
 
+/*************************REFACTOR************************************/
 editProfileButton.addEventListener("click", function (e) {
   profilePopup.open(profileUserData.getUserInfo());
 });
+/*************************REFACTOR************************************/
 
+/*************************REFACTOR************************************/
 profileForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -98,6 +102,7 @@ profileForm.addEventListener("submit", function (e) {
   /***************************************************************/
   e.target.reset();
 });
+/*************************REFACTOR************************************/
 
 const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
@@ -119,6 +124,7 @@ const addDestinationPopup = new PopupWithForm({
   },
 });
 
+/*************************REFACTOR************************************/
 destinationForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -128,20 +134,17 @@ destinationForm.addEventListener("submit", function (e) {
   };
 
   addDestinationPopup._submit();
-  /*
-  closePopUp(addDestinationModal);
-
-  e.target.reset();
-  */
+  destinationEditValidation.toggleButtonState();
 });
+/*************************REFACTOR************************************/
 
+/*************************REFACTOR************************************/
 addDestinationButton.addEventListener("click", function (e) {
   openPopup(addDestinationModal);
 });
+/*************************REFACTOR************************************/
 
 /****LOAD INITIAL CARDS ONTO PAGE */
-//renderCards(initialCards);
-
 const initialSection = new Section(
   {
     items: initialCards,
@@ -153,33 +156,4 @@ const initialSection = new Section(
   cardClassSelector
 );
 
-//popupTest.close();
-
-/*
-const testSection = new Section(
-  {
-    items: itemTest,
-    renderer: (cardObject) => {
-      const newElement = new Card(cardObject, "#card", handleImageClick);
-      return newElement.getView();
-    },
-  },
-  cardClassSelector
-);
-*/
-const newCardPopup = new PopupWithForm({
-  popupSelector: profileEditSelector,
-  handleFormSubmit: (formData) => {
-    console.log("formData:");
-    console.log(formData);
-  },
-});
-newCardPopup;
-
 initialSection.renderItems();
-
-const profile1 = new UserInfo(profile);
-
-//console.log(profile1.getUserInfo());
-
-//testSection.addItem();
