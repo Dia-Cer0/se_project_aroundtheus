@@ -1,6 +1,8 @@
 export default class Popup {
   constructor({ popupClassSelector }) {
     this._popupElement = document.querySelector(popupClassSelector);
+    this._closePopupButton =
+      this._popupElement.querySelector(".modal__close-icon");
   }
   open() {
     //public method to open popup
@@ -26,7 +28,6 @@ export default class Popup {
     //look for escape button press while modal is opened and close modal when the escape button is pressed
     if (e.key === "Escape") {
       this.close();
-      console.log("handle escape close called");
     }
   }
 
@@ -43,6 +44,11 @@ export default class Popup {
       "mousedown",
       this._handleLeftMouseCloseBound
     );
+
+    this._closePopupButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.close();
+    });
   }
 
   _removeEventListeners() {

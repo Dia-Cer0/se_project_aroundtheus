@@ -1,6 +1,7 @@
 /***********************************************************/
 /*************************index.js**************************/
 /***********************************************************/
+
 //IMPORTS
 /**********************************************************/
 console.log("index.js loaded");
@@ -46,33 +47,17 @@ import {
 console.log(`${importStatus} -> index.js`);
 
 import Card from "../components/Card.js";
-import {
-  openPopup,
-  closePopUp,
-  handleImageClick,
-  createCard,
-  renderCards,
-} from "../utils/utils.js";
+import { handleImageClick } from "../utils/utils.js";
+//////////////////////////////////////////////////////////////
 
 //EVENT LISTENERS AND CLASS OPERATIONS
-/************************************************************/
+/*************************EDIT PROFILE***********************************/
 profileEditValidation.enableValidation();
 
 addDestinationModal.classList.add("modal_type_add-destination");
 const destinationForm = addDestinationModal.querySelector(
   ".modal_type_add-destination .modal__container"
 );
-
-destinationEditValidation.enableValidation();
-
-/*************************REFACTOR************************************/
-closeButtons.forEach(function (item) {
-  const modal = item.closest(".modal");
-  item.addEventListener("click", function () {
-    closePopUp(modal);
-  });
-});
-/*************************REFACTOR************************************/
 
 const profileUserData = new UserInfo(profile);
 
@@ -83,26 +68,12 @@ const profilePopup = new PopupWithForm({
   },
 });
 
-/*************************REFACTOR************************************/
-editProfileButton.addEventListener("click", function (e) {
+editProfileButton.addEventListener("click", (e) => {
   profilePopup.open(profileUserData.getUserInfo());
 });
-/*************************REFACTOR************************************/
 
-/*************************REFACTOR************************************/
-profileForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  closePopUp(profileEditModal);
-
-  /*********ASSIGN FORM VALUES TO PROFILE ELEMENTS*****************/
-  currentProfileName.textContent = profileNameInput.value;
-  currentProfileDescription.textContent = profileDescriptionInput.value;
-
-  /***************************************************************/
-  e.target.reset();
-});
-/*************************REFACTOR************************************/
+/************************************ADD DESTINATIONS******************************************/
+destinationEditValidation.enableValidation();
 
 const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
@@ -111,7 +82,6 @@ const addDestinationPopup = new PopupWithForm({
       {
         items: { link: formData.input2, name: formData.input1 },
         renderer: (cardObject) => {
-          console.log(`from renderer: ${cardObject.input1}`);
           const newElement = new Card(cardObject, "#card", handleImageClick);
 
           return newElement.getView();
@@ -121,30 +91,15 @@ const addDestinationPopup = new PopupWithForm({
     );
 
     addSection.addItem();
+    destinationEditValidation.toggleButtonState();
   },
 });
 
-/*************************REFACTOR************************************/
-destinationForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const newCard = {
-    link: destinationImageUrl.value,
-    name: destinationTitle.textContent,
-  };
-
-  addDestinationPopup._submit();
-  destinationEditValidation.toggleButtonState();
-});
-/*************************REFACTOR************************************/
-
-/*************************REFACTOR************************************/
 addDestinationButton.addEventListener("click", function (e) {
-  openPopup(addDestinationModal);
+  addDestinationPopup.open();
 });
-/*************************REFACTOR************************************/
 
-/****LOAD INITIAL CARDS ONTO PAGE */
+/************************************LOAD INITIAL CARDS ONTO PAGE******************************************/
 const initialSection = new Section(
   {
     items: initialCards,
@@ -157,3 +112,5 @@ const initialSection = new Section(
 );
 
 initialSection.renderItems();
+
+//////////////////////////////////////////////////////////////////////

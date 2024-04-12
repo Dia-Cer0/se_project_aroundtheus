@@ -2,11 +2,11 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
-    super({ popupClassSelector: popupSelector }); //uses parent popup class to define this._popupElement
+    super({ popupClassSelector: popupSelector }); //uses parent popup class to define this._popupElement by accessing parent constructor
     this._popupFormInputs = Array.from(
       this._popupElement.querySelectorAll(".modal__input")
     );
-
+    //console.log(super._closePopupButton);
     this._popupForm = this._popupElement.querySelector("form");
 
     //this._popupForm = this._popupElement.querySelector(".modal__container");
@@ -15,22 +15,36 @@ export default class PopupWithForm extends Popup {
     this._popupSubmitButton = this._popupForm.querySelector(
       ".modal__save-button"
     );
+    this._setFormEventListeners(); //remember remember remember, event listeners only need to be set once!!!!!
+    this._inputBuffer1 = "";
+    this._inputBuffer2 = "";
   }
 
-  open({ name, job } = { name: "", job: "" }) {
+  open(
+    { name, job } = {
+      name: this._popupFormInputs[0].value,
+      job: this._popupFormInputs[1].value,
+    }
+  ) {
     this._popupFormInputs[0].value = name;
     this._popupFormInputs[1].value = job;
+
     super.open(); //call parent open methods
   }
 
   close() {
     super.close(); //call parent close method
+
+    //this._removeFormEventListeners();
   }
 
-  _submit() {
-    super.close(); //call parent close method
+  _submit(e) {
+    e.preventDefault();
+
     this._getInputValues();
+
     this._popupForm.reset();
+    super.close(); //call parent close method
   }
 
   _getInputValues() {
@@ -41,8 +55,15 @@ export default class PopupWithForm extends Popup {
   }
 
   _setFormEventListeners() {
-    this._popupSubmitButton.addEventListener("submit", (e) => {});
+    this._submitThis = this._submit.bind(this);
+    this._popupForm.addEventListener("submit", this._submitThis);
   }
+
+  /*
+  _removeFormEventListeners() {
+    this._popupForm.removeEventListener("submit", this._submitThis);
+  }
+  */
 }
 
 //index.js

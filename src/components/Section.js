@@ -15,7 +15,6 @@ export default class Section {
   };
 
   addItem = () => {
-    console.log(`from render items in section${this._items}`);
     this._container.prepend(this.renderer(this._items));
   };
 
