@@ -1,4 +1,3 @@
-import jquery from "jquery";
 import Popup from "./Popup";
 
 export default class PopupWithImage extends Popup {
