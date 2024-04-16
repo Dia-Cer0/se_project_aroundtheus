@@ -16,8 +16,6 @@ export default class PopupWithForm extends Popup {
       ".modal__save-button"
     );
 
-    //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
-    this._setFormEventListeners(); //remember remember remember, event listeners only need to be set once!!!!!
     this._inputBuffer1 = "";
     this._inputBuffer2 = "";
   }
@@ -33,33 +31,24 @@ export default class PopupWithForm extends Popup {
 
     super.open(); //call parent open methods
   }
-  //ISSUE #3 do not duplicate parent methods unless it needs a different implementation
-  close() {
-    super.close(); //call parent close method
-
-    //this._removeFormEventListeners();
-  }
 
   _submit(e) {
     e.preventDefault();
 
-    //ISSUE #4 REMOVE _HANDLEFORMSUBMIT FROM _GET _GETINPUTVALUES; _GETINPUTVALUES ONLY NEEDS TO RETURN THEO OBJECTF (NOT HIGHLIGHTED)
-    this._getInputValues();
-
+    this._handleFormSubmit(this._getInputValues()); //BULLET POINT #6 RESOLUTION
     this._popupForm.reset();
     super.close(); //call parent close method
   }
 
   _getInputValues() {
-    //ISSUE #4 REMOVE _HANDLEFORMSUBMIT FROM _GET _GETINPUTVALUES; _GETINPUTVALUES ONLY NEEDS TO RETURN THEO OBJECTF (NOT HIGHLIGHTED)
-    return this._handleFormSubmit({
+    return {
       input1: this._popupFormInputs[0].value,
       input2: this._popupFormInputs[1].value,
-    });
+    };
   }
 
-  //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
-  _setFormEventListeners() {
+  //BULLET POINT #4 RESOLUTION
+  setEventListeners() {
     this._submitThis = this._submit.bind(this);
     this._popupForm.addEventListener("submit", this._submitThis);
   }

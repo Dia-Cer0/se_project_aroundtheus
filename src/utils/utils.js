@@ -21,3 +21,4 @@ export function handleImageClick(data) {
 */
 
 //ISSUE #9 CREATE A SEPARATE FUNCTION createCard FOR CREATING A CARD TO FOLLOW DRY CODE PRINCIPLES ( need to review code and determine where this needs to be implemented)
+//RAN OUT OF TIME AND DID NOT INCLUDE IN CURRENT SUBMISSION

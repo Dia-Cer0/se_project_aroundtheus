@@ -70,50 +70,16 @@ const profilePopup = new PopupWithForm({
   },
 });
 
+profilePopup.setEventListeners(); //BULLET POINT #4 RESOLUTION
+
 editProfileButton.addEventListener("click", (e) => {
   profilePopup.open(profileUserData.getUserInfo());
 });
 
 /************************************ADD DESTINATIONS******************************************/
-destinationEditValidation.enableValidation();
-const imagePopup = new PopupWithImage(
-  { popupSelector: previewModalSelector },
-  { name: "", link: "" }
-);
-const addDestinationPopup = new PopupWithForm({
-  popupSelector: addDestinationSelector,
-  handleFormSubmit: (formData) => {
-    //ISSUE #8 THERE SHOULD ONLY BE ONE INSTANCE OF SECTION BECAUSE THERE IS ONLY ONE SECTION FOR THE CARDS
-    const addSection = new Section(
-      {
-        items: { link: formData.input2, name: formData.input1 },
-        renderer: (cardObject) => {
-          const newElement = new Card(cardObject, "#card", (data) => {
-            console.log("data:");
-            console.log(data);
 
-            imagePopup.open(data);
-          });
-
-          return newElement.getView();
-        },
-      },
-      cardClassSelector
-    );
-
-    addSection.addItem();
-  },
-});
-
-addDestinationButton.addEventListener("click", function (e) {
-  addDestinationPopup.open();
-  destinationEditValidation.toggleButtonState(); //BULLET POINT 2 RESOLUTION
-});
-
-/************************************LOAD INITIAL CARDS ONTO PAGE******************************************/
-
-//ISSUE #8 THERE SHOULD ONLY BE ONE INSTANCE OF SECTION BECAUSE THERE IS ONLY ONE SECTION FOR THE CARDS
-const initialSection = new Section(
+//Create section class for destination cards
+const cardSection = new Section(
   {
     items: initialCards,
     renderer: (cardObject) => {
@@ -126,6 +92,27 @@ const initialSection = new Section(
   cardClassSelector
 );
 
-initialSection.renderItems();
+destinationEditValidation.enableValidation();
+const imagePopup = new PopupWithImage(
+  { popupSelector: previewModalSelector },
+  { name: "", link: "" }
+);
+const addDestinationPopup = new PopupWithForm({
+  popupSelector: addDestinationSelector,
+  handleFormSubmit: (formData) => {
+    cardSection.addItem({ link: formData.input2, name: formData.input1 }); //BULLET POINT #12 RESOLUTION
+  },
+});
+
+addDestinationPopup.setEventListeners(); //BULLET POINT #4 RESOLUTION
+
+addDestinationButton.addEventListener("click", function (e) {
+  addDestinationPopup.open();
+  destinationEditValidation.toggleButtonState(); //BULLET POINT 2 RESOLUTION
+});
+
+/************************************LOAD INITIAL CARDS ONTO PAGE******************************************/
+
+cardSection.renderItems();
 
 //////////////////////////////////////////////////////////////////////
