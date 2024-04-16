@@ -22,9 +22,6 @@ export default class Card {
     //define card image
 
     this._cardImage.addEventListener("click", (e) => {
-      this._previewModalImage.src = this._cardImage.src;
-      this._previewModalImage.alt = this._cardImage.alt;
-      this._previewModalCaption.textContent = this._name;
       this._handleImageClick(this);
     });
 
@@ -43,6 +40,8 @@ export default class Card {
     this._deleteButton.addEventListener("click", () => {
       this._handleDeleteButton();
     });
+
+    //ISSUE # 5 CLICK HANDLERS FOR IMAGES SHOULD ONLY BE INSIDE OF THE CARD CLASS
   }
 
   _handleLikeButton() {

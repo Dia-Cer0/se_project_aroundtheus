@@ -10,6 +10,7 @@ import "./index.css";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   page,
@@ -39,6 +40,7 @@ import {
   initialCards,
   closeButtons,
   cardForm,
+  previewModalSelector,
   previewModal,
   previewModalImage,
   previewModalCaption,
@@ -47,7 +49,7 @@ import {
 console.log(`${importStatus} -> index.js`);
 
 import Card from "../components/Card.js";
-import { handleImageClick } from "../utils/utils.js";
+//import { handleImageClick } from "../utils/utils.js";
 //////////////////////////////////////////////////////////////
 
 //EVENT LISTENERS AND CLASS OPERATIONS
@@ -74,15 +76,24 @@ editProfileButton.addEventListener("click", (e) => {
 
 /************************************ADD DESTINATIONS******************************************/
 destinationEditValidation.enableValidation();
-
+const imagePopup = new PopupWithImage(
+  { popupSelector: previewModalSelector },
+  { name: "", link: "" }
+);
 const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
   handleFormSubmit: (formData) => {
+    //ISSUE #8 THERE SHOULD ONLY BE ONE INSTANCE OF SECTION BECAUSE THERE IS ONLY ONE SECTION FOR THE CARDS
     const addSection = new Section(
       {
         items: { link: formData.input2, name: formData.input1 },
         renderer: (cardObject) => {
-          const newElement = new Card(cardObject, "#card", handleImageClick);
+          const newElement = new Card(cardObject, "#card", (data) => {
+            console.log("data:");
+            console.log(data);
+
+            imagePopup.open(data);
+          });
 
           return newElement.getView();
         },
@@ -91,20 +102,24 @@ const addDestinationPopup = new PopupWithForm({
     );
 
     addSection.addItem();
-    destinationEditValidation.toggleButtonState();
   },
 });
 
 addDestinationButton.addEventListener("click", function (e) {
   addDestinationPopup.open();
+  destinationEditValidation.toggleButtonState(); //BULLET POINT 2 RESOLUTION
 });
 
 /************************************LOAD INITIAL CARDS ONTO PAGE******************************************/
+
+//ISSUE #8 THERE SHOULD ONLY BE ONE INSTANCE OF SECTION BECAUSE THERE IS ONLY ONE SECTION FOR THE CARDS
 const initialSection = new Section(
   {
     items: initialCards,
     renderer: (cardObject) => {
-      const newElement = new Card(cardObject, "#card", handleImageClick);
+      const newElement = new Card(cardObject, "#card", (data) => {
+        imagePopup.open(data);
+      });
       return newElement.getView();
     },
   },

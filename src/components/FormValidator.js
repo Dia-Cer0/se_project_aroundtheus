@@ -6,10 +6,7 @@ export default class FormValidator {
     console.log("FormValidator.js imported to index.js");
   }
 
-  showInputError(
-    // 5
-    inputElement
-  ) {
+  showInputError(inputElement) {
     const errorMessageElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
@@ -36,8 +33,6 @@ export default class FormValidator {
   }
 
   checkInputValidity(inputElement) {
-    // 3
-
     if (!inputElement.validity.valid) {
       return this.showInputError(inputElement);
     }
@@ -46,8 +41,6 @@ export default class FormValidator {
   }
 
   toggleButtonState() {
-    // 4
-
     if (!this._checkFormValidity()) {
       this._submitButton.classList.add(this._config.inactiveButtonClass);
       this._submitButton.disabled = true;

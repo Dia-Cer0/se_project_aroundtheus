@@ -7,6 +7,8 @@ export default class Popup {
   open() {
     //public method to open popup
     this._popupElement.classList.add("modal_opened");
+
+    //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
     this._setEventListeners();
   }
 
@@ -20,7 +22,6 @@ export default class Popup {
     const isModal = e.target.classList.contains("modal");
     if (e.buttons === 1 && isModal) {
       this.close();
-      console.log("handle Left Mouse Click Called");
     }
   }
 
@@ -31,6 +32,7 @@ export default class Popup {
     }
   }
 
+  //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
   _setEventListeners() {
     this._handleEscCloseBound = this._handleEscClose.bind(this);
     this._handleLeftMouseCloseBound = this._handleLeftMouseClose.bind(this);

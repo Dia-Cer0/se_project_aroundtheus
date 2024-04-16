@@ -1,17 +1,6 @@
-import FormValidator from "../utils/FormValidator.js";
-const yosemiteImage = new URL("../images/yosemite.jpg", import.meta.url);
+import FormValidator from "../components/FormValidator.js";
 
-//FormValidator Settings
-/*
-const validationConfig = {
-  formSelector: ".modal__container",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-*/
+const yosemiteImage = new URL("../images/yosemite.jpg", import.meta.url);
 
 /*Constant & variable declaration*/
 const page = document.querySelector(".page");
@@ -26,12 +15,12 @@ const validatorConfig = {
 };
 
 /*Profile Editing******************************************************************/
-const ProfileNameSelector = ".profile__name";
-const ProfileDescriptionSelector = ".profile__subtitle";
-const profile = { name: ProfileNameSelector, job: ProfileDescriptionSelector };
-const currentProfileName = document.querySelector(ProfileNameSelector);
+const profileNameSelector = ".profile__name";
+const profileDescriptionSelector = ".profile__subtitle";
+const profile = { name: profileNameSelector, job: profileDescriptionSelector };
+const currentProfileName = document.querySelector(profileNameSelector);
 const currentProfileDescription = document.querySelector(
-  ProfileDescriptionSelector
+  profileDescriptionSelector
 );
 
 const profileEditSelector = ".modal_type_profile-edit";
@@ -40,6 +29,8 @@ const profileForm = document.forms.profileForm;
 const profileFormSelector = profileForm.className;
 
 //global validation variables
+
+//ISSUE #7 INSTANCES OF CLASSES AND FUNCTIONS ARE NOT CONSTANTS AND NEED TO BE MOVED TO INDEX.JS
 const profileEditValidation = new FormValidator(
   validatorConfig,
   profileEditModal
@@ -57,10 +48,13 @@ const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
 const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationSelector = ".modal_type_add-card";
 const addDestinationModal = document.querySelector(addDestinationSelector);
+
+//ISSUE #7 INSTANCES OF CLASSES AND FUNCTIONS ARE NOT CONSTANTS AND NEED TO BE MOVED TO INDEX.JS
 const destinationEditValidation = new FormValidator(
   validatorConfig,
   addDestinationModal
 );
+
 const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(
   ".modal__destination-title"
