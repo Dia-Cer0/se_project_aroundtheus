@@ -7,43 +7,26 @@
 console.log("index.js loaded");
 
 import "./index.css";
+import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
-  page,
   validatorConfig,
   profile,
-  currentProfileName,
-  currentProfileDescription,
   profileEditSelector,
   profileEditModal,
-  profileForm,
-  profileFormSelector,
-  profileEditValidation,
   editProfileButton,
-  profileNameInput,
-  profileDescriptionInput,
-  saveProfileButton,
   addDestinationButton,
   addDestinationSelector,
   addDestinationModal,
-  destinationEditValidation,
-  destinationFormTitle,
   destinationTitle,
   destinationImageUrl,
-  cardTemplate,
   cardClassSelector,
-  cardContainer,
   initialCards,
-  closeButtons,
-  cardForm,
   previewModalSelector,
-  previewModal,
-  previewModalImage,
-  previewModalCaption,
   importStatus,
 } from "../utils/constants.js";
 console.log(`${importStatus} -> index.js`);
@@ -54,6 +37,11 @@ import Card from "../components/Card.js";
 
 //EVENT LISTENERS AND CLASS OPERATIONS
 /*************************EDIT PROFILE***********************************/
+const profileEditValidation = new FormValidator(
+  validatorConfig,
+  profileEditModal
+);
+
 profileEditValidation.enableValidation();
 
 addDestinationModal.classList.add("modal_type_add-destination");
@@ -78,6 +66,13 @@ editProfileButton.addEventListener("click", (e) => {
 
 /************************************ADD DESTINATIONS******************************************/
 
+const destinationEditValidation = new FormValidator(
+  validatorConfig,
+  addDestinationModal
+);
+
+destinationEditValidation.enableValidation();
+
 //Create section class for destination cards
 const cardSection = new Section(
   {
@@ -92,7 +87,6 @@ const cardSection = new Section(
   cardClassSelector
 );
 
-destinationEditValidation.enableValidation();
 const imagePopup = new PopupWithImage(
   { popupSelector: previewModalSelector },
   { name: "", link: "" }
@@ -107,7 +101,10 @@ const addDestinationPopup = new PopupWithForm({
 addDestinationPopup.setEventListeners(); //BULLET POINT #4 RESOLUTION
 
 addDestinationButton.addEventListener("click", function (e) {
-  addDestinationPopup.open();
+  addDestinationPopup.open({
+    destination_title: destinationTitle.value,
+    destination_image_URL: destinationImageUrl.value,
+  });
   destinationEditValidation.toggleButtonState(); //BULLET POINT 2 RESOLUTION
 });
 

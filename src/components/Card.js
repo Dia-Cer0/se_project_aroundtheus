@@ -7,11 +7,6 @@ export default class Card {
 
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    this._previewModal = document.querySelector(".modal_type_preview");
-    this._previewModalImage = this._previewModal.querySelector(".modal__image");
-    this._previewModalCaption = this._previewModal.querySelector(
-      ".modal__preview-caption"
-    );
   }
 
   createCard() {

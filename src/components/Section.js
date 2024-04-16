@@ -10,7 +10,7 @@ export default class Section {
     this._items.forEach((item) => {
       const newElement = this.renderer(item);
 
-      this._setItem(newElement);
+      this._appendItem(newElement);
     });
   };
 
@@ -18,7 +18,7 @@ export default class Section {
     this._container.prepend(this.renderer(newItem));
   };
 
-  _setItem = (element) => {
+  _appendItem = (element) => {
     this._container.append(element);
   };
 }

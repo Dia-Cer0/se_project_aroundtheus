@@ -4,7 +4,7 @@ export default class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super({ popupClassSelector: popupSelector }); //uses parent popup class to define this._popupElement by accessing parent constructor
     this._popupFormInputs = Array.from(
-      this._popupElement.querySelectorAll(".modal__input")
+      this._popupElement.querySelectorAll("input")
     );
     //console.log(super._closePopupButton);
     this._popupForm = this._popupElement.querySelector("form");
@@ -12,22 +12,20 @@ export default class PopupWithForm extends Popup {
     //this._popupForm = this._popupElement.querySelector(".modal__container");
 
     this._handleFormSubmit = handleFormSubmit;
-    this._popupSubmitButton = this._popupForm.querySelector(
-      ".modal__save-button"
-    );
 
     this._inputBuffer1 = "";
     this._inputBuffer2 = "";
   }
 
-  open(
-    { name, job } = {
-      name: this._popupFormInputs[0].value,
-      job: this._popupFormInputs[1].value,
-    }
-  ) {
-    this._popupFormInputs[0].value = name;
-    this._popupFormInputs[1].value = job;
+  open(data) {
+    console.log("input neme:");
+    console.log(this._popupFormInputs[0]);
+    this._popupFormInputs.forEach((input) => {
+      console.log(input.id);
+      input.value = data[input.id];
+    });
+    //this._popupFormInputs[0].value = data.name;
+    //this._popupFormInputs[1].value = data.job;
 
     super.open(); //call parent open methods
   }

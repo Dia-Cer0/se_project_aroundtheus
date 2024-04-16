@@ -30,12 +30,6 @@ const profileFormSelector = profileForm.className;
 
 //global validation variables
 
-//ISSUE #7 INSTANCES OF CLASSES AND FUNCTIONS ARE NOT CONSTANTS AND NEED TO BE MOVED TO INDEX.JS
-const profileEditValidation = new FormValidator(
-  validatorConfig,
-  profileEditModal
-);
-
 const editProfileButton = document.querySelector(".profile__edit");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 const profileDescriptionInput = profileEditModal.querySelector(
@@ -48,12 +42,6 @@ const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
 const addDestinationButton = document.querySelector(".profile__button");
 const addDestinationSelector = ".modal_type_add-card";
 const addDestinationModal = document.querySelector(addDestinationSelector);
-
-//ISSUE #7 INSTANCES OF CLASSES AND FUNCTIONS ARE NOT CONSTANTS AND NEED TO BE MOVED TO INDEX.JS
-const destinationEditValidation = new FormValidator(
-  validatorConfig,
-  addDestinationModal
-);
 
 const destinationFormTitle = addDestinationModal.querySelector(".modal__title");
 const destinationTitle = addDestinationModal.querySelector(
@@ -117,7 +105,6 @@ export {
   profileEditModal,
   profileForm,
   profileFormSelector,
-  profileEditValidation,
   editProfileButton,
   profileNameInput,
   profileDescriptionInput,
@@ -125,7 +112,6 @@ export {
   addDestinationButton,
   addDestinationSelector,
   addDestinationModal,
-  destinationEditValidation,
   destinationFormTitle,
   destinationTitle,
   destinationImageUrl,

@@ -9,7 +9,7 @@ export default class UserInfo {
     const nameUpdated = this.nameElement.textContent;
     const jobUpdated = this.jobElement.textContent;
 
-    return { name: nameUpdated, job: jobUpdated };
+    return { profile_title: nameUpdated, profile_description: jobUpdated };
   }
 
   setUserInfo(formData) {
