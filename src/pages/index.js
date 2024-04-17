@@ -124,6 +124,7 @@ const addDestinationPopup = new PopupWithForm({
       link: processedFormData.link,
       name: processedFormData.name,
     }); //BULLET POINT #12 RESOLUTION
+    //test
   },
 });
 
