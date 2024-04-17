@@ -54,20 +54,13 @@ const profileUserData = new UserInfo(profile);
 const profilePopup = new PopupWithForm({
   popupSelector: profileEditSelector,
   handleFormSubmit: (formData) => {
-    console.log(formData);
+    formData.input1 = formData.profile_title;
+    delete formData.profile_title;
 
-    const input1 = formData.find((obj) => {
-      return obj.inputname === "profile_title";
-    });
-    const input2 = formData.find((obj) => {
-      return obj.inputname === "profile_description";
-    });
-    const processedFormData = {
-      input1: input1.inputvalue,
-      input2: input2.inputvalue,
-    };
+    formData.input2 = formData.profile_description;
+    delete formData.profile_description;
 
-    profileUserData.setUserInfo(processedFormData);
+    profileUserData.setUserInfo(formData);
   },
 });
 
@@ -100,30 +93,20 @@ const cardSection = new Section(
   cardClassSelector
 );
 
-const imagePopup = new PopupWithImage(
-  { popupSelector: previewModalSelector },
-  { name: "", link: "" }
-);
+const imagePopup = new PopupWithImage({ popupSelector: previewModalSelector });
 
 const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
   handleFormSubmit: (formData) => {
     console.log(formData);
 
-    const input1 = formData.find((obj) => {
-      return obj.inputname === "destination_title";
-    });
-    const input2 = formData.find((obj) => {
-      return obj.inputname === "destination_image_URL";
-    });
-    const processedFormData = {
-      name: input1.inputvalue,
-      link: input2.inputvalue,
-    };
-    cardSection.addItem({
-      link: processedFormData.link,
-      name: processedFormData.name,
-    }); //BULLET POINT #12 RESOLUTION
+    formData.link = formData.destination_image_URL;
+    delete formData.destination_image_URL;
+
+    formData.name = formData.destination_title;
+    delete formData.destination_title;
+
+    cardSection.addItem(formData); //BULLET POINT #12 RESOLUTION
     //test
   },
 });
@@ -131,10 +114,7 @@ const addDestinationPopup = new PopupWithForm({
 addDestinationPopup.setEventListeners(); //BULLET POINT #4 RESOLUTION
 
 addDestinationButton.addEventListener("click", function (e) {
-  addDestinationPopup.open({
-    destination_title: destinationTitle.value,
-    destination_image_URL: destinationImageUrl.value,
-  });
+  addDestinationPopup.open();
   destinationEditValidation.toggleButtonState(); //BULLET POINT 2 RESOLUTION
 });
 

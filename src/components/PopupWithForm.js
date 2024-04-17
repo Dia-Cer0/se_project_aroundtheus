@@ -12,17 +12,15 @@ export default class PopupWithForm extends Popup {
     //this._popupForm = this._popupElement.querySelector(".modal__container");
 
     this._handleFormSubmit = handleFormSubmit;
-
-    this._inputBuffer1 = "";
-    this._inputBuffer2 = "";
   }
 
   open(data) {
-    this._popupFormInputs.forEach((input) => {
-      input.value = data[input.id];
-    });
-
-    super.open(); //call parent open methods
+    super.open(); //call parent open method
+    if (data) {
+      this._popupFormInputs.forEach((input) => {
+        input.value = data[input.id];
+      });
+    }
   }
 
   _submit(e) {
@@ -34,12 +32,9 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputValues = [];
+    const inputValues = {};
     this._popupFormInputs.forEach((input) => {
-      const inputID = input.id;
-
-      const inputValue = input.value;
-      inputValues.push({ inputname: inputID, inputvalue: inputValue }); //REMOVED HARDCODED INPUTS
+      inputValues[input.id] = input.value;
     });
 
     return inputValues;

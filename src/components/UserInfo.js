@@ -13,7 +13,6 @@ export default class UserInfo {
   }
 
   setUserInfo(formData) {
-    console.log(formData);
     const { input1: nameFormVal, input2: jobFormVal } = formData;
 
     this.nameElement.textContent = nameFormVal;
