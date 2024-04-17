@@ -104,10 +104,26 @@ const imagePopup = new PopupWithImage(
   { popupSelector: previewModalSelector },
   { name: "", link: "" }
 );
+
 const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
   handleFormSubmit: (formData) => {
-    cardSection.addItem({ link: formData.input2, name: formData.input1 }); //BULLET POINT #12 RESOLUTION
+    console.log(formData);
+
+    const input1 = formData.find((obj) => {
+      return obj.inputname === "destination_title";
+    });
+    const input2 = formData.find((obj) => {
+      return obj.inputname === "destination_image_URL";
+    });
+    const processedFormData = {
+      name: input1.inputvalue,
+      link: input2.inputvalue,
+    };
+    cardSection.addItem({
+      link: processedFormData.link,
+      name: processedFormData.name,
+    }); //BULLET POINT #12 RESOLUTION
   },
 });
 
