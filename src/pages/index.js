@@ -54,7 +54,20 @@ const profileUserData = new UserInfo(profile);
 const profilePopup = new PopupWithForm({
   popupSelector: profileEditSelector,
   handleFormSubmit: (formData) => {
-    profileUserData.setUserInfo(formData);
+    console.log(formData);
+
+    const input1 = formData.find((obj) => {
+      return obj.inputname === "profile_title";
+    });
+    const input2 = formData.find((obj) => {
+      return obj.inputname === "profile_description";
+    });
+    const processedFormData = {
+      input1: input1.inputvalue,
+      input2: input2.inputvalue,
+    };
+
+    profileUserData.setUserInfo(processedFormData);
   },
 });
 

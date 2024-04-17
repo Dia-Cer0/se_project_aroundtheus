@@ -9,13 +9,11 @@ export default class Popup {
     this._popupElement.classList.add("modal_opened");
 
     //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
-    this._setEventListeners();
   }
 
   close() {
     //public method to close popup
     this._popupElement.classList.remove("modal_opened");
-    this._removeEventListeners();
   }
 
   _handleLeftMouseClose(e) {
@@ -33,7 +31,7 @@ export default class Popup {
   }
 
   //ISSUE #2 SETEVENT LISTENERS NEEDS TO BE PUBLIC AND CALLED IN INDEX.JS
-  _setEventListeners() {
+  setEventListeners() {
     this._handleEscCloseBound = this._handleEscClose.bind(this);
     this._handleLeftMouseCloseBound = this._handleLeftMouseClose.bind(this);
 
@@ -51,17 +49,5 @@ export default class Popup {
       e.preventDefault();
       this.close();
     });
-  }
-
-  _removeEventListeners() {
-    //debugger;
-    this._popupElement.parentElement.removeEventListener(
-      "keydown",
-      this._handleEscCloseBound
-    );
-    this._popupElement.removeEventListener(
-      "mousedown",
-      this._handleLeftMouseCloseBound
-    );
   }
 }
