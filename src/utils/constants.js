@@ -95,6 +95,9 @@ const previewModalCaption = previewModal.querySelector(
 //validate import/export
 const importStatus = "constants.js import successful";
 
+//API
+const token = "71f5bc36-47ff-474a-afa7-bfcc7399d91e";
+
 export {
   page,
   validatorConfig,
@@ -126,4 +129,5 @@ export {
   previewModalImage,
   previewModalCaption,
   importStatus,
+  token,
 };
