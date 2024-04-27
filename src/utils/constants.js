@@ -31,11 +31,15 @@ const profileFormSelector = profileForm.className;
 //global validation variables
 
 const editProfileButton = document.querySelector(".profile__edit");
+const editAvatarButton = document.querySelector(".profile__editImageIcon");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 const profileDescriptionInput = profileEditModal.querySelector(
   ".modal__profile-description"
 );
 const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
+
+const avatarEditSelector = ".modal_type_avatar-edit";
+const avatarEditModal = document.querySelector(avatarEditSelector);
 
 /********************************************************************************* */
 
@@ -109,9 +113,12 @@ export {
   profileForm,
   profileFormSelector,
   editProfileButton,
+  editAvatarButton,
   profileNameInput,
   profileDescriptionInput,
   saveProfileButton,
+  avatarEditSelector,
+  avatarEditModal,
   addDestinationButton,
   addDestinationSelector,
   addDestinationModal,

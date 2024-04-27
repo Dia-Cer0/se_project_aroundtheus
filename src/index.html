@@ -18,11 +18,22 @@
     </header>
     <main class="page__content">
       <section class="profile page__section">
-        <img
-          src="<%=require('./images/jacques-cousteau.jpg')%>"
-          alt="image of the great explorer jacques cousteau"
-          class="profile__image"
-        />
+        <!--ADD AVATAR EDIT SVG BELOW-->
+        <div class="profile__avatar_container">
+          <img
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
+            alt="image of the great explorer jacques cousteau"
+            class="profile__image"
+          />
+          <div class="editImageLayer">
+            <img
+              src="<%=require('./images/AvatarEditIcon.svg')%>"
+              alt="edit profile image/avatar icon"
+              class="profile__editImageIcon"
+            />
+          </div>
+        </div>
+
         <div class="profile__profile-details">
           <h1 class="profile__name">Jacques Cousteau</h1>
           <button class="profile__edit" type="button"></button>
@@ -84,6 +95,29 @@
           />
           <span id="profile_description-error" class="popup__error"></span>
         </div>
+        <button class="modal__save-button" type="submit">Save</button>
+      </form>
+    </div>
+
+    <div class="modal modal_type_avatar-edit">
+      <form
+        id="avatarForm"
+        action="submit"
+        class="modal__container modal__container_profile-avatar"
+      >
+        <button class="modal__close-icon" type="button"></button>
+        <h3 class="modal__title">Change Profile Picture</h3>
+        <div class="modal__input-wrapper">
+          <input
+            id="profile_avatar"
+            type="url"
+            placeholder="Image URL"
+            class="modal__profile-avatar modal__input"
+            required
+          />
+          <span id="profile_avatar-error" class="popup__error"></span>
+        </div>
+
         <button class="modal__save-button" type="submit">Save</button>
       </form>
     </div>

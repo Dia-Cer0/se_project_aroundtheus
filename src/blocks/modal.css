@@ -151,6 +151,19 @@
   border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
 }
 
+.modal__container_profile-avatar {
+  width: 430px;
+  height: 272px;
+}
+
+.modal__profile-avatar {
+  max-width: 358px;
+  width: 100%;
+  height: 27.26px;
+  border: none;
+  border-bottom: rgba(000, 000, 000, 0.3) 1px solid;
+}
+
 .modal__save-button {
   border-radius: 2px;
   display: flex;

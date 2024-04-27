@@ -4,6 +4,7 @@ export default class UserInfo {
     this.jobElement = document.querySelector(job);
     this.pullServerProfileData = pullServerProfileData;
     this.updateServerProfileData = updateServerProfileData;
+
     pullServerProfileData()
       .then((res) => {
         res.input1 = res.name;

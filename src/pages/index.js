@@ -22,6 +22,9 @@ import {
   profileEditSelector,
   profileEditModal,
   editProfileButton,
+  editAvatarButton,
+  avatarEditSelector,
+  avatarEditModal,
   addDestinationButton,
   addDestinationSelector,
   addDestinationModal,
@@ -135,6 +138,32 @@ editProfileButton.addEventListener("click", (e) => {
     profilePopup.open(res);
   });
 });
+///////////////////////////////////////////////////////////////////////////////////////
+
+/************************************EDIT AVATAR******************************************/
+//SPRINT 9 Still need to handle form submission
+
+const avatarEditValidation = new FormValidator(
+  validatorConfig,
+  avatarEditModal
+);
+
+avatarEditValidation.enableValidation();
+
+const editAvatarPopup = new PopupWithForm({
+  popupSelector: avatarEditSelector,
+  handleFormSubmit: () => {
+    //need to finish this callback
+    console.log("submitting data, this callback is under construction");
+  },
+});
+
+editAvatarPopup.setEventListeners();
+
+editAvatarButton.addEventListener("click", (e) => {
+  editAvatarPopup.open();
+});
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 /************************************ADD DESTINATIONS******************************************/
 
