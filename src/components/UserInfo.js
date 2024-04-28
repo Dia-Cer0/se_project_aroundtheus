@@ -1,7 +1,12 @@
 export default class UserInfo {
-  constructor({ name, job }, pullServerProfileData, updateServerProfileData) {
+  constructor(
+    { name, job, avatar },
+    pullServerProfileData,
+    updateServerProfileData
+  ) {
     this.nameElement = document.querySelector(name);
     this.jobElement = document.querySelector(job);
+    this.avatarElement = document.querySelector(avatar);
     this.pullServerProfileData = pullServerProfileData;
     this.updateServerProfileData = updateServerProfileData;
 
@@ -38,6 +43,7 @@ export default class UserInfo {
     this.jobElement.textContent = jobFormVal;
     formData.name = formData.input1;
     formData.about = formData.input2;
+    this.avatarElement.src = formData.avatar;
     this.updateServerProfileData(formData);
   }
 }

@@ -81,9 +81,11 @@ api.addNewCard({
 
 //api.dislikeCard("6629f92f8bacc8001aedf65b");
 
+/*
 api.updateProfileAvatar(
   "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tripsavvy.com%2Fthmb%2FcUF2vJj7MZMmTXYmfE8_U3JM94A%3D%2F3877x2568%2Ffilters%3Afill(auto%2C1)%2Fyosemite-falls-yosemite-national-park-california-usa-683750029-58b0dfc75f9b5860462db5b0.jpg&f=1&nofb=1&ipt=9f414940d52d25591a4609abc6c69232e15c58c560bf06132b03ef6c48d7c889&ipo=images"
 );
+*/
 
 const testCardObject = api.getCards().then((res) => {
   console.log(res);
@@ -152,8 +154,16 @@ avatarEditValidation.enableValidation();
 
 const editAvatarPopup = new PopupWithForm({
   popupSelector: avatarEditSelector,
-  handleFormSubmit: () => {
+  handleFormSubmit: (newAvatarUrl) => {
+    api
+      .updateProfileAvatar(newAvatarUrl.profile_avatar)
+      .then(
+        console.log(
+          "need to figure out how to update profile from newly submitted server data"
+        )
+      );
     //need to finish this callback
+
     console.log("submitting data, this callback is under construction");
   },
 });

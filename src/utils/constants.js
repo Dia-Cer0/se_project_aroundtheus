@@ -17,7 +17,13 @@ const validatorConfig = {
 /*Profile Editing******************************************************************/
 const profileNameSelector = ".profile__name";
 const profileDescriptionSelector = ".profile__subtitle";
-const profile = { name: profileNameSelector, job: profileDescriptionSelector };
+const avatarSelector = ".profile__image";
+
+const profile = {
+  name: profileNameSelector,
+  job: profileDescriptionSelector,
+  avatar: avatarSelector,
+};
 const currentProfileName = document.querySelector(profileNameSelector);
 const currentProfileDescription = document.querySelector(
   profileDescriptionSelector
