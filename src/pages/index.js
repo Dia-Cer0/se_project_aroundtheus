@@ -33,6 +33,8 @@ import {
   cardClassSelector,
   initialCards_old,
   previewModalSelector,
+  confirmModalSelector,
+  deleteConfirmModal,
   importStatus,
   token, //SPRINT 9
 } from "../utils/constants.js";
@@ -52,6 +54,28 @@ const api = new Api({
   },
 });
 
+const deleteDestinationPopup = new PopupWithForm({
+  popupSelector: confirmModalSelector,
+  handleFormSubmit: (cardId) => {
+    console.log(cardId);
+    api.deleteCard(cardId).then(() => {
+      //need a way to uniquely identify and delete the card on the local page
+      //do not immediately have the card id until it is retrieved from the server
+      console.log(
+        "#\\3" + cardId.slice(1, 2) + " " + cardId.slice(2, cardId.length)
+      );
+
+      document
+        .querySelector(
+          "#\\3" + cardId.slice(0, 1) + " " + cardId.slice(1, cardId.length)
+        )
+        .closest("div")
+        .remove();
+    });
+  },
+});
+deleteDestinationPopup.setEventListeners();
+
 const cardSection = new Section(
   {
     renderer: (cardObject) => {
@@ -62,9 +86,21 @@ const cardSection = new Section(
           imagePopup.open(data);
         },
         (cardId) => {
-          api.deleteCard(cardId).then(() => {
-            newElement.handleDeleteButton();
-          });
+          deleteDestinationPopup.open("", cardId);
+          /*
+
+          */
+        },
+        (cardLiked, cardId) => {
+          if (cardLiked) {
+            api.likeCard(cardId).then(() => {
+              newElement.handleLikeButton();
+            });
+          } else {
+            api.dislikeCard(cardId).then(() => {
+              newElement.handleLikeButton();
+            });
+          }
         }
       );
       return newElement.getView();
@@ -137,7 +173,10 @@ const profilePopup = new PopupWithForm({
           formData.input2 = formData.about;
           profileUserData.setUserInfo(formData);
         })
-      );
+      )
+      .finally(() => {
+        profilePopup.renderLoading(false);
+      });
   },
 });
 
@@ -177,10 +216,10 @@ const editAvatarPopup = new PopupWithForm({
       })
       .then((formData) => {
         profileUserData.setUserInfo(formData);
+      })
+      .finally(() => {
+        profilePopup.renderLoading(false);
       });
-    //need to finish this callback
-
-    console.log("submitting data, this callback is under construction");
   },
 });
 
@@ -229,10 +268,38 @@ const addDestinationPopup = new PopupWithForm({
 
     formData.name = formData.destination_title;
     delete formData.destination_title;
-    api.addNewCard(formData).then(() => {
-      console.log(cardSection.addItem);
-      cardSection.addItem(formData);
-    });
+    api
+      .addNewCard(formData)
+      .then(() => {
+        //if (res.ok) {
+
+        return api
+          .getCards()
+          .then((cards) => {
+            console.log(cards[0]._id);
+            return cards[0]._id;
+          })
+          .then((res) => {
+            formData._id = res;
+            console.log(
+              "#\\3" +
+                formData._id.slice(1, 2) +
+                " " +
+                formData._id.slice(2, formData._id.length)
+            );
+            cardSection.addItem(formData);
+            document.querySelector(
+              "#\\3" +
+                formData._id.slice(1, 2) +
+                " " +
+                formData._id.slice(2, formData._id.length)
+            );
+          });
+        //}
+      })
+      .finally(() => {
+        profilePopup.renderLoading(false);
+      });
   },
 });
 

@@ -3,7 +3,8 @@ export default class Card {
     { isLiked, _id, link, name },
     cardSelector,
     handleImageClick,
-    removeServerCard
+    removeServerCard,
+    updateServerLike
   ) {
     //console.log("Card.js imported to index.js");
     this.isLiked = isLiked;
@@ -14,6 +15,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._removeServerCard = removeServerCard;
+    this.updateServerLike = updateServerLike;
   }
 
   createCard() {
@@ -28,11 +30,11 @@ export default class Card {
     });
 
     //event Listeners for like icon
-    this._likeButton = this._cardElement.querySelector(
-      ".destinations__caption-icon"
-    );
-    this._likeButton.addEventListener("click", () => {
-      this._handleLikeButton();
+
+    this._likeButton.addEventListener("click", (e) => {
+      const cardId = this._cardElement.querySelector("img").id;
+      const cardLiked = !(e.target.value === "true");
+      this.updateServerLike(cardLiked, cardId);
     });
 
     //delete button
@@ -46,7 +48,7 @@ export default class Card {
     //ISSUE # 5 CLICK HANDLERS FOR IMAGES SHOULD ONLY BE INSIDE OF THE CARD CLASS
   }
 
-  _handleLikeButton() {
+  handleLikeButton() {
     this._likeButton.classList.toggle("destinations_caption-icon_style_liked");
   }
 
@@ -62,6 +64,10 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".destinations__card")
       .cloneNode(true);
+
+    this._likeButton = this._cardElement.querySelector(
+      ".destinations__caption-icon"
+    );
     //console.log(this._cardElement);
     //console.log(this._cardElement.className);
 
@@ -73,6 +79,15 @@ export default class Card {
       this._name;
 
     this._cardElement.classList.add(this._name.replaceAll(" ", "_"));
+
+    this._cardElement.querySelector(".destinations__caption-icon").value =
+      this.isLiked;
+    if (
+      this._cardElement.querySelector(".destinations__caption-icon").value ===
+      "true"
+    ) {
+      this.handleLikeButton();
+    }
 
     this._cardImage = this._cardElement.querySelector(
       ".destinations__card-image"

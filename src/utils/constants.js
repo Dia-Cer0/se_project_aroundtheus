@@ -100,6 +100,9 @@ const previewModalCaption = previewModal.querySelector(
   ".modal__preview-caption"
 );
 
+const confirmModalSelector = ".modal_type_delete-confirm";
+const deleteConfirmModal = document.querySelector(confirmModalSelector);
+
 //validate import/export
 const importStatus = "constants.js import successful";
 
@@ -139,6 +142,8 @@ export {
   previewModal,
   previewModalImage,
   previewModalCaption,
+  confirmModalSelector,
+  deleteConfirmModal,
   importStatus,
   token,
 };
