@@ -1,7 +1,7 @@
 export default class Api {
   constructor(options) {
     // constructor body
-    console.log(options);
+
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
   }
@@ -99,7 +99,16 @@ export default class Api {
     return fetch(this.baseUrl + "/cards/" + cardId, {
       method: "DELETE",
       headers: this.headers,
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.ok;
+        }
+        return Promise.reject(`Error ${res.status}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   likeCard(cardId) {

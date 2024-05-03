@@ -10,13 +10,14 @@ export default class UserInfo {
     this.pullServerProfileData = pullServerProfileData;
     this.updateServerProfileData = updateServerProfileData;
 
+    //move initial server pull to the index js to pull all server data
+    //for all classes at once
     pullServerProfileData()
       .then((res) => {
         res.input1 = res.name;
         delete res.name;
         res.input2 = res.about;
         delete res.about;
-        console.log(res);
         return res;
       })
       .then((res) => {
@@ -37,13 +38,18 @@ export default class UserInfo {
   }
 
   setUserInfo(formData) {
-    var { input1: nameFormVal, input2: jobFormVal } = formData;
+    if (formData.input1) {
+      var { input1: nameFormVal, input2: jobFormVal } = formData;
 
-    this.nameElement.textContent = nameFormVal;
-    this.jobElement.textContent = jobFormVal;
-    formData.name = formData.input1;
-    formData.about = formData.input2;
-    this.avatarElement.src = formData.avatar;
-    this.updateServerProfileData(formData);
+      this.nameElement.textContent = nameFormVal;
+      this.jobElement.textContent = jobFormVal;
+      formData.name = formData.input1;
+      formData.about = formData.input2;
+      this.updateServerProfileData(formData);
+    }
+    if (formData.avatar) {
+      this.avatarElement.src = formData.avatar;
+      //this.updateServerProfileData(formData);
+    }
   }
 }

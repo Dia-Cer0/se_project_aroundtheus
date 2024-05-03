@@ -31,7 +31,7 @@ import {
   destinationTitle,
   destinationImageUrl,
   cardClassSelector,
-  initialCards,
+  initialCards_old,
   previewModalSelector,
   importStatus,
   token, //SPRINT 9
@@ -51,45 +51,46 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-/*
+
+const cardSection = new Section(
+  {
+    renderer: (cardObject) => {
+      const newElement = new Card(
+        cardObject,
+        "#card",
+        (data) => {
+          imagePopup.open(data);
+        },
+        (cardId) => {
+          api.deleteCard(cardId).then(() => {
+            newElement.handleDeleteButton();
+          });
+        }
+      );
+      return newElement.getView();
+    },
+  },
+  cardClassSelector
+);
+
+console.log(initialCards_old);
 api
-  .updateProfileInfo({
-    name: "ted2.0",
-    about: "professional computer programmer",
+  .getCards()
+  .then((cards) => {
+    const initialCards = cards;
+    return initialCards;
   })
-  .then(
-    api.getUserInfo().then((res) => {
-      console.log(res);
-    })
-  );
+  .then((initialCards) => {
+    cardSection.renderItems(initialCards);
+  });
 
-api.getUserInfo().then((res) => {
-  console.log(res);
-});
-*/
 /*
-api.addNewCard({
-  name: "Yosemite National Park",
-  link: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F2558322.jpg&f=1&nofb=1&ipt=458196d6fbea86cfd089063dcf32e7fa167a937715796a1bed2557e735cfd67f&ipo=images",
-});
-*/ //this runs every time the page refreshes so it will keep adding cards to the server on each iteration
-//this is not the desired behavior, but is currently here for test purposes. Needs to be modified before submission
-
-//api.deleteCard("6629f86b8bacc8001aedf612");
 
 //api.likeCard("6629f92f8bacc8001aedf65b");
 
 //api.dislikeCard("6629f92f8bacc8001aedf65b");
 
-/*
-api.updateProfileAvatar(
-  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tripsavvy.com%2Fthmb%2FcUF2vJj7MZMmTXYmfE8_U3JM94A%3D%2F3877x2568%2Ffilters%3Afill(auto%2C1)%2Fyosemite-falls-yosemite-national-park-california-usa-683750029-58b0dfc75f9b5860462db5b0.jpg&f=1&nofb=1&ipt=9f414940d52d25591a4609abc6c69232e15c58c560bf06132b03ef6c48d7c889&ipo=images"
-);
 */
-
-const testCardObject = api.getCards().then((res) => {
-  console.log(res);
-});
 
 //////////////////////////////////////////////////////////////////////
 
@@ -114,8 +115,9 @@ const profileUserData = new UserInfo(
     return api.getUserInfo();
   },
   function updateServerProfileData(profileData) {
-    console.log(profileData);
-    api.updateProfileInfo(profileData);
+    if (profileData.name) {
+      api.updateProfileInfo(profileData);
+    }
   }
 );
 
@@ -127,9 +129,22 @@ const profilePopup = new PopupWithForm({
 
     formData.input2 = formData.profile_description;
     delete formData.profile_description;
-
-    profileUserData.setUserInfo(formData);
+    api
+      .updateProfileInfo({ name: formData.input1, about: formData.input2 })
+      .then(
+        api.getUserInfo().then((formData) => {
+          formData.input1 = formData.name;
+          formData.input2 = formData.about;
+          profileUserData.setUserInfo(formData);
+        })
+      );
   },
+});
+
+api.getUserInfo().then((formData) => {
+  formData.input1 = formData.name;
+  formData.input2 = formData.about;
+  profileUserData.setUserInfo(formData);
 });
 
 profilePopup.setEventListeners();
@@ -157,11 +172,12 @@ const editAvatarPopup = new PopupWithForm({
   handleFormSubmit: (newAvatarUrl) => {
     api
       .updateProfileAvatar(newAvatarUrl.profile_avatar)
-      .then(
-        console.log(
-          "need to figure out how to update profile from newly submitted server data"
-        )
-      );
+      .then(() => {
+        return api.getUserInfo();
+      })
+      .then((formData) => {
+        profileUserData.setUserInfo(formData);
+      });
     //need to finish this callback
 
     console.log("submitting data, this callback is under construction");
@@ -172,6 +188,7 @@ editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", (e) => {
   editAvatarPopup.open();
+  avatarEditValidation.toggleButtonState();
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -185,6 +202,7 @@ const destinationEditValidation = new FormValidator(
 destinationEditValidation.enableValidation();
 
 //Create section class for destination cards
+/*
 const cardSection = new Section(
   {
     items: initialCards,
@@ -197,6 +215,7 @@ const cardSection = new Section(
   },
   cardClassSelector
 );
+*/
 
 const imagePopup = new PopupWithImage({ popupSelector: previewModalSelector });
 
@@ -204,14 +223,16 @@ const addDestinationPopup = new PopupWithForm({
   popupSelector: addDestinationSelector,
   handleFormSubmit: (formData) => {
     console.log(formData);
-
+    console.log(formData);
     formData.link = formData.destination_image_URL;
     delete formData.destination_image_URL;
 
     formData.name = formData.destination_title;
     delete formData.destination_title;
-
-    cardSection.addItem(formData);
+    api.addNewCard(formData).then(() => {
+      console.log(cardSection.addItem);
+      cardSection.addItem(formData);
+    });
   },
 });
 
@@ -223,7 +244,5 @@ addDestinationButton.addEventListener("click", function (e) {
 });
 
 /************************************LOAD INITIAL CARDS ONTO PAGE******************************************/
-
-cardSection.renderItems();
 
 //////////////////////////////////////////////////////////////////////

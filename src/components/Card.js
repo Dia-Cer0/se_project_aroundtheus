@@ -1,12 +1,19 @@
 export default class Card {
-  constructor({ link, name }, cardSelector, handleImageClick) {
+  constructor(
+    { isLiked, _id, link, name },
+    cardSelector,
+    handleImageClick,
+    removeServerCard
+  ) {
     //console.log("Card.js imported to index.js");
+    this.isLiked = isLiked;
+    this._id = _id;
     this._name = name;
-
     this._link = link;
 
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._removeServerCard = removeServerCard;
   }
 
   createCard() {
@@ -32,8 +39,8 @@ export default class Card {
     this._deleteButton = this._cardElement.querySelector(
       ".destinations__trash-icon"
     );
-    this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteButton();
+    this._deleteButton.addEventListener("click", (e) => {
+      this._removeServerCard(e.target.closest("div").querySelector("img").id);
     });
 
     //ISSUE # 5 CLICK HANDLERS FOR IMAGES SHOULD ONLY BE INSIDE OF THE CARD CLASS
@@ -43,8 +50,10 @@ export default class Card {
     this._likeButton.classList.toggle("destinations_caption-icon_style_liked");
   }
 
-  _handleDeleteButton() {
+  handleDeleteButton() {
+    //console.log(this._cardElement.querySelector("img") + " removed");
     this._cardElement.remove();
+
     this._cardElement = null;
   }
 
@@ -68,6 +77,8 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector(
       ".destinations__card-image"
     );
+    this._cardImage.id = this._id;
+
     this._cardImage.src = this._link;
 
     this._cardImage.alt = "Photo of " + this._name;
