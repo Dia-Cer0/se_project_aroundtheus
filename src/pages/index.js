@@ -65,6 +65,7 @@ const deleteDestinationPopup = new PopupWithForm({
         "#\\3" + cardId.slice(1, 2) + " " + cardId.slice(2, cardId.length)
       );
 
+      //converting first digit of id to unicode
       document
         .querySelector(
           "#\\3" + cardId.slice(0, 1) + " " + cardId.slice(1, cardId.length)
