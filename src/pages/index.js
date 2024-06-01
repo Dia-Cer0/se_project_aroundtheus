@@ -149,6 +149,7 @@ const profileUserData = new UserInfo(
   profile,
   function pullServerProfileData() {
     //SPRINT 9
+
     return api.getUserInfo();
   },
   function updateServerProfileData(profileData) {
@@ -173,6 +174,8 @@ const profilePopup = new PopupWithForm({
           formData.input1 = formData.name;
           formData.input2 = formData.about;
           profileUserData.setUserInfo(formData);
+          //new code to remove api requests from user info
+          api.getUserInfo();
         })
       )
       .finally(() => {
@@ -191,9 +194,9 @@ profilePopup.setEventListeners();
 
 //SPRINT 9
 editProfileButton.addEventListener("click", (e) => {
-  profileUserData.getUserInfo().then((res) => {
-    profilePopup.open(res);
-  });
+  //.then((res) => {
+  profilePopup.open(profileUserData.getUserInfo());
+  //});
 });
 ///////////////////////////////////////////////////////////////////////////////////////
 
