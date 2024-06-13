@@ -7,26 +7,6 @@ export default class UserInfo {
     this.nameElement = document.querySelector(name);
     this.jobElement = document.querySelector(job);
     this.avatarElement = document.querySelector(avatar);
-
-    //move into index.js
-    this.pullServerProfileData = pullServerProfileData;
-    this.updateServerProfileData = updateServerProfileData;
-
-    //move initial server pull to the index js to pull all server data
-    //for all classes at once
-    /*
-    pullServerProfileData()
-      .then((res) => {
-        res.input1 = res.name;
-        delete res.name;
-        res.input2 = res.about;
-        delete res.about;
-        return res;
-      })
-      .then((res) => {
-        this.setUserInfo(res);
-      });
-    //console.log(`this.name value: ${this.nameElement.textContent}`);*/
   }
 
   getUserInfo() {
