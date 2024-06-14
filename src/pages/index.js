@@ -167,9 +167,11 @@ const profilePopup = new PopupWithForm({
 
     formData.input2 = formData.profile_description;
     delete formData.profile_description;
+
     api
       .updateProfileInfo({ name: formData.input1, about: formData.input2 })
-      .then(
+      .then((res) => {
+        /*
         api.getUserInfo().then((formData) => {
           formData.input1 = formData.name;
           formData.input2 = formData.about;
@@ -177,20 +179,30 @@ const profilePopup = new PopupWithForm({
           //new code to remove api requests from user info
           api.getUserInfo();
         })
-      )
+      */
+        res.input1 = res.name;
+        res.input2 = res.about;
+        profileUserData.setUserInfo(res);
+        console.log(res.name + " " + res.about + " " + JSON.stringify(res));
+      })
       .finally(() => {
         profilePopup.renderLoading(false);
       });
   },
 });
 
+profileUserData.setUserInfo(profileUserData.getUserInfo());
+
+/*
 api.getUserInfo().then((formData) => {
   formData.input1 = formData.name;
   formData.input2 = formData.about;
   profileUserData.setUserInfo(formData);
 });
+*/
 
 profilePopup.setEventListeners();
+//console.log(profileUserData.getUserInfo());
 
 //SPRINT 9
 editProfileButton.addEventListener("click", (e) => {
@@ -274,31 +286,11 @@ const addDestinationPopup = new PopupWithForm({
     delete formData.destination_title;
     api
       .addNewCard(formData)
-      .then(() => {
+      .then((res) => {
         //if (res.ok) {
-
-        return api
-          .getCards()
-          .then((cards) => {
-            console.log(cards[0]._id);
-            return cards[0]._id;
-          })
-          .then((res) => {
-            formData._id = res;
-            console.log(
-              "#\\3" +
-                formData._id.slice(1, 2) +
-                " " +
-                formData._id.slice(2, formData._id.length)
-            );
-            cardSection.addItem(formData);
-            document.querySelector(
-              "#\\3" +
-                formData._id.slice(1, 2) +
-                " " +
-                formData._id.slice(2, formData._id.length)
-            );
-          });
+        console.log(JSON.stringify(res));
+        console.log(res._id);
+        return res._id;
         //}
       })
       .finally(() => {
