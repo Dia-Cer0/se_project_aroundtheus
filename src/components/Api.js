@@ -6,13 +6,18 @@ export default class Api {
     this.headers = options.headers;
   }
 
+  _checkResponse(status) {
+    console.log("running check response method");
+    if (status.ok) {
+      return status.json();
+    }
+    return Promise.reject(`Error ${status.status}`);
+  }
+
   getUserInfo() {
     return fetch(this.baseUrl + "/users/me", { headers: this.headers })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error ${res.status}`);
+        return this._checkResponse(res);
       })
       .catch((err) => {
         console.error(err);

@@ -288,8 +288,10 @@ const addDestinationPopup = new PopupWithForm({
       .addNewCard(formData)
       .then((res) => {
         //if (res.ok) {
-        console.log(JSON.stringify(res));
-        console.log(res._id);
+        //console.log(JSON.stringify(res));
+        //console.log(res._id);
+        cardSection.addItem({ _id: res._id, link: res.link, name: res.name });
+
         return res._id;
         //}
       })
