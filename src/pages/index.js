@@ -58,21 +58,26 @@ const deleteDestinationPopup = new PopupWithForm({
   popupSelector: confirmModalSelector,
   handleFormSubmit: (cardId) => {
     console.log(cardId);
-    api.deleteCard(cardId).then(() => {
-      //need a way to uniquely identify and delete the card on the local page
-      //do not immediately have the card id until it is retrieved from the server
-      console.log(
-        "#\\3" + cardId.slice(1, 2) + " " + cardId.slice(2, cardId.length)
-      );
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        //need a way to uniquely identify and delete the card on the local page
+        //do not immediately have the card id until it is retrieved from the server
+        console.log(
+          "#\\3" + cardId.slice(1, 2) + " " + cardId.slice(2, cardId.length)
+        );
 
-      //converting first digit of id to unicode
-      document
-        .querySelector(
-          "#\\3" + cardId.slice(0, 1) + " " + cardId.slice(1, cardId.length)
-        )
-        .closest("div")
-        .remove();
-    });
+        //converting first digit of id to unicode
+        document
+          .querySelector(
+            "#\\3" + cardId.slice(0, 1) + " " + cardId.slice(1, cardId.length)
+          )
+          .closest("div")
+          .remove();
+      })
+      .catch((err) => {
+        console.error(err);
+      }); //removed catch from Api class and added in the api call
   },
 });
 deleteDestinationPopup.setEventListeners();
@@ -94,13 +99,23 @@ const cardSection = new Section(
         },
         (cardLiked, cardId) => {
           if (cardLiked) {
-            api.likeCard(cardId).then(() => {
-              newElement.handleLikeButton();
-            });
+            api
+              .likeCard(cardId)
+              .then(() => {
+                newElement.handleLikeButton();
+              })
+              .catch((err) => {
+                console.error(err);
+              }); //removed catch from Api class and added in the api call;
           } else {
-            api.dislikeCard(cardId).then(() => {
-              newElement.handleLikeButton();
-            });
+            api
+              .dislikeCard(cardId)
+              .then(() => {
+                newElement.handleLikeButton();
+              })
+              .catch((err) => {
+                console.error(err);
+              }); //removed catch from Api class and added in the api call;
           }
         }
       );
@@ -119,7 +134,10 @@ api
   })
   .then((initialCards) => {
     cardSection.renderItems(initialCards);
-  });
+  })
+  .catch((err) => {
+    console.error(err);
+  }); //removed catch from Api class and added in the api call;
 
 /*
 
@@ -154,7 +172,9 @@ const profileUserData = new UserInfo(
   },
   function updateServerProfileData(profileData) {
     if (profileData.name) {
-      api.updateProfileInfo(profileData);
+      api.updateProfileInfo(profileData).catch((err) => {
+        console.error(err);
+      }); //removed catch from Api class and added in the api call;
     }
   }
 );
@@ -185,6 +205,9 @@ const profilePopup = new PopupWithForm({
         profileUserData.setUserInfo(res);
         console.log(res.name + " " + res.about + " " + JSON.stringify(res));
       })
+      .catch((err) => {
+        console.error(err);
+      }) //removed catch from Api class and added in the api call
       .finally(() => {
         profilePopup.renderLoading(false);
       });
@@ -233,6 +256,9 @@ const editAvatarPopup = new PopupWithForm({
       .then((formData) => {
         profileUserData.setUserInfo(formData);
       })
+      .catch((err) => {
+        console.error(err);
+      }) //removed catch from Api class and added in the api call
       .finally(() => {
         profilePopup.renderLoading(false);
       });
