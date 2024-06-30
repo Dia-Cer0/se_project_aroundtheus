@@ -1,7 +1,5 @@
 import FormValidator from "../components/FormValidator.js";
 
-const yosemiteImage = new URL("../images/yosemite.jpg", import.meta.url);
-
 /*Constant & variable declaration*/
 const page = document.querySelector(".page");
 
@@ -17,7 +15,13 @@ const validatorConfig = {
 /*Profile Editing******************************************************************/
 const profileNameSelector = ".profile__name";
 const profileDescriptionSelector = ".profile__subtitle";
-const profile = { name: profileNameSelector, job: profileDescriptionSelector };
+const avatarSelector = ".profile__image";
+
+const profile = {
+  name: profileNameSelector,
+  job: profileDescriptionSelector,
+  avatar: avatarSelector,
+};
 const currentProfileName = document.querySelector(profileNameSelector);
 const currentProfileDescription = document.querySelector(
   profileDescriptionSelector
@@ -31,11 +35,15 @@ const profileFormSelector = profileForm.className;
 //global validation variables
 
 const editProfileButton = document.querySelector(".profile__edit");
+const editAvatarButton = document.querySelector(".profile__editImageIcon");
 const profileNameInput = profileEditModal.querySelector(".modal__profile-name");
 const profileDescriptionInput = profileEditModal.querySelector(
   ".modal__profile-description"
 );
 const saveProfileButton = profileEditModal.querySelector(".modal__save-button");
+
+const avatarEditSelector = ".modal_type_avatar-edit";
+const avatarEditModal = document.querySelector(avatarEditSelector);
 
 /********************************************************************************* */
 
@@ -54,30 +62,30 @@ const destinationImageUrl = addDestinationModal.querySelector(
 const cardTemplate = document.querySelector("#card").content;
 const cardClassSelector = ".destinations.page__section";
 const cardContainer = document.querySelector(cardClassSelector);
-const initialCards = [
+const initialCards_old = [
   {
-    link: yosemiteImage,
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
     name: "Yosemite Valley",
   },
 
   {
-    link: require("../images/lake-louise.jpg"),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
     name: "Lake Louise",
   },
   {
-    link: require("../images/bald-mountains.jpg"),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
     name: "Bald Mountains",
   },
   {
-    link: require("../images/latemar.jpg"),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
     name: "Latemar",
   },
   {
-    link: require("../images/vanoise.jpg"),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
     name: "Vanoise National Park",
   },
   {
-    link: require("../images/lago.jpg"),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
     name: "Lago di Braies",
   },
 ];
@@ -92,8 +100,14 @@ const previewModalCaption = previewModal.querySelector(
   ".modal__preview-caption"
 );
 
+const confirmModalSelector = ".modal_type_delete-confirm";
+const deleteConfirmModal = document.querySelector(confirmModalSelector);
+
 //validate import/export
 const importStatus = "constants.js import successful";
+
+//API
+const token = "71f5bc36-47ff-474a-afa7-bfcc7399d91e";
 
 export {
   page,
@@ -106,9 +120,12 @@ export {
   profileForm,
   profileFormSelector,
   editProfileButton,
+  editAvatarButton,
   profileNameInput,
   profileDescriptionInput,
   saveProfileButton,
+  avatarEditSelector,
+  avatarEditModal,
   addDestinationButton,
   addDestinationSelector,
   addDestinationModal,
@@ -118,12 +135,15 @@ export {
   cardTemplate,
   cardClassSelector,
   cardContainer,
-  initialCards,
+  initialCards_old,
   closeButtons,
   cardForm,
   previewModalSelector,
   previewModal,
   previewModalImage,
   previewModalCaption,
+  confirmModalSelector,
+  deleteConfirmModal,
   importStatus,
+  token,
 };
