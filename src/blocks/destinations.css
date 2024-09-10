@@ -45,8 +45,8 @@
   object-fit: cover;
   width: 100%;
 }
-.destinations__card-image:hover{
-  cursor:pointer;
+.destinations__card-image:hover {
+  cursor: pointer;
 }
 
 .destinations__card-caption {
@@ -66,7 +66,7 @@
   /*TITLE FONTS BOLD ISSUE PER REVIEW 6*/
   font-family: "Inter-Black", "Arial", sans-serif;
   font-size: 24px;
-  font-weight:900;
+  font-weight: 900;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -82,6 +82,7 @@
   opacity: 50%;
   cursor: pointer;
 }
+
 .destinations_caption-icon_style_liked {
   background: transparent url("../images/liked.svg") center no-repeat;
 }

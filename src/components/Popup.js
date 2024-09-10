@@ -3,9 +3,6 @@ export default class Popup {
     this._popupElement = document.querySelector(popupClassSelector);
     this._closePopupButton =
       this._popupElement.querySelector(".modal__close-icon");
-
-    console.log(this._popupElement.parentElement);
-    console.log(this._popupElement.closest("div"));
   }
   open() {
     //public method to open popup
