@@ -52,7 +52,7 @@ export default class Card {
     this._likeButton.classList.toggle("destinations_caption-icon_style_liked");
   }
 
-  handleDeleteButton() {
+  deleteCard() {
     //console.log(this._cardElement.querySelector("img") + " removed");
     this._cardElement.remove();
 

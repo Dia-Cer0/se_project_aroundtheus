@@ -56,7 +56,14 @@ const deleteDestinationPopup = new PopupWithForm({
   handleFormSubmit: async (cardId) => {
     try {
       await api.deleteCard(cardId);
-      document.querySelector(`#\\3${cardId}`).closest("div").remove();
+
+      // Remove the card from the DOM
+      const cardElement = document
+        .getElementById(cardId)
+        .closest(".destinations__card");
+      if (cardElement) {
+        cardElement.remove(); // Remove the card element from the DOM
+      }
     } catch (err) {
       console.error(err);
     }
